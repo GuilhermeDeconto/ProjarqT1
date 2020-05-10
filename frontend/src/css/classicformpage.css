@@ -1,0 +1,64 @@
+
+#titleES{
+    font-size: 40px;
+    color: rgb(0, 38, 255);
+    font-weight: bold;
+    text-shadow: 2px 2px #ffffff;
+}
+
+.links{
+  font-weight: bold;
+  font-size: 15px;
+}
+
+#classicformpage .view {
+    background-image: url("../images/backgroundES.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom center;
+    height: 100vh;
+  }
+  
+  #classicformpage .gradient {
+    background: -webkit-linear-gradient(
+      45deg,
+      rgba(0, 0, 0, 0.7),
+      rgba(161, 122, 209, 0.4) 100%
+    );
+    background: -webkit-gradient(
+      linear,
+      45deg,
+      from(rgba(0, 0, 0, 0.7), rgba(207, 168, 255, 0.4) 100%)
+    );
+    background: linear-gradient(
+      0deg,
+      rgba(245, 152, 135, 0.4),
+      rgba(175, 142, 218, 0.4) 100%
+    );
+  }
+  
+  #classicformpage .card {
+    background-color: rgba(126, 123, 215, 0.2);
+  }
+  
+  #classicformpage h6 {
+    line-height: 1.7;
+  }
+  
+  #classicformpage .navbar {
+    transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
+  }
+  
+  #classicformpage .top-nav-collapse {
+    background: #424f95 !important;
+  }
+  
+  @media (max-width: 768px) {
+    #classicformpage .navbar:not(.top-nav-collapse) {
+      background: #424f95 !important;
+    }
+  }
+  
+  #classicformpage label {
+    color: #fff !important;
+  }

@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+  text-decoration: none;
+  text-rendering: optimizeLegibility;
+  font-family: 'Poppins', sans-serif !important;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
