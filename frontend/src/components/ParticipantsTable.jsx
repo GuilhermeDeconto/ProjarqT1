@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { MDBDataTable, MDBContainer, MDBRow, MDBBtn, MDBIcon } from "mdbreact";
+import { MDBDataTable, MDBContainer} from "mdbreact";
 
 import "../css/participantstable.css";
 
@@ -7,18 +7,63 @@ export default class ParticipantsTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: this.default,
+      participants: this.props.participants,
+      teams: this.props.teams,
     };
   }
 
-  // email: String,
-  // name: String,
-  // password: String,
-  // team: String,
-  // isAdmin: Boolean,
-  // semester: String,
-  // curso: String
-  default = {
+  initParticipants = {
+    columns: [
+      {
+        label: "Nome",
+        field: "name",
+        sort: "asc",
+        width: 150,
+      },
+      {
+        label: "Email",
+        field: "email",
+        sort: "asc",
+        width: 270,
+      },
+      {
+        label: "Time",
+        field: "team",
+        sort: "asc",
+        width: 100,
+      },
+      {
+        label: "Semestre",
+        field: "semester",
+        sort: "asc",
+        width: 100,
+      },
+      {
+        label: "Curso",
+        field: "curso",
+        sort: "asc",
+        width: 130,
+      },
+      {
+        label: "Editar",
+        field: "edit",
+        width: 130,
+      },
+    ],
+    rows: [
+      {
+        name: "",
+        email: "",
+        team: "",
+        semester: "",
+        curso: "",
+        edit: "",
+      }
+    ],
+  };
+
+  initTeams = {
+     // eslint-disable-next-line
     columns: [
       {
         label: "Nome",
@@ -59,58 +104,37 @@ export default class ParticipantsTable extends Component {
     ],
     rows: [
       {
-        name: "Tiger Nixon",
-        email: "tigernixon@blabla.com.br",
-        team: "Paladinos",
-        semester: "6",
-        curso: "Ciência da Computação",
-        edit: <a href="/"><MDBIcon size="lg" icon="edit"/></a>
-      },
-      {
-        name: "Tiger Nixon",
-        email: "tigernixon@blabla.com.br",
-        team: "Artificiais",
-        semester: "6",
-        curso: "Ciência da Computação",
-        edit: <a href="/"><MDBIcon tag="a" size="lg" icon="edit"/></a>
-      },
-      {
-        name: "Tiger Nixon",
-        email: "tigernixon@blabla.com.br",
-        team: "Paladinos",
-        semester: "6",
-        curso: "Ciência da Computação",
-        edit: <a href="/"><MDBIcon size="lg" icon="edit"/></a>
-      },
-      {
-        name: "Tiger Nixon",
-        email: "tigernixon@blabla.com.br",
-        team: "Paladinos",
-        semester: "6",
-        curso: "Ciência da Computação",
-        edit: <a href="/"><MDBIcon size="lg" icon="edit" /></a>
-      },
-      {
-        name: "Tiger Nixon",
-        email: "tigernixon@blabla.com.br",
-        team: "Paladinos",
-        semester: "6",
-        curso: "Ciência da Computação",
-        edit: <a href="/"><MDBIcon size="lg" icon="edit"/></a>
-      },
-      {
-        name: "Tiger Nixon",
-        email: "tigernixon@blabla.com.br",
-        team: "Paladinos",
-        semester: "6",
-        curso: "Ciência da Computação",
-        edit: <a href="/"><MDBIcon size="lg" icon="edit"/></a>
+        name: "",
+        email: "",
+        team: "",
+        semester: "",
+        curso: "",
+        edit: "",
       },
     ],
   };
 
+  componentDidMount() {
+    
+    let state = this.state;
+    let participants = this.aux.participants;
+    let teams = this.aux.teams;
+    
+    state.participants = participants;
+    state.teams = teams;
+    this.setState({ state });
+  }
+
+  // email: String,
+  // name: String,
+  // password: String,
+  // team: String,
+  // isAdmin: Boolean,
+  // semester: String,
+  // curso: String
+  aux = [];
   render() {
-    let data = this.state.data;
+    this.aux = this.props
     return (
       <React.Fragment>
         <MDBContainer fluid>
@@ -118,7 +142,7 @@ export default class ParticipantsTable extends Component {
             entries={5}
             displayEntries={false}
             searchLabel="Filtre qualquer informação"
-            responsive 
+            responsive
             responsiveSm
             responsiveMd
             responsiveLg
@@ -126,31 +150,31 @@ export default class ParticipantsTable extends Component {
             className="mx-3 mt-1"
             striped
             bordered
+            noBottomColumns
             hover
-            data={data}
-            infoLabel={["Mostrando", "a", "de", "participantes"]} 
-            multipleCheckboxes 
+            data={this.aux.participants}
+            infoLabel={["Mostrando", "a", "de", "participantes"]}
             noRecordsFoundLabel="Sem dados para tabular"
             paginationLabel={["Anterior", "Próximo"]}
             theadColor="orange lighten-2"
           />
-          <hr id="quebraLinha"/>
+          <hr id="quebraLinha" />
           <MDBDataTable
             entries={5}
             displayEntries={false}
             searchLabel="Filtre qualquer informação"
-            responsive 
+            responsive
             responsiveSm
             responsiveMd
             responsiveLg
             responsiveXl
             className="mx-3 mt-1"
             striped
+            noBottomColumns
             bordered
             hover
-            data={data}
-            infoLabel={["Mostrando", "a", "de", "participantes"]} 
-            multipleCheckboxes 
+            data={this.aux.teams}
+            infoLabel={["Mostrando", "a", "de", "times"]}
             noRecordsFoundLabel="Sem dados para tabular"
             paginationLabel={["Anterior", "Próximo"]}
             theadColor="red"

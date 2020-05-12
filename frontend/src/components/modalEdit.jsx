@@ -1,19 +1,5 @@
 import React, { Component } from "react";
-import { MDBContainer, MDBAutocomplete, MDBInput, MDBBtn, MDBModal, MDBModalHeader, MDBModalBody, MDBIcon } from "mdbreact";
-
-const subjects = [
-  "Where's My Stuff?",
-  "Cancel Items or Orders",
-  "Returns & Refunds",
-  "Shipping Rates & Information",
-  "Change Your Payment Method",
-  "Manage Your Account Information",
-  "About Two-Step Verification",
-  "Cancel Items or Orders",
-  "Change Your Order Information",
-  "Contact Third-Party Sellers",
-  "More in Managing Your Orders"
-];
+import { MDBContainer, MDBInput, MDBBtn, MDBModal, MDBModalHeader, MDBModalBody, MDBIcon } from "mdbreact";
 
 class ModalEdit extends Component {
   state = {
@@ -53,7 +39,6 @@ class ModalEdit extends Component {
           <MDBModalBody>
             <MDBInput label="Your name"  />
             <MDBInput label="Your email"  iconClass="dark-grey" />
-            <MDBAutocomplete label="Subject"  data={subjects} clear />
             <MDBInput
               label="Your message"
               type="textarea"
