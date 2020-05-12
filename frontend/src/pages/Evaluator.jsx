@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import * as axios from "axios";
 import { getToken } from "../api/LoginAuth";
-import NavBar from "../components/NavBar";
 import PainelNavBar from "../components/PainelNavBar";
+import ParticipantsTable from "../components/ParticipantsTable";
+import { MDBContainer } from "mdbreact";
 
 class Evaluator extends React.Component {
   constructor(props) {
     super(props);
-    this.baseUrl = `http://localhost:8080`;
+    this.baseUrl = `http://localhost:9876`;
     this.state = {
       partipants: [],
       erro: false,
@@ -21,7 +22,7 @@ class Evaluator extends React.Component {
       axios
         .get(`${this.baseUrl}/api/usuario`, getToken())
         .then((response) => {
-          users = response.data;
+          users = response.users;
           if (users != null) {
             this.setState({
               partipants: users,
@@ -36,9 +37,12 @@ class Evaluator extends React.Component {
 
   render() {
     let { partipants, importado } = this.state;
-    return <React.Fragment>
-      <PainelNavBar/>
-    </React.Fragment>;
+    return (
+      <React.Fragment>
+        <PainelNavBar />
+        <ParticipantsTable data={partipants} />
+      </React.Fragment>
+    );
   }
 }
 

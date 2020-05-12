@@ -8,7 +8,7 @@ const hapi = require('hapi');
 const joi = require('joi');
 const mongoose = require('mongoose');
 
-const server = new hapi.Server({ "host": "localhost", "port": 9876 });
+const server = new hapi.Server({ "host": "localhost", "port": 8081 });
 
 /* MongoDb connection */
 mongoose.connect("mongodb://localhost/dbprojarq", { useNewUrlParser: true, useUnifiedTopology: true });
@@ -19,13 +19,15 @@ const UserModel = mongoose.model("user", {
     name: String,
     password: String,
     team: String,
-    isAdmin: Boolean
+    isAdmin: Boolean,
+    semester: String,
+    curso:String
 });
 
 /* Routes */
 server.route({
     method: "POST",
-    path: "/userLogin",
+    path: "/login",
     options: {
         validate: {
             payload: {
