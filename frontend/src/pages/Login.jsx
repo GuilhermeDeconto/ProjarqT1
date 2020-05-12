@@ -55,7 +55,7 @@ export default class Login extends Component {
     };
     try {
       axios
-        .post(`${this.baseUrl}/api/login`, usuario)
+        .post(`${this.baseUrl}/login`, usuario)
         .then((respUsuario) => {
           usuario = respUsuario.data
           if (usuario.isAdmin === "True") {

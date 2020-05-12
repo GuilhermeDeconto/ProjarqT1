@@ -1,10 +1,8 @@
 import React from "react";
 import PainelNavBar from "../components/PainelNavBar";
 import ParticipantsTable from "../components/ParticipantsTable";
-import ModalEdit from "../components/ModalEdit";
-import {
-  MDBIcon,
-} from "mdbreact";
+import Editor from '../components/Editor';
+import { MDBIcon, MDBBtn } from "mdbreact";
 
 class Evaluator extends React.Component {
   constructor(props) {
@@ -16,7 +14,6 @@ class Evaluator extends React.Component {
       erro: false,
       importado: false,
     };
-    this.launchModal = this.launchModal.bind(this);
   }
 
   componentDidMount() {
@@ -62,10 +59,8 @@ class Evaluator extends React.Component {
         width: 130,
       },
     ],
-    rows: []
-  }; 
-  // eslint-disable-next-line
-  aux = <a href="#" onClick={this.launchModal}><MDBIcon size="lg" icon="edit" /></a>
+    rows: [],
+  };
 
   halfDataTeams = {
     columns: [
@@ -105,8 +100,12 @@ class Evaluator extends React.Component {
         width: 130,
       },
     ],
-    rows: []
+    rows: [],
   };
+
+  deleteRow(item){
+    console.log("Deletando ",item);
+  }
 
   data = [
     {
@@ -115,7 +114,7 @@ class Evaluator extends React.Component {
       team: "Paladinos",
       semester: "6",
       curse: "Ciência da Computação",
-      editor: this.aux
+      editor: <Editor isParticipant={true} deleteRow={this.deleteRow()} />
     },
     {
       name: "Tiger Nixon",
@@ -123,11 +122,31 @@ class Evaluator extends React.Component {
       team: "Artificiais",
       semester: "6",
       curse: "Ciência da Computação",
-      editor: (
-        <a href="/">
-          <MDBIcon tag="a" size="lg" icon="edit" />
-        </a>
-      ),
+      editor: <Editor isParticipant={false}/>
+    },
+    {
+      name: "Tiger Nixon",
+      email: "tigernixon@blabla.com.br",
+      team: "Paladinos",
+      semester: "6",
+      curse: "Ciência da Computação",
+      editor: <Editor/>,
+    },
+    {
+      name: "Tiger Nixon",
+      email: "tigernixon@blabla.com.br",
+      team: "Paladinos",
+      semester: "6",
+      curse: "Ciência da Computação",
+      editor: <Editor/>
+    },
+    {
+      name: "Tiger Nixon",
+      email: "tigernixon@blabla.com.br",
+      team: "Paladinos",
+      semester: "6",
+      curse: "Ciência da Computação",
+      editor: <Editor/>
     },
     {
       name: "Tiger Nixon",
@@ -136,67 +155,25 @@ class Evaluator extends React.Component {
       semester: "6",
       curse: "Ciência da Computação",
       editor: (
-        <a href="/">
-          <MDBIcon size="lg" icon="edit" />
-        </a>
+        <Editor/>
       ),
     },
-    {
-      name: "Tiger Nixon",
-      email: "tigernixon@blabla.com.br",
-      team: "Paladinos",
-      semester: "6",
-      curse: "Ciência da Computação",
-      editor: (
-        <a href="/">
-          <MDBIcon size="lg" icon="edit" />
-        </a>
-      ),
-    },
-    {
-      name: "Tiger Nixon",
-      email: "tigernixon@blabla.com.br",
-      team: "Paladinos",
-      semester: "6",
-      curse: "Ciência da Computação",
-      editor: (
-        <a href="/">
-          <MDBIcon size="lg" icon="edit" />
-        </a>
-      ),
-    },
-    {
-      name: "Tiger Nixon",
-      email: "tigernixon@blabla.com.br",
-      team: "Paladinos",
-      semester: "6",
-      curse: "Ciência da Computação",
-      editor: (
-        <a href="/">
-          <MDBIcon size="lg" icon="edit" />
-        </a>
-      ),
-    }
   ];
-
-  launchModal = () => {
-    return <ModalEdit></ModalEdit>;
-  };
 
   insereRowsParticipants(aux) {
     let state = this.state;
-    let auxiliar = []
-     // eslint-disable-next-line
+    let auxiliar = [];
+    // eslint-disable-next-line
     aux.map((item) => {
       auxiliar.push({
         name: item.name,
-        email: item.email, 
-        team: item.team, 
-        semester: item.semester, 
-        curse: item.curse, 
-        editor: item.editor
-      })
-    })
+        email: item.email,
+        team: item.team,
+        semester: item.semester,
+        curse: item.curse,
+        editor: item.editor,
+      });
+    });
     this.halfDataParticipants.rows = auxiliar;
     let newData = this.halfDataParticipants;
     state.participants = newData;
@@ -207,36 +184,35 @@ class Evaluator extends React.Component {
 
   insereRowsTeams(aux) {
     let state = this.state;
-    let auxiliar = []
+    let auxiliar = [];
     // eslint-disable-next-line
     aux.map((item) => {
       auxiliar.push({
         name: item.name,
-        email: item.email, 
-        team: item.team, 
-        semester: item.semester, 
-        curse: item.curse, 
-        editor: item.editor
-      })
-    })
+        email: item.email,
+        team: item.team,
+        semester: item.semester,
+        curse: item.curse,
+        editor: item.editor,
+      });
+    });
     this.halfDataTeams.rows = auxiliar;
     let newData = this.halfDataTeams;
     state.teams = newData;
     this.setState({
-      state
+      state,
     });
   }
 
   render() {
     let { participants, teams } = this.state;
-    
+
     return (
       <React.Fragment>
         <PainelNavBar />
         <ParticipantsTable
           participants={participants}
           teams={teams}
-          launchModal={this.launchModal.bind(this)}
         />
       </React.Fragment>
     );

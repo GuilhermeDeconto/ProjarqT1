@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { MDBDataTable, MDBContainer} from "mdbreact";
+import { MDBDataTable, MDBContainer, MDBBtn } from "mdbreact";
 
 import "../css/participantstable.css";
 
@@ -7,8 +7,10 @@ export default class ParticipantsTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      participants: this.props.participants,
-      teams: this.props.teams,
+      participants: this.props.participants
+        ? this.props.participants
+        : this.initParticipants,
+      teams: this.props.teams ? this.props.teams : this.initTeams,
     };
   }
 
@@ -46,7 +48,7 @@ export default class ParticipantsTable extends Component {
       },
       {
         label: "Editar",
-        field: "edit",
+        field: "editor",
         width: 130,
       },
     ],
@@ -58,12 +60,12 @@ export default class ParticipantsTable extends Component {
         semester: "",
         curso: "",
         edit: "",
-      }
+      },
     ],
   };
 
   initTeams = {
-     // eslint-disable-next-line
+    // eslint-disable-next-line
     columns: [
       {
         label: "Nome",
@@ -98,7 +100,7 @@ export default class ParticipantsTable extends Component {
       ,
       {
         label: "Editar",
-        field: "edit",
+        field: "editor",
         width: 130,
       },
     ],
@@ -114,17 +116,6 @@ export default class ParticipantsTable extends Component {
     ],
   };
 
-  componentDidMount() {
-    
-    let state = this.state;
-    let participants = this.aux.participants;
-    let teams = this.aux.teams;
-    
-    state.participants = participants;
-    state.teams = teams;
-    this.setState({ state });
-  }
-
   // email: String,
   // name: String,
   // password: String,
@@ -134,10 +125,12 @@ export default class ParticipantsTable extends Component {
   // curso: String
   aux = [];
   render() {
-    this.aux = this.props
+    let { participants, teams } = this.props;
+
     return (
       <React.Fragment>
         <MDBContainer fluid>
+          <MDBBtn color="deep-purple">Importar participantes</MDBBtn>
           <MDBDataTable
             entries={5}
             displayEntries={false}
@@ -152,13 +145,14 @@ export default class ParticipantsTable extends Component {
             bordered
             noBottomColumns
             hover
-            data={this.aux.participants}
+            data={participants}
             infoLabel={["Mostrando", "a", "de", "participantes"]}
             noRecordsFoundLabel="Sem dados para tabular"
             paginationLabel={["Anterior", "Próximo"]}
             theadColor="orange lighten-2"
           />
           <hr id="quebraLinha" />
+          <MDBBtn color="deep-orange">Importar times</MDBBtn>
           <MDBDataTable
             entries={5}
             displayEntries={false}
@@ -173,11 +167,11 @@ export default class ParticipantsTable extends Component {
             noBottomColumns
             bordered
             hover
-            data={this.aux.teams}
+            data={teams}
             infoLabel={["Mostrando", "a", "de", "times"]}
             noRecordsFoundLabel="Sem dados para tabular"
             paginationLabel={["Anterior", "Próximo"]}
-            theadColor="red"
+            theadColor="blue"
           />
         </MDBContainer>
       </React.Fragment>
