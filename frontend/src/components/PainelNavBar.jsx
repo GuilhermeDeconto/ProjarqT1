@@ -74,11 +74,13 @@ export default class PainelNavBar extends Component {
                     <MDBDropdownItem>
                       {/* eslint-disable-next-line */}
                       <a href="#">
+                        <i class="fas fa-user-cog"></i>
                         Configurações
                       </a>
                     </MDBDropdownItem>
                     <MDBDropdownItem>
                       <a href="/" onClick={this.log_out}>
+                        <i class="fas fa-sign-out-alt"></i>
                         Sair
                       </a>
                     </MDBDropdownItem>

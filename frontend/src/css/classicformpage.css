@@ -12,30 +12,13 @@
 }
 
 #classicformpage .view {
-    background-image: url("../images/backgroundES.jpg");
+    background-image: url("../images/hacktonaWallpaper.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: bottom center;
+    background-position: top center;
     height: 100vh;
   }
   
-  #classicformpage .gradient {
-    background: -webkit-linear-gradient(
-      45deg,
-      rgba(0, 0, 0, 0.7),
-      rgba(161, 122, 209, 0.4) 100%
-    );
-    background: -webkit-gradient(
-      linear,
-      45deg,
-      from(rgba(0, 0, 0, 0.7), rgba(207, 168, 255, 0.4) 100%)
-    );
-    background: linear-gradient(
-      0deg,
-      rgba(245, 152, 135, 0.4),
-      rgba(175, 142, 218, 0.4) 100%
-    );
-  }
   
   #classicformpage .card {
     background-color: rgba(126, 123, 215, 0.2);

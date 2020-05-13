@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { MDBContainer, MDBNotification } from "mdbreact";
 import TemplateLogin from "../components/TemplateLogin";
 import { login } from "../api/LoginAuth";
-import * as axios from "axios";
+// import * as axios from "axios";
+import '../css/login.css'
 
 export default class Login extends Component {
   constructor(props) {
@@ -80,14 +81,14 @@ export default class Login extends Component {
     };
 
     if (email && password) {
-      if (email == "gustavo.possebon@acad.pucrs.br" && password == "123456") {
+      if (email === "gustavo.possebon@acad.pucrs.br" && password === "123456") {
         login(usuario.authorization);
         this.props.history.push({
           pathname: "/participante",
           sucesso: true,
         });
       }
-      if (email == "gustavo.possebon@pucrs.br" && password == "123456") {
+      if (email === "gustavo.possebon@pucrs.br" && password === "123456") {
         login(usuario.authorization);
         this.props.history.push({
           pathname: "/avaliador",
@@ -123,17 +124,13 @@ export default class Login extends Component {
   //id="containerBack"
   render() {
     return (
-      <MDBContainer>
+      <MDBContainer fluid id="containerLogin">
         {this.erro()}
         {this.sucesso()}
         <TemplateLogin
           logar={this.logar.bind(this)}
           trocaValoresState={this.trocaValoresState}
         />
-
-        <div className="mt-5 text-center font-weight-bold">
-          &copy; {new Date().getFullYear()} AGES — Todos os direitos reservados
-        </div>
       </MDBContainer>
     );
   }
