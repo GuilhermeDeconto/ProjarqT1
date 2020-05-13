@@ -3,8 +3,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
-import { MDBModalHeader, MDBModalBody, MDBCol, MDBRow} from "mdbreact";
+import { MDBModalHeader, MDBModalBody, MDBCol, MDBRow } from "mdbreact";
 import Rate from "../components/Rate";
+import StyledButton from '../components/StyledButton'
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -34,9 +35,9 @@ export default function ModalAvaliation() {
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
+      <StyledButton onClick={handleOpen}>
         Avaliar
-      </button>
+      </StyledButton>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -59,23 +60,36 @@ export default function ModalAvaliation() {
             </MDBModalHeader>
             <MDBModalBody className="text-center">
               <MDBRow>
-                <MDBCol> <span>Software funcionando: </span></MDBCol>
-                <MDBCol><Rate /></MDBCol>
+                <MDBCol>
+                  {" "}
+                  <span>Software funcionando: </span>
+                </MDBCol>
+                <MDBCol>
+                  <Rate />
+                </MDBCol>
               </MDBRow>
               <MDBRow>
-                <MDBCol><span>Processo: </span></MDBCol>
+                <MDBCol>
+                  <span>Processo: </span>
+                </MDBCol>
                 <Rate />
               </MDBRow>
               <MDBRow>
-                <MDBCol><span>Pictch </span></MDBCol>
+                <MDBCol>
+                  <span>Pictch </span>
+                </MDBCol>
                 <Rate />
               </MDBRow>
               <MDBRow>
-                <MDBCol><span>Inovação </span></MDBCol>
+                <MDBCol>
+                  <span>Inovação </span>
+                </MDBCol>
                 <Rate />
               </MDBRow>
               <MDBRow>
-                <MDBCol><span>Formação do time: </span></MDBCol>
+                <MDBCol>
+                  <span>Formação do time: </span>
+                </MDBCol>
                 <Rate />
               </MDBRow>
 

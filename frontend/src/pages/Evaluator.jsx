@@ -2,7 +2,7 @@ import React from "react";
 import PainelNavBar from "../components/PainelNavBar";
 import TableRender from "../components/TableRender";
 import "../css/participantstable.css";
-import ModalAvaliation from '../components/ModalAvaliation'
+import ModalAvaliation from "../components/ModalAvaliation";
 
 class Evaluator extends React.Component {
   constructor(props) {
@@ -26,9 +26,6 @@ class Evaluator extends React.Component {
       {
         title: "Nome",
         field: "name",
-        editComponent: props => (
-          <ModalAvaliation></ModalAvaliation>
-        ),
       },
       {
         title: "Email",
@@ -55,10 +52,7 @@ class Evaluator extends React.Component {
       {
         title: "Nome",
         field: "name",
-        editComponent: props => (
-          <ModalAvaliation></ModalAvaliation>
-        ),
-        grouping: true
+        grouping: true,
       },
       {
         title: "Email",
@@ -67,16 +61,25 @@ class Evaluator extends React.Component {
       {
         title: "Time",
         field: "team",
-        defaultGroupOrder: 0
+        defaultGroupOrder: 0,
       },
       {
         title: "Semestre",
         field: "semester",
-        type: 'numeric'
+        type: "numeric",
       },
       {
         title: "Curso",
         field: "curse",
+      },
+      {
+        title: "Nota",
+        field: "note",
+      },
+      {
+        title: "Avaliador",
+        field: "avaliation",
+        editComponent: (props) => <ModalAvaliation></ModalAvaliation>,
       },
     ],
     data: [],
@@ -175,9 +178,21 @@ class Evaluator extends React.Component {
     return (
       <React.Fragment>
         <PainelNavBar />
-        <TableRender labelButton={"participantes"} labelTitle={"Participantes"} columns={participants.columns} data={participants.data} />
+        <TableRender
+          labelButton={"participantes"}
+          labelTitle={"Participantes"}
+          columns={participants.columns}
+          data={participants.data}
+          isParticipant={true}
+        />
         <hr id="quebraLinha" />
-        <TableRender labelButton={"times"} labelTitle={"Times"} columns={teams.columns} data={teams.data} />
+        <TableRender
+          labelButton={"times"}
+          labelTitle={"Times"}
+          columns={teams.columns}
+          data={teams.data}
+          isParticipant={false}
+        />
       </React.Fragment>
     );
   }

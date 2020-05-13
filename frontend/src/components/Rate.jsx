@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
 import Box from "@material-ui/core/Box";
 
-import {MDBRow} from "mdbreact";
 
 const Rate = (props) => {
   const labels = {

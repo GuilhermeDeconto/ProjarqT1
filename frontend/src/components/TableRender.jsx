@@ -1,15 +1,16 @@
 import React from "react";
 import MaterialTable from "material-table";
 import { MDBContainer, MDBBtn } from "mdbreact";
-import { green } from '@material-ui/core/colors';
+import { green, red} from '@material-ui/core/colors';
 import AddBox from '@material-ui/icons/AddBox';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 export default function TableRender(props) {
   const [, setState] = React.useState({
     columns: [],
     data: [],
   });
-  let { columns, data, labelButton, labelTitle } = props;
+  let { columns, data, labelButton, labelTitle, isParticipant } = props;
 
   const localization = {
     pagination: {
@@ -54,13 +55,29 @@ export default function TableRender(props) {
   };
 
 
-  const options = {
+  const optionsParticipants = {
     grouping: true,
     selection: true,
     headerStyle: {
-      backgroundColor: "#01579b",
+      backgroundColor: "#6a1b9a",
       color: "#FFF",
     },
+    pageSizeOptions: [5],
+    paginationType: "stepped",
+    toolbarButtonAlignment: "right",
+    exportButton: true,
+    exportFileName: "DadosHackatona",
+    exportAllData: true,
+  };
+
+  const optionsTeams = {
+    grouping: true,
+    selection: true,
+    headerStyle: {
+      backgroundColor: "#76ff03",
+      color: "#FFF",
+    },
+    pageSizeOptions: [5],
     paginationType: "stepped",
     toolbarButtonAlignment: "right",
     exportButton: true,
@@ -76,18 +93,22 @@ export default function TableRender(props) {
         <MaterialTable
           title={labelTitle}
           columns={columns}
-          options={options}
+          options={isParticipant ? optionsParticipants : optionsTeams}
           data={data}
           localization={localization}
-          components={{
+          icons={{
             Add: props => (
               <div>
                 <AddBox className="fa fa-plus-circle" style={{ color: green[500] }} {...props}/>
               </div>
             ),
+            Delete: props => (
+              <div>
+                <DeleteIcon style={{ color: red[500] }} {...props}/>
+              </div>
+            )
           }}
           isLoading={columns && data ? false : true}
-          tooltip={"Teste"}
           editable={{
             onRowAdd: (newData) =>
               new Promise((resolve) => {
