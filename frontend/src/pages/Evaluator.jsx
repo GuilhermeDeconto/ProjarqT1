@@ -1,8 +1,8 @@
 import React from "react";
 import PainelNavBar from "../components/PainelNavBar";
-import ParticipantsTable from "../components/ParticipantsTable";
-import Editor from '../components/Editor';
-import { MDBIcon, MDBBtn } from "mdbreact";
+import TableRender from "../components/TableRender";
+import "../css/participantstable.css";
+import ModalAvaliation from '../components/ModalAvaliation'
 
 class Evaluator extends React.Component {
   constructor(props) {
@@ -24,139 +24,106 @@ class Evaluator extends React.Component {
   halfDataParticipants = {
     columns: [
       {
-        label: "Nome",
+        title: "Nome",
         field: "name",
-        sort: "asc",
-        width: 150,
+        editComponent: props => (
+          <ModalAvaliation></ModalAvaliation>
+        ),
       },
       {
-        label: "Email",
+        title: "Email",
         field: "email",
-        sort: "asc",
-        width: 270,
       },
       {
-        label: "Time",
+        title: "Time",
         field: "team",
-        sort: "asc",
-        width: 100,
       },
       {
-        label: "Semestre",
+        title: "Semestre",
         field: "semester",
-        sort: "asc",
-        width: 100,
       },
       {
-        label: "Curso",
+        title: "Curso",
         field: "curse",
-        sort: "asc",
-        width: 130,
-      },
-      {
-        label: "Editar",
-        field: "editor",
-        width: 130,
       },
     ],
-    rows: [],
+    data: [],
   };
 
   halfDataTeams = {
     columns: [
       {
-        label: "Nome",
+        title: "Nome",
         field: "name",
-        sort: "asc",
-        width: 150,
+        editComponent: props => (
+          <ModalAvaliation></ModalAvaliation>
+        ),
+        grouping: true
       },
       {
-        label: "Email",
+        title: "Email",
         field: "email",
-        sort: "asc",
-        width: 270,
       },
       {
-        label: "Time",
+        title: "Time",
         field: "team",
-        sort: "asc",
-        width: 100,
+        defaultGroupOrder: 0
       },
       {
-        label: "Semestre",
+        title: "Semestre",
         field: "semester",
-        sort: "asc",
-        width: 100,
+        type: 'numeric'
       },
       {
-        label: "Curso",
+        title: "Curso",
         field: "curse",
-        sort: "asc",
-        width: 130,
-      },
-      {
-        label: "Editar",
-        field: "editor",
-        width: 130,
       },
     ],
-    rows: [],
+    data: [],
   };
-
-  deleteRow(item){
-    console.log("Deletando ",item);
-  }
 
   data = [
     {
-      name: "Tiger Nixon",
+      name: "Gigislaine Gonçalves",
       email: "tigernixon@blabla.com.br",
       team: "Paladinos",
-      semester: "6",
+      semester: "2",
       curse: "Ciência da Computação",
-      editor: <Editor isParticipant={true} deleteRow={this.deleteRow()} />
     },
     {
-      name: "Tiger Nixon",
+      name: "Guilherme de Corno",
       email: "tigernixon@blabla.com.br",
-      team: "Artificiais",
-      semester: "6",
-      curse: "Ciência da Computação",
-      editor: <Editor isParticipant={false}/>
+      team: "Os bichas",
+      semester: "4",
+      curse: "Engenharia de Software",
     },
     {
-      name: "Tiger Nixon",
+      name: "Silvia Moraes",
       email: "tigernixon@blabla.com.br",
-      team: "Paladinos",
-      semester: "6",
-      curse: "Ciência da Computação",
-      editor: <Editor/>,
+      team: "IA",
+      semester: "12",
+      curse: "Engenharia de Software",
     },
     {
-      name: "Tiger Nixon",
+      name: "Chiara Paskulin",
       email: "tigernixon@blabla.com.br",
-      team: "Paladinos",
-      semester: "6",
-      curse: "Ciência da Computação",
-      editor: <Editor/>
+      team: "Doidas",
+      semester: "8",
+      curse: "Sistemas de Informação",
     },
     {
-      name: "Tiger Nixon",
+      name: "Bernardo de Cesaro",
       email: "tigernixon@blabla.com.br",
-      team: "Paladinos",
-      semester: "6",
-      curse: "Ciência da Computação",
-      editor: <Editor/>
+      team: "Feios e cia",
+      semester: "3",
+      curse: "Engenharia de Software",
     },
     {
-      name: "Tiger Nixon",
+      name: "Joao Kleber",
       email: "tigernixon@blabla.com.br",
-      team: "Paladinos",
-      semester: "6",
-      curse: "Ciência da Computação",
-      editor: (
-        <Editor/>
-      ),
+      team: "Pegadinha dos brothers",
+      semester: "1",
+      curse: "Direito",
     },
   ];
 
@@ -171,10 +138,9 @@ class Evaluator extends React.Component {
         team: item.team,
         semester: item.semester,
         curse: item.curse,
-        editor: item.editor,
       });
     });
-    this.halfDataParticipants.rows = auxiliar;
+    this.halfDataParticipants.data = auxiliar;
     let newData = this.halfDataParticipants;
     state.participants = newData;
     this.setState({
@@ -193,10 +159,9 @@ class Evaluator extends React.Component {
         team: item.team,
         semester: item.semester,
         curse: item.curse,
-        editor: item.editor,
       });
     });
-    this.halfDataTeams.rows = auxiliar;
+    this.halfDataTeams.data = auxiliar;
     let newData = this.halfDataTeams;
     state.teams = newData;
     this.setState({
@@ -210,10 +175,9 @@ class Evaluator extends React.Component {
     return (
       <React.Fragment>
         <PainelNavBar />
-        <ParticipantsTable
-          participants={participants}
-          teams={teams}
-        />
+        <TableRender labelButton={"participantes"} labelTitle={"Participantes"} columns={participants.columns} data={participants.data} />
+        <hr id="quebraLinha" />
+        <TableRender labelButton={"times"} labelTitle={"Times"} columns={teams.columns} data={teams.data} />
       </React.Fragment>
     );
   }
