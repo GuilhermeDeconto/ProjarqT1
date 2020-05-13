@@ -57,7 +57,7 @@ export default class PainelNavBar extends Component {
             </MDBNavbarNav>
             <MDBNavbarNav>
               <MDBNavbarBrand>
-                <strong id="dbclogo">Painel do Avaliador</strong>
+                <strong id="dbclogo">Painel do {this.props.title}</strong>
               </MDBNavbarBrand>
             </MDBNavbarNav>
             <MDBNavbarNav right>

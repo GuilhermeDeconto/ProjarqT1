@@ -177,7 +177,7 @@ class Evaluator extends React.Component {
 
     return (
       <React.Fragment>
-        <PainelNavBar />
+        <PainelNavBar title={"Avaliador"} />
         <TableRender
           labelButton={"participantes"}
           labelTitle={"Participantes"}

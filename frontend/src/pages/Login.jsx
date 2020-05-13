@@ -12,6 +12,7 @@ export default class Login extends Component {
       email: "",
       password: "",
       erro: false,
+      sucesso: false,
     };
     this.trocaValoresState = this.trocaValoresState.bind(this);
   }
@@ -31,7 +32,30 @@ export default class Login extends Component {
               position: "fixed",
               top: "10px",
               right: "10px",
-              zIndex: 9999
+              zIndex: 9999,
+            }}
+          />
+        )}
+      </div>
+    );
+  }
+
+  sucesso() {
+    return (
+      <div>
+        {this.state.sucesso && (
+          <MDBNotification
+            iconClassName="text-sucess"
+            show
+            fade
+            title="Sucesso"
+            message="Credenciais corretas!"
+            text="a pouco..."
+            style={{
+              position: "fixed",
+              top: "10px",
+              right: "10px",
+              zIndex: 9999,
             }}
           />
         )}
@@ -52,8 +76,27 @@ export default class Login extends Component {
     let usuario = {
       email: email,
       password: password,
+      authorization: "TokenTOP",
     };
-    try {
+
+    if (email && password) {
+      if (email == "gustavo.possebon@acad.pucrs.br" && password == "123456") {
+        login(usuario.authorization);
+        this.props.history.push({
+          pathname: "/participante",
+          sucesso: true,
+        });
+      }
+      if (email == "gustavo.possebon@pucrs.br" && password == "123456") {
+        login(usuario.authorization);
+        this.props.history.push({
+          pathname: "/avaliador",
+          sucesso: true,
+        });
+      }
+    }
+    this.setState({ erro: true });
+    /* try {
       axios
         .post(`${this.baseUrl}/login`, usuario)
         .then((respUsuario) => {
@@ -75,18 +118,19 @@ export default class Login extends Component {
         .catch(this.setState({ erro: true }), function (error) {
           console.log("Error in login =>", error);
         });
-    } catch (erro) {}
+    } catch (erro) {} */
   };
-//id="containerBack"
+  //id="containerBack"
   render() {
     return (
-      <MDBContainer >
+      <MDBContainer>
         {this.erro()}
+        {this.sucesso()}
         <TemplateLogin
           logar={this.logar.bind(this)}
           trocaValoresState={this.trocaValoresState}
         />
-        
+
         <div className="mt-5 text-center font-weight-bold">
           &copy; {new Date().getFullYear()} AGES — Todos os direitos reservados
         </div>

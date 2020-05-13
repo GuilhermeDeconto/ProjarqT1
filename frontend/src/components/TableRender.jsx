@@ -68,13 +68,16 @@ export default function TableRender(props) {
     exportButton: true,
     exportFileName: "DadosHackatona",
     exportAllData: true,
+    rowStyle: {
+      backgroundColor: '#c3c3c3',
+    }
   };
 
   const optionsTeams = {
     grouping: true,
     selection: true,
     headerStyle: {
-      backgroundColor: "#76ff03",
+      backgroundColor: "#008000",
       color: "#FFF",
     },
     pageSizeOptions: [5],
@@ -83,6 +86,9 @@ export default function TableRender(props) {
     exportButton: true,
     exportFileName: "DadosHackatona",
     exportAllData: true,
+    rowStyle: {
+      backgroundColor: '#c3c3c3',
+    }
   };
 
 
