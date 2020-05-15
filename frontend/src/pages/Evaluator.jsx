@@ -52,7 +52,6 @@ class Evaluator extends React.Component {
       {
         title: "Nome",
         field: "name",
-        grouping: true,
       },
       {
         title: "Email",
@@ -61,12 +60,10 @@ class Evaluator extends React.Component {
       {
         title: "Time",
         field: "team",
-        defaultGroupOrder: 0,
       },
       {
         title: "Semestre",
         field: "semester",
-        type: "numeric",
       },
       {
         title: "Curso",
@@ -79,7 +76,7 @@ class Evaluator extends React.Component {
       {
         title: "Avaliador",
         field: "avaliation",
-        editComponent: (props) => <ModalAvaliation></ModalAvaliation>,
+        render: rowData => <ModalAvaliation data={rowData}/>
       },
     ],
     data: [],
@@ -93,7 +90,7 @@ class Evaluator extends React.Component {
       semester: "2",
       curse: "Ciência da Computação",
     },
-    {
+    /* {
       name: "Guilherme de Corno",
       email: "tigernixon@blabla.com.br",
       team: "Os bichas",
@@ -127,7 +124,7 @@ class Evaluator extends React.Component {
       team: "Pegadinha dos brothers",
       semester: "1",
       curse: "Direito",
-    },
+    }, */
   ];
 
   insereRowsParticipants(aux) {
@@ -172,6 +169,41 @@ class Evaluator extends React.Component {
     });
   }
 
+  optionsParticipants = {
+    grouping: true,
+    headerStyle: {
+      backgroundColor: "#6a1b9a",
+      color: "#FFF",
+    },
+    pageSizeOptions: [5],
+    paginationType: "stepped",
+    toolbarButtonAlignment: "right",
+    exportButton: true,
+    exportFileName: "DadosHackatona",
+    exportAllData: true,
+    rowStyle: {
+      backgroundColor: '#c3c3c3',
+    }
+  };
+
+  optionsTeams = {
+    grouping: true,
+    headerStyle: {
+      backgroundColor: "#008000",
+      color: "#FFF",
+    },
+    pageSizeOptions: [5],
+    paginationType: "stepped",
+    toolbarButtonAlignment: "right",
+    exportButton: true,
+    exportFileName: "DadosHackatona",
+    exportAllData: true,
+    rowStyle: {
+      backgroundColor: '#c3c3c3',
+    }
+  };
+
+
   render() {
     let { participants, teams } = this.state;
 
@@ -184,6 +216,9 @@ class Evaluator extends React.Component {
           columns={participants.columns}
           data={participants.data}
           isParticipant={true}
+          options={this.optionsParticipants}
+          isEditable={false}
+          isIcons={false}
         />
         <hr id="quebraLinha" />
         <TableRender
@@ -192,6 +227,9 @@ class Evaluator extends React.Component {
           columns={teams.columns}
           data={teams.data}
           isParticipant={false}
+          options={this.optionsTeams}
+          isEditable={false}
+          isIcons={false}
         />
       </React.Fragment>
     );

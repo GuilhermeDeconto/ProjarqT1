@@ -5,7 +5,7 @@ import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import { MDBModalHeader, MDBModalBody, MDBCol, MDBRow } from "mdbreact";
 import Rate from "../components/Rate";
-import StyledButton from '../components/StyledButton'
+import StyledButton from "../components/StyledButton";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -21,11 +21,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ModalAvaliation() {
+export default function ModalAvaliation(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
+  let { data } = props;
+
   const handleOpen = () => {
+    console.log("Chegando conteudo da linha", data);
     setOpen(true);
   };
 
@@ -35,9 +38,7 @@ export default function ModalAvaliation() {
 
   return (
     <div>
-      <StyledButton onClick={handleOpen}>
-        Avaliar
-      </StyledButton>
+      <StyledButton onClick={handleOpen}>Avaliar</StyledButton>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -61,7 +62,6 @@ export default function ModalAvaliation() {
             <MDBModalBody className="text-center">
               <MDBRow>
                 <MDBCol>
-                  {" "}
                   <span>Software funcionando: </span>
                 </MDBCol>
                 <MDBCol>

@@ -1,16 +1,16 @@
 import React from "react";
 import MaterialTable from "material-table";
 import { MDBContainer, MDBBtn } from "mdbreact";
-import { green, red} from '@material-ui/core/colors';
-import AddBox from '@material-ui/icons/AddBox';
-import DeleteIcon from '@material-ui/icons/Delete';
+import { green, red } from "@material-ui/core/colors";
+import AddBox from "@material-ui/icons/AddBox";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 export default function TableRender(props) {
   const [, setState] = React.useState({
     columns: [],
     data: [],
   });
-  let { columns, data, labelButton, labelTitle, isParticipant } = props;
+  let { columns, data, labelButton, labelTitle, options, isEditable, isIcons } = props;
 
   const localization = {
     pagination: {
@@ -54,43 +54,68 @@ export default function TableRender(props) {
     },
   };
 
-
-  const optionsParticipants = {
-    grouping: true,
-    selection: true,
-    headerStyle: {
-      backgroundColor: "#6a1b9a",
-      color: "#FFF",
-    },
-    pageSizeOptions: [5],
-    paginationType: "stepped",
-    toolbarButtonAlignment: "right",
-    exportButton: true,
-    exportFileName: "DadosHackatona",
-    exportAllData: true,
-    rowStyle: {
-      backgroundColor: '#c3c3c3',
-    }
+const edit = {
+    onRowAdd: (newData) =>
+      new Promise((resolve) => {
+        setTimeout(() => {
+          resolve();
+          setState((prevState) => {
+            const data = [...prevState.data];
+            data.push(newData);
+            return { ...prevState, data };
+          });
+        }, 600);
+      }),
+    onRowUpdate: (newData, oldData) =>
+      new Promise((resolve) => {
+        setTimeout(() => {
+          resolve();
+          if (oldData) {
+            setState((prevState) => {
+              const data = [...prevState.data];
+              data[data.indexOf(oldData)] = newData;
+              return { ...prevState, data };
+            });
+          }
+        }, 600);
+      }),
+    onRowDelete: (oldData) =>
+      new Promise((resolve) => {
+        setTimeout(() => {
+          resolve();
+          setState((prevState) => {
+            const data = [...prevState.data];
+            data.splice(data.indexOf(oldData), 1);
+            return { ...prevState, data };
+          });
+        }, 600);
+      }),
   };
+/*
+  const editable = (isEdit) => {
+    isEdit ? edit : "";
+  }; */
 
-  const optionsTeams = {
-    grouping: true,
-    selection: true,
-    headerStyle: {
-      backgroundColor: "#008000",
-      color: "#FFF",
-    },
-    pageSizeOptions: [5],
-    paginationType: "stepped",
-    toolbarButtonAlignment: "right",
-    exportButton: true,
-    exportFileName: "DadosHackatona",
-    exportAllData: true,
-    rowStyle: {
-      backgroundColor: '#c3c3c3',
-    }
-  };
-
+   const icons = {
+    Add: (props) => (
+      <div>
+        <AddBox
+          className="fa fa-plus-circle"
+          style={{ color: green[500] }}
+          {...props}
+        />
+      </div>
+    ),
+    Delete: (props) => (
+      <div>
+        <DeleteIcon style={{ color: red[500] }} {...props} />
+      </div>
+    )
+  }
+/*
+  const iconsAddAndRemove = (isIcons) => {
+    isIcons ? icons : ''
+  } */
 
   return (
     <React.Fragment>
@@ -99,59 +124,12 @@ export default function TableRender(props) {
         <MaterialTable
           title={labelTitle}
           columns={columns}
-          options={isParticipant ? optionsParticipants : optionsTeams}
+          options={options}
           data={data}
           localization={localization}
-          icons={{
-            Add: props => (
-              <div>
-                <AddBox className="fa fa-plus-circle" style={{ color: green[500] }} {...props}/>
-              </div>
-            ),
-            Delete: props => (
-              <div>
-                <DeleteIcon style={{ color: red[500] }} {...props}/>
-              </div>
-            )
-          }}
+          icons={isIcons ? icons : ''}
           isLoading={columns && data ? false : true}
-          editable={{
-            onRowAdd: (newData) =>
-              new Promise((resolve) => {
-                setTimeout(() => {
-                  resolve();
-                  setState((prevState) => {
-                    const data = [...prevState.data];
-                    data.push(newData);
-                    return { ...prevState, data };
-                  });
-                }, 600);
-              }),
-            onRowUpdate: (newData, oldData) =>
-              new Promise((resolve) => {
-                setTimeout(() => {
-                  resolve();
-                  if (oldData) {
-                    setState((prevState) => {
-                      const data = [...prevState.data];
-                      data[data.indexOf(oldData)] = newData;
-                      return { ...prevState, data };
-                    });
-                  }
-                }, 600);
-              }),
-            onRowDelete: (oldData) =>
-              new Promise((resolve) => {
-                setTimeout(() => {
-                  resolve();
-                  setState((prevState) => {
-                    const data = [...prevState.data];
-                    data.splice(data.indexOf(oldData), 1);
-                    return { ...prevState, data };
-                  });
-                }, 600);
-              }),
-          }}
+          editable={isEditable ? edit : ""}
         />
       </MDBContainer>
     </React.Fragment>
