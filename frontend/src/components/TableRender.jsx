@@ -96,16 +96,12 @@ const edit = {
     isEdit ? edit : "";
   }; */
 
-   const icons = {
-    Add: (props) => (
-      <div>
-        <AddBox
-          className="fa fa-plus-circle"
-          style={{ color: green[500] }}
-          {...props}
-        />
-      </div>
-    ),
+  const icons = {
+    Add: (props) => {
+      return (<div>
+        <AddBox className="fa fa-plus-circle" style={{ color: green[500] }} {...props} />
+      </div>);
+    },
     Delete: (props) => (
       <div>
         <DeleteIcon style={{ color: red[500] }} {...props} />
@@ -127,9 +123,9 @@ const edit = {
           options={options}
           data={data}
           localization={localization}
-          icons={isIcons ? icons : ''}
+          icons={isIcons ? icons : <div/>}
           isLoading={columns && data ? false : true}
-          editable={isEditable ? edit : ""}
+          editable={isEditable ? edit : <div/>}
         />
       </MDBContainer>
     </React.Fragment>

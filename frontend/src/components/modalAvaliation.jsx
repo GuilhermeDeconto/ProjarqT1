@@ -4,7 +4,7 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import { MDBModalHeader, MDBModalBody, MDBCol, MDBRow } from "mdbreact";
-import Rate from "../components/Rate";
+import Rater from "../components/Rater";
 import StyledButton from "../components/StyledButton";
 
 const useStyles = makeStyles((theme) => ({
@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    width: 500,
   },
 }));
 
@@ -28,7 +29,7 @@ export default function ModalAvaliation(props) {
   let { data } = props;
 
   const handleOpen = () => {
-    console.log("Chegando conteudo da linha", data);
+    //console.log("Chegando conteudo da linha", data);
     setOpen(true);
   };
 
@@ -48,52 +49,66 @@ export default function ModalAvaliation(props) {
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
-          timeout: 500,
+          timeout: 1000,
         }}
       >
         <Fade in={open}>
           <div className={classes.paper}>
             <MDBModalHeader
               titleClass="d-inline title"
-              className="text-center light-blue darken-3 white-text"
+              className="text-center light-blue darken-3 white-text justify-content-center"
             >
               Avalie o time
             </MDBModalHeader>
             <MDBModalBody className="text-center">
-              <MDBRow>
-                <MDBCol>
-                  <span>Software funcionando: </span>
+              <MDBRow className="my-3">
+                <MDBCol className="">
+                  <span className="d-flex justify-content-start">Software funcionando: </span>
                 </MDBCol>
-                <MDBCol>
-                  <Rate />
+                <MDBCol >
+                  <Rater className="d-flex justify-content-end" name={"software"} />
                 </MDBCol>
               </MDBRow>
-              <MDBRow>
-                <MDBCol>
-                  <span>Processo: </span>
+              <MDBRow className="my-3">
+                <MDBCol className="d-flex justify-content-start">
+                  <span>
+                    Processo:
+                  </span>
                 </MDBCol>
-                <Rate />
+                <MDBCol >
+                  <Rater className="d-flex justify-content-end" name={"process"} />
+                </MDBCol>
               </MDBRow>
-              <MDBRow>
-                <MDBCol>
-                  <span>Pictch </span>
+              <MDBRow className="my-3">
+                <MDBCol className="d-flex justify-content-start">
+                  <span >Pitch: </span>
                 </MDBCol>
-                <Rate />
+                <MDBCol >
+                  <Rater className="d-flex justify-content-end" name={"pitch"} />
+                </MDBCol>
               </MDBRow>
-              <MDBRow>
-                <MDBCol>
-                  <span>Inovação </span>
+              <MDBRow className="my-3">
+                <MDBCol className="d-flex justify-content-start">
+                  <span>
+                    Inovação:
+                  </span>
                 </MDBCol>
-                <Rate />
+                <MDBCol >
+                  <Rater className="d-flex justify-content-end" name={"inovation"} />
+                </MDBCol>
               </MDBRow>
-              <MDBRow>
-                <MDBCol>
-                  <span>Formação do time: </span>
+              <MDBRow className="my-3">
+                <MDBCol className="d-flex justify-content-start">
+                  <span >
+                    Formação do time:
+                  </span>
                 </MDBCol>
-                <Rate />
+                <MDBCol >
+                  <Rater className="d-flex justify-content-end" name={"formation"} />
+                </MDBCol>
               </MDBRow>
 
-              <button type="button" onClick={handleClose}>
+              <button type="button" className="mt-3" onClick={handleClose}>
                 Enviar avaliação
               </button>
             </MDBModalBody>

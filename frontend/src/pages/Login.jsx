@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { MDBContainer, MDBNotification } from "mdbreact";
 import TemplateLogin from "../components/TemplateLogin";
 import { login } from "../api/LoginAuth";
-// import * as axios from "axios";
-import '../css/login.css'
+import * as axios from "axios";
+import "../css/login.css";
 
 export default class Login extends Component {
   constructor(props) {
@@ -44,22 +44,21 @@ export default class Login extends Component {
   sucesso() {
     return (
       <div>
-        {this.state.sucesso && (
-          <MDBNotification
-            iconClassName="text-sucess"
-            show
-            fade
-            title="Sucesso"
-            message="Credenciais corretas!"
-            text="a pouco..."
-            style={{
-              position: "fixed",
-              top: "10px",
-              right: "10px",
-              zIndex: 9999,
-            }}
-          />
-        )}
+        <MDBNotification
+          iconClassName="text-sucess"
+          show
+          fade
+          title="Sucesso"
+          message="Credenciais corretas!"
+          text="a pouco..."
+          style={{
+            position: "fixed",
+            top: "10px",
+            right: "10px",
+            zIndex: 9999,
+          }}
+        />
+        }
       </div>
     );
   }
@@ -79,54 +78,49 @@ export default class Login extends Component {
       password: password,
       authorization: "TokenTOP",
     };
-
-    if (email && password) {
-      if (email === "gustavo.possebon@acad.pucrs.br" && password === "123456") {
-        login(usuario.authorization);
-        this.props.history.push({
-          pathname: "/participante",
-          sucesso: true,
-        });
-      }
-      if (email === "gustavo.possebon@pucrs.br" && password === "123456") {
-        login(usuario.authorization);
-        this.props.history.push({
-          pathname: "/avaliador",
-          sucesso: true,
-        });
-      }
-    }
-    this.setState({ erro: true });
-    /* try {
+    try {
       axios
         .post(`${this.baseUrl}/login`, usuario)
         .then((respUsuario) => {
           usuario = respUsuario.data
           if (usuario.isAdmin === "True") {
-            login(usuario.authorization);
+            login(usuario.authorization)
+            setInterval(
             this.props.history.push({
-              pathname: "/participant",
               state: { data: respUsuario.data },
-            });
+              pathname: "/administrador",
+            }), 10000)
+            
+          } else if(usuario.isNormalUser === "True"){
+            login(usuario.authorization);
+            setInterval(
+              this.props.history.push({
+              state: { data: respUsuario.data },
+              pathname: `/participante`,
+            }), 10000)
+            
           } else {
             login(usuario.authorization);
-            this.props.history.push({
-              pathname: `/evaluator/`,
+            setInterval(
+              this.props.history.push({
               state: { data: respUsuario.data },
-            });
+              pathname: `/avaliador`,
+            }), 10000)
+            
           }
         })
         .catch(this.setState({ erro: true }), function (error) {
           console.log("Error in login =>", error);
         });
-    } catch (erro) {} */
+    } catch (erro) {
+      console.log(erro)
+    }
   };
   //id="containerBack"
   render() {
     return (
       <MDBContainer fluid id="containerLogin">
         {this.erro()}
-        {this.sucesso()}
         <TemplateLogin
           logar={this.logar.bind(this)}
           trocaValoresState={this.trocaValoresState}

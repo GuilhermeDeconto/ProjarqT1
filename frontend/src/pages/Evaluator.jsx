@@ -17,9 +17,11 @@ class Evaluator extends React.Component {
   }
 
   componentDidMount() {
-    this.insereRowsParticipants(this.data);
-    this.insereRowsTeams(this.data);
+    this.insereRowsParticipants(this.dataParticipants);
+    this.insereRowsTeams(this.dataTeams);
   }
+
+  count = 1
 
   halfDataParticipants = {
     columns: [
@@ -50,31 +52,27 @@ class Evaluator extends React.Component {
   halfDataTeams = {
     columns: [
       {
+        title: "Número",
+        field: "number",
+      },
+      {
         title: "Nome",
         field: "name",
       },
       {
-        title: "Email",
-        field: "email",
-      },
-      {
-        title: "Time",
-        field: "team",
-      },
-      {
-        title: "Semestre",
-        field: "semester",
-      },
-      {
-        title: "Curso",
-        field: "curse",
+        title: "Plataforma",
+        field: "plataform",
       },
       {
         title: "Nota",
         field: "note",
       },
       {
-        title: "Avaliador",
+        title: "Descrição",
+        field: "description",
+      },
+      {
+        title: "Avaliação",
         field: "avaliation",
         render: rowData => <ModalAvaliation data={rowData}/>
       },
@@ -82,7 +80,7 @@ class Evaluator extends React.Component {
     data: [],
   };
 
-  data = [
+  dataParticipants = [
     {
       name: "Gigislaine Gonçalves",
       email: "tigernixon@blabla.com.br",
@@ -127,6 +125,16 @@ class Evaluator extends React.Component {
     }, */
   ];
 
+  dataTeams = [
+    {
+      number: '1',
+      name: "Gigislaine Gonçalves",
+      plataform: "Web",
+      note: ["Quesito 1: Excelente","Quesito 1: Excelente", "Quesito 1: Excelente"],
+      description: "Um time legal com pessoas legais",
+    }
+  ];
+
   insereRowsParticipants(aux) {
     let state = this.state;
     let auxiliar = [];
@@ -139,6 +147,7 @@ class Evaluator extends React.Component {
         semester: item.semester,
         curse: item.curse,
       });
+      
     });
     this.halfDataParticipants.data = auxiliar;
     let newData = this.halfDataParticipants;
@@ -155,11 +164,12 @@ class Evaluator extends React.Component {
     aux.map((item) => {
       auxiliar.push({
         name: item.name,
-        email: item.email,
-        team: item.team,
-        semester: item.semester,
-        curse: item.curse,
+        number: this.count,
+        description: item.description,
+        note: item.note,
+        plataform: item.plataform,
       });
+      this.count++
     });
     this.halfDataTeams.data = auxiliar;
     let newData = this.halfDataTeams;
