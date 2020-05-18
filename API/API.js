@@ -8,7 +8,7 @@ const hapi = require('hapi');
 const joi = require('joi');
 const mongoose = require('mongoose');
 
-const server = new hapi.Server({ "host": "localhost", "port": 9876 });
+const server = new hapi.Server({ "host": "localhost", "port": 9876, routes:{ cors = true } });
 
 /* MongoDb connection */
 mongoose.connect("mongodb://localhost/dbprojarq", { useNewUrlParser: true, useUnifiedTopology: true });
