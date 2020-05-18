@@ -29,7 +29,11 @@ const TeamModel = mongoose.model("team", {
     name: String,
     platform: String,
     description: String,
-    note: Number,
+    software: String,
+    process: String,
+    pitch: String,
+    inovation: String,
+    formation: String,
 });
 
 /* Routes */
@@ -47,10 +51,27 @@ server.route({
             }
         }
     },
+    // 
+    //          
+    //         for (user in users) {
+    //             if (user.email == request.payload.email){
+    //                 id = user.id;
+    //             }
+    //         }
+    //         let result = await UserModel.findById(id).exec();
+
     handler: async (request, resp) => {
         try {
-            let result = await UserModel.findById(request.payload.email).exec();
-            let data;
+            let users = await UserModel.find().exec()
+            let id = 0; 
+            for (user in users) {
+                if (user.email == request.payload.email){
+                    console.log("Achou email igual", user.email);
+                    id = user.id;
+                }
+            }
+            console.log(id)
+            let result = await UserModel.findById(id).exec();
             if (result != null) {
                 if (result.password == request.payload.password) {
                     data = {
@@ -81,14 +102,14 @@ server.route({
 
 server.route({
     method: "GET",
-    path: "/user",
+    path: "/users",
     handler: async (request, resp) => {
         try {
-            let product = await UserModel.find().exec();
+            let users = await UserModel.find().exec();
             var data = {
                 status: "success",
                 message: "Users retrieved successfully",
-                product: product,
+                users: users,
             }
             return resp.response(data);
         } catch (error) {
@@ -99,14 +120,14 @@ server.route({
 
 server.route({
     method: "GET",
-    path: "/team",
+    path: "/teams",
     handler: async (request, resp) => {
         try {
-            let team = await TeamModel.find().exec();
+            let teams = await TeamModel.find().exec();
             var data = {
                 status: "success",
                 message: "Teams retrieved successfully",
-                team: team,
+                teams: teams,
             }
             return resp.response(data);
         } catch (error) {
@@ -142,6 +163,10 @@ server.route({
                 email: joi.string().required(),
                 name: joi.string().required(),
                 password: joi.string().required(),
+                team: joi.string().required(),
+                isAdmin: joi.string().required(),
+                semester: joi.string().required(),
+                curso: joi.string().required()
             },
             failAction: (request, resp, error) => {
                 return error.isJoi ? resp.response(error.details[0]).takeover() : resp.response(error).takeover();
@@ -150,12 +175,12 @@ server.route({
     },
     handler: async (request, resp) => {
         try {
-            let result = new UserModel(request.payload);
+            let user = new UserModel(request.payload);
             let data = {
                 message: 'User created!',
-                result: result
+                result: user
             }
-            let result = await product.save();
+            let result = await user.save();
 
             return resp.response(data);
         } catch (error) {
@@ -201,7 +226,7 @@ server.route({
             }
         }
     },
-    path: "/product/{id}",
+    path: "/user/{id}",
     handler: async (request, resp) => {
         try {
             let result = await UserModel.findByIdAndUpdate(request.params.id, request.payload, { new: true });
@@ -255,7 +280,7 @@ server.route({
 
 server.route({
     method: "DELETE",
-    path: "/team",
+    path: "/teams",
     handler: async (request, res) => {
         try {
             let result = await TeamModel.deleteMany();
@@ -273,14 +298,14 @@ server.route({
 
 server.route({
     method: "DELETE",
-    path: "/user",
+    path: "/users",
     handler: async (request, res) => {
         try {
             let result = await UserModel.deleteMany();
             let data = {
                 status: "success",
                 message: "Users deleted successfully",
-                product: result
+                users: result
             }
             return res.response(data);
         } catch (error) {

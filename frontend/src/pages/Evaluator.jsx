@@ -64,12 +64,28 @@ class Evaluator extends React.Component {
         field: "plataform",
       },
       {
-        title: "Nota",
-        field: "note",
-      },
-      {
         title: "Descrição",
         field: "description",
+      },
+      {
+        title: "Software funcionando",
+        field: "software",
+      },
+      {
+        title: "Processo",
+        field: "process",
+      },
+      {
+        title: "Pitch",
+        field: "pitch",
+      },
+      {
+        title: "Inovação",
+        field: "inovation",
+      },
+      {
+        title: "Formação do time",
+        field: "formation",
       },
       {
         title: "Avaliação",
@@ -130,7 +146,11 @@ class Evaluator extends React.Component {
       number: '1',
       name: "Gigislaine Gonçalves",
       plataform: "Web",
-      note: ["Quesito 1: Excelente","Quesito 1: Excelente", "Quesito 1: Excelente"],
+      software: 'Excelente',
+      process: 'Excelente',
+      pitch: 'Ruim',
+      inovation: 'Aceitável',
+      formation: 'Excelente',
       description: "Um time legal com pessoas legais",
     }
   ];
@@ -166,7 +186,11 @@ class Evaluator extends React.Component {
         name: item.name,
         number: this.count,
         description: item.description,
-        note: item.note,
+        software: item.software,
+        process: item.process,
+        pitch: item.pitch, 
+        inovation: item.inovation,
+        formation: item.formation,
         plataform: item.plataform,
       });
       this.count++
