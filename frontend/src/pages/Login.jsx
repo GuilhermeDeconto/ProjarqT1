@@ -79,7 +79,7 @@ export default class Login extends Component {
       email: email,
       password: password,
     };
-
+    const config = { headers: { Authorization: localStorage.getItem("Authorization") } }
     try {
       axios
         .post(`${this.baseUrl}/login`, usuarioLogin)
@@ -118,10 +118,9 @@ export default class Login extends Component {
           }
         })
         this.setState({ sucesso: true })
-        .catch(this.setState({ erro: true }), function (error) {
-          console.log("Error in login =>", error);
-        })
+        
     } catch (erro) {
+      this.setState({ erro: true })
       console.log(erro);
     }
   };

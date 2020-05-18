@@ -26,7 +26,7 @@ export default class PainelNavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "Gustavo",
+      name: this.props.name,
       isOpen: false,
     };
   }
@@ -41,6 +41,10 @@ export default class PainelNavBar extends Component {
   toggleCollapse = () => {
     this.setState({ isOpen: !this.state.isOpen });
   };
+
+  getFirstChar(str){
+    return str.substr(0,1)
+  }
 
   render() {
     return (
@@ -62,13 +66,12 @@ export default class PainelNavBar extends Component {
             </MDBNavbarNav>
             <MDBNavbarNav right>
               <span className="pr-3" id="textobranco">
-                {" "}
-                Olá, {this.state.name}!{" "}
+                Olá, <br/>{this.state.name}!
               </span>
               <MDBNavItem className="pr-2">
                 <MDBDropdown>
                   <MDBDropdownToggle nav>
-                    <AvatarModel label={"GP"} />
+                    <AvatarModel label={this.getFirstChar(this.props.avatarLabel)} />
                   </MDBDropdownToggle>
                   <MDBDropdownMenu right className="dropdown-default">
                     <MDBDropdownItem className="mx-2 my-1">

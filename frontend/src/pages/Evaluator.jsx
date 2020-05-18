@@ -19,9 +19,8 @@ class Evaluator extends React.Component {
   componentDidMount() {
     this.insereRowsParticipants(this.dataParticipants);
     this.insereRowsTeams(this.dataTeams);
+    
   }
-
-  count = 1
 
   halfDataParticipants = {
     columns: [
@@ -184,7 +183,7 @@ class Evaluator extends React.Component {
     aux.map((item) => {
       auxiliar.push({
         name: item.name,
-        number: this.count,
+        number: item.number,
         description: item.description,
         software: item.software,
         process: item.process,
@@ -193,7 +192,6 @@ class Evaluator extends React.Component {
         formation: item.formation,
         plataform: item.plataform,
       });
-      this.count++
     });
     this.halfDataTeams.data = auxiliar;
     let newData = this.halfDataTeams;
@@ -238,12 +236,13 @@ class Evaluator extends React.Component {
   };
 
 
+
   render() {
     let { participants, teams } = this.state;
 
     return (
       <React.Fragment>
-        <PainelNavBar title={"Avaliador"} />
+        <PainelNavBar avatarLabel={this.props.location.state.data.name} name={this.props.location.state.data.name} title={"Avaliador"} />
         <TableRender
           labelButton={"participantes"}
           labelTitle={"Participantes"}

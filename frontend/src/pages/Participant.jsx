@@ -14,7 +14,7 @@ class Participant extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <PainelNavBar title={"Participante"} />
+        <PainelNavBar avatarLabel={this.props.location.state.data.name} name={this.props.location.state.data.name} title={"Participante"} />
         <MDBContainer fluid className="mt-4">
           <MDBRow>
             <MDBCol lg="6" sm="12">

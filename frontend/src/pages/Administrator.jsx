@@ -211,7 +211,7 @@ class Evaluator extends React.Component {
 
     return (
       <React.Fragment>
-        <PainelNavBar title={"Administrador"} />
+        <PainelNavBar avatarLabel={this.props.location.state.data.name} name={this.props.location.state.data.name} title={"Administrador"} />
         <TableRender
           labelButton={"participantes"}
           labelTitle={"Participantes"}
