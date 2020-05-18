@@ -8,7 +8,7 @@ const hapi = require('hapi');
 const joi = require('joi');
 const mongoose = require('mongoose');
 
-const server = new hapi.Server({ "host": "localhost", "port": 8081 });
+const server = new hapi.Server({ "host": "localhost", "port": 9876 });
 
 /* MongoDb connection */
 mongoose.connect("mongodb://localhost/dbprojarq", { useNewUrlParser: true, useUnifiedTopology: true });
@@ -18,10 +18,18 @@ const UserModel = mongoose.model("user", {
     email: String,
     name: String,
     password: String,
-    team: String,
+    team: Number,
     isAdmin: Boolean,
     semester: String,
-    curso:String
+    curso: String
+});
+
+const TeamModel = mongoose.model("team", {
+    number: Number,
+    name: String,
+    platform: String,
+    description: String,
+    note: Number,
 });
 
 /* Routes */
@@ -43,22 +51,22 @@ server.route({
         try {
             let result = await UserModel.findById(request.payload.email).exec();
             let data;
-            if (result != null){
-                if (result.password == request.payload.password){
+            if (result != null) {
+                if (result.password == request.payload.password) {
                     data = {
                         success: true,
                         message: 'Login success!',
                         user: result
                     }
                     return resp.response(data);
-                }else{
+                } else {
                     data = {
                         success: false,
                         message: 'Invalid Password!'
                     }
                     return resp.response(data);
                 }
-            }else{
+            } else {
                 data = {
                     success: false,
                     message: 'Invalid User!'
@@ -81,6 +89,24 @@ server.route({
                 status: "success",
                 message: "Users retrieved successfully",
                 product: product,
+            }
+            return resp.response(data);
+        } catch (error) {
+            return resp.response(error).code(500);
+        }
+    }
+});
+
+server.route({
+    method: "GET",
+    path: "/team",
+    handler: async (request, resp) => {
+        try {
+            let team = await TeamModel.find().exec();
+            var data = {
+                status: "success",
+                message: "Teams retrieved successfully",
+                team: team,
             }
             return resp.response(data);
         } catch (error) {
@@ -137,7 +163,6 @@ server.route({
         }
     }
 });
-
 
 server.route({
     method: "POST",
@@ -202,6 +227,42 @@ server.route({
                 status: "success",
                 message: "User deleted successfully",
                 user: result
+            }
+            return res.response(data);
+        } catch (error) {
+            return resp.response(error).code(500);
+        }
+    }
+});
+
+server.route({
+    method: "DELETE",
+    path: "/team/{id}",
+    handler: async (request, res) => {
+        try {
+            let result = await TeamModel.findByIdAndDelete(request.params.id);
+            let data = {
+                status: "success",
+                message: "Team deleted successfully",
+                team: result
+            }
+            return res.response(data);
+        } catch (error) {
+            return resp.response(error).code(500);
+        }
+    }
+});
+
+server.route({
+    method: "DELETE",
+    path: "/team",
+    handler: async (request, res) => {
+        try {
+            let result = await TeamModel.deleteMany();
+            let data = {
+                status: "success",
+                message: "Teams deleted successfully",
+                team: result
             }
             return res.response(data);
         } catch (error) {
