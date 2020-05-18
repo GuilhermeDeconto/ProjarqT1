@@ -71,16 +71,16 @@ export default class PainelNavBar extends Component {
                     <AvatarModel label={"GP"} />
                   </MDBDropdownToggle>
                   <MDBDropdownMenu right className="dropdown-default">
-                    <MDBDropdownItem>
+                    <MDBDropdownItem className="mx-2 my-1">
                       {/* eslint-disable-next-line */}
-                      <a href="#">
-                        <i className="fas fa-user-cog"></i>
+                      <a href="#" >
+                        <i className="fas fa-user-cog mx-1 my-1"></i>
                         Configurações
                       </a>
                     </MDBDropdownItem>
-                    <MDBDropdownItem>
+                    <MDBDropdownItem className="mx-2 my-1">
                       <a href="/" onClick={this.log_out}>
-                        <i className="fas fa-sign-out-alt"></i>
+                        <i className="fas fa-sign-out-alt mx-1 my-1"></i>
                         Sair
                       </a>
                     </MDBDropdownItem>
