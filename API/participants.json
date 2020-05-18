@@ -1,0 +1,502 @@
+[
+  {
+    "name": "Hattie Coffey",
+    "email": "hattiecoffey@edu.pucrs.br",
+    "password": 123456,
+    "team": 9,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 8,
+    "curse": "Engenharia de Software"
+  },
+  {
+    "name": "Castaneda Clayton",
+    "email": "castanedaclayton@edu.pucrs.br",
+    "password": 123456,
+    "team": 6,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 2,
+    "curse": "Sistemas de Informação"
+  },
+  {
+    "name": "Ryan Davis",
+    "email": "ryandavis@edu.pucrs.br",
+    "password": 123456,
+    "team": 7,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 9,
+    "curse": "Engenharia de Computação"
+  },
+  {
+    "name": "Villarreal Sullivan",
+    "email": "villarrealsullivan@edu.pucrs.br",
+    "password": 123456,
+    "team": 9,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 5,
+    "curse": "Sistemas de Informação"
+  },
+  {
+    "name": "Gomez Mcintosh",
+    "email": "gomezmcintosh@edu.pucrs.br",
+    "password": 123456,
+    "team": 8,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 8,
+    "curse": "Sistemas de Informação"
+  },
+  {
+    "name": "Chris Grant",
+    "email": "chrisgrant@edu.pucrs.br",
+    "password": 123456,
+    "team": 4,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 2,
+    "curse": "Engenharia de Computação"
+  },
+  {
+    "name": "Bessie Clark",
+    "email": "bessieclark@edu.pucrs.br",
+    "password": 123456,
+    "team": 3,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 8,
+    "curse": "Sistemas de Informação"
+  },
+  {
+    "name": "Latonya Wilder",
+    "email": "latonyawilder@edu.pucrs.br",
+    "password": 123456,
+    "team": 10,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 1,
+    "curse": "Ciência da Computação"
+  },
+  {
+    "name": "Ayers Clements",
+    "email": "ayersclements@edu.pucrs.br",
+    "password": 123456,
+    "team": 5,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 5,
+    "curse": "Ciência da Computação"
+  },
+  {
+    "name": "Ashley Washington",
+    "email": "ashleywashington@edu.pucrs.br",
+    "password": 123456,
+    "team": 10,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 6,
+    "curse": "Engenharia de Computação"
+  },
+  {
+    "name": "Velma Anderson",
+    "email": "velmaanderson@edu.pucrs.br",
+    "password": 123456,
+    "team": 5,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 3,
+    "curse": "Ciência da Computação"
+  },
+  {
+    "name": "Underwood Aguilar",
+    "email": "underwoodaguilar@edu.pucrs.br",
+    "password": 123456,
+    "team": 8,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 5,
+    "curse": "Ciência da Computação"
+  },
+  {
+    "name": "Valdez Ross",
+    "email": "valdezross@edu.pucrs.br",
+    "password": 123456,
+    "team": 5,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 8,
+    "curse": "Engenharia de Software"
+  },
+  {
+    "name": "Barr Kane",
+    "email": "barrkane@edu.pucrs.br",
+    "password": 123456,
+    "team": 7,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 3,
+    "curse": "Engenharia de Software"
+  },
+  {
+    "name": "Felicia Stout",
+    "email": "feliciastout@edu.pucrs.br",
+    "password": 123456,
+    "team": 6,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 6,
+    "curse": "Ciência da Computação"
+  },
+  {
+    "name": "Katrina Holland",
+    "email": "katrinaholland@edu.pucrs.br",
+    "password": 123456,
+    "team": 5,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 5,
+    "curse": "Engenharia de Software"
+  },
+  {
+    "name": "Mccarty Saunders",
+    "email": "mccartysaunders@edu.pucrs.br",
+    "password": 123456,
+    "team": 7,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 10,
+    "curse": "Engenharia de Software"
+  },
+  {
+    "name": "Ann Schwartz",
+    "email": "annschwartz@edu.pucrs.br",
+    "password": 123456,
+    "team": 1,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 2,
+    "curse": "Sistemas de Informação"
+  },
+  {
+    "name": "Guzman Lowery",
+    "email": "guzmanlowery@edu.pucrs.br",
+    "password": 123456,
+    "team": 3,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 8,
+    "curse": "Engenharia de Computação"
+  },
+  {
+    "name": "Esther Ellison",
+    "email": "estherellison@edu.pucrs.br",
+    "password": 123456,
+    "team": 10,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 4,
+    "curse": "Engenharia de Software"
+  },
+  {
+    "name": "Shawna Baxter",
+    "email": "shawnabaxter@edu.pucrs.br",
+    "password": 123456,
+    "team": 7,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 8,
+    "curse": "Engenharia de Computação"
+  },
+  {
+    "name": "Richards David",
+    "email": "richardsdavid@edu.pucrs.br",
+    "password": 123456,
+    "team": 2,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 7,
+    "curse": "Engenharia de Software"
+  },
+  {
+    "name": "Cassie Adams",
+    "email": "cassieadams@edu.pucrs.br",
+    "password": 123456,
+    "team": 5,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 2,
+    "curse": "Ciência da Computação"
+  },
+  {
+    "name": "Alyson Langley",
+    "email": "alysonlangley@edu.pucrs.br",
+    "password": 123456,
+    "team": 7,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 8,
+    "curse": "Engenharia de Software"
+  },
+  {
+    "name": "Rivas Mccoy",
+    "email": "rivasmccoy@edu.pucrs.br",
+    "password": 123456,
+    "team": 4,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 1,
+    "curse": "Ciência da Computação"
+  },
+  {
+    "name": "Kenya Glass",
+    "email": "kenyaglass@edu.pucrs.br",
+    "password": 123456,
+    "team": 1,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 5,
+    "curse": "Sistemas de Informação"
+  },
+  {
+    "name": "Carmen Nolan",
+    "email": "carmennolan@edu.pucrs.br",
+    "password": 123456,
+    "team": 8,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 1,
+    "curse": "Ciência da Computação"
+  },
+  {
+    "name": "Theresa Ochoa",
+    "email": "theresaochoa@edu.pucrs.br",
+    "password": 123456,
+    "team": 8,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 3,
+    "curse": "Engenharia de Software"
+  },
+  {
+    "name": "Cassandra Woodard",
+    "email": "cassandrawoodard@edu.pucrs.br",
+    "password": 123456,
+    "team": 4,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 8,
+    "curse": "Engenharia de Software"
+  },
+  {
+    "name": "Wilder Vinson",
+    "email": "wildervinson@edu.pucrs.br",
+    "password": 123456,
+    "team": 9,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 4,
+    "curse": "Ciência da Computação"
+  },
+  {
+    "name": "Carissa Small",
+    "email": "carissasmall@edu.pucrs.br",
+    "password": 123456,
+    "team": 2,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 3,
+    "curse": "Engenharia de Software"
+  },
+  {
+    "name": "Carr Avery",
+    "email": "carravery@edu.pucrs.br",
+    "password": 123456,
+    "team": 4,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 7,
+    "curse": "Sistemas de Informação"
+  },
+  {
+    "name": "Mack Chase",
+    "email": "mackchase@edu.pucrs.br",
+    "password": 123456,
+    "team": 7,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 7,
+    "curse": "Engenharia de Computação"
+  },
+  {
+    "name": "Amanda Valentine",
+    "email": "amandavalentine@edu.pucrs.br",
+    "password": 123456,
+    "team": 6,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 5,
+    "curse": "Engenharia de Computação"
+  },
+  {
+    "name": "Doris Warren",
+    "email": "doriswarren@edu.pucrs.br",
+    "password": 123456,
+    "team": 6,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 8,
+    "curse": "Sistemas de Informação"
+  },
+  {
+    "name": "Juana Salazar",
+    "email": "juanasalazar@edu.pucrs.br",
+    "password": 123456,
+    "team": 7,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 10,
+    "curse": "Sistemas de Informação"
+  },
+  {
+    "name": "Cynthia Sweeney",
+    "email": "cynthiasweeney@edu.pucrs.br",
+    "password": 123456,
+    "team": 3,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 2,
+    "curse": "Engenharia de Software"
+  },
+  {
+    "name": "Reid Richard",
+    "email": "reidrichard@edu.pucrs.br",
+    "password": 123456,
+    "team": 8,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 3,
+    "curse": "Ciência da Computação"
+  },
+  {
+    "name": "Pruitt Clemons",
+    "email": "pruittclemons@edu.pucrs.br",
+    "password": 123456,
+    "team": 4,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 10,
+    "curse": "Sistemas de Informação"
+  },
+  {
+    "name": "Davis Gallegos",
+    "email": "davisgallegos@edu.pucrs.br",
+    "password": 123456,
+    "team": 4,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 7,
+    "curse": "Engenharia de Computação"
+  },
+  {
+    "name": "Aline Cherry",
+    "email": "alinecherry@edu.pucrs.br",
+    "password": 123456,
+    "team": 7,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 9,
+    "curse": "Engenharia de Computação"
+  },
+  {
+    "name": "Butler Kinney",
+    "email": "butlerkinney@edu.pucrs.br",
+    "password": 123456,
+    "team": 2,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 4,
+    "curse": "Ciência da Computação"
+  },
+  {
+    "name": "Rowena Pollard",
+    "email": "rowenapollard@edu.pucrs.br",
+    "password": 123456,
+    "team": 2,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 1,
+    "curse": "Sistemas de Informação"
+  },
+  {
+    "name": "Karin Phillips",
+    "email": "karinphillips@edu.pucrs.br",
+    "password": 123456,
+    "team": 8,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 8,
+    "curse": "Engenharia de Computação"
+  },
+  {
+    "name": "Douglas Lancaster",
+    "email": "douglaslancaster@edu.pucrs.br",
+    "password": 123456,
+    "team": 1,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 5,
+    "curse": "Ciência da Computação"
+  },
+  {
+    "name": "Blanchard Ratliff",
+    "email": "blanchardratliff@edu.pucrs.br",
+    "password": 123456,
+    "team": 1,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 10,
+    "curse": "Sistemas de Informação"
+  },
+  {
+    "name": "Shelton Browning",
+    "email": "sheltonbrowning@edu.pucrs.br",
+    "password": 123456,
+    "team": 1,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 1,
+    "curse": "Ciência da Computação"
+  },
+  {
+    "name": "Franks Oneal",
+    "email": "franksoneal@edu.pucrs.br",
+    "password": 123456,
+    "team": 3,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 3,
+    "curse": "Engenharia de Software"
+  },
+  {
+    "name": "Dorthy Jennings",
+    "email": "dorthyjennings@edu.pucrs.br",
+    "password": 123456,
+    "team": 4,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 7,
+    "curse": "Ciência da Computação"
+  },
+  {
+    "name": "Sanders Tillman",
+    "email": "sanderstillman@edu.pucrs.br",
+    "password": 123456,
+    "team": 7,
+    "isAdmin": false,
+    "isNormalUser": true,
+    "semester": 9,
+    "curse": "Engenharia de Computação"
+  }
+]

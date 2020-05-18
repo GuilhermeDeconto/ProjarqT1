@@ -44,21 +44,23 @@ export default class Login extends Component {
   sucesso() {
     return (
       <div>
-        <MDBNotification
-          iconClassName="text-sucess"
-          show
-          fade
-          title="Sucesso"
-          message="Credenciais corretas!"
-          text="a pouco..."
-          style={{
-            position: "fixed",
-            top: "10px",
-            right: "10px",
-            zIndex: 9999,
-          }}
-        />
-        }
+        {this.state.sucesso && (
+          <MDBNotification
+            className="my-1 mx-1"
+            iconClassName="text-success"
+            show
+            fade
+            title="Sucesso"
+            message="Credenciais corretas, bem vindo(a)!"
+            text="a pouco..."
+            style={{
+              position: "fixed",
+              top: "30px",
+              right: "30px",
+              zIndex: 9999,
+            }}
+          />
+        )}
       </div>
     );
   }
@@ -73,47 +75,54 @@ export default class Login extends Component {
   logar = async (e) => {
     e.preventDefault();
     const { email, password } = this.state;
-    let usuario = {
+    let usuarioLogin = {
       email: email,
       password: password,
-      authorization: "TokenTOP",
     };
+
     try {
       axios
-        .post(`${this.baseUrl}/login`, usuario)
-        .then((respUsuario) => {
-          usuario = respUsuario.data
-          if (usuario.isAdmin === "True") {
-            login(usuario.authorization)
-            setInterval(
-            this.props.history.push({
-              state: { data: respUsuario.data },
-              pathname: "/administrador",
-            }), 10000)
-            
-          } else if(usuario.isNormalUser === "True"){
-            login(usuario.authorization);
-            setInterval(
-              this.props.history.push({
-              state: { data: respUsuario.data },
-              pathname: `/participante`,
-            }), 10000)
-            
-          } else {
-            login(usuario.authorization);
-            setInterval(
-              this.props.history.push({
-              state: { data: respUsuario.data },
-              pathname: `/avaliador`,
-            }), 10000)
-            
+        .post(`${this.baseUrl}/login`, usuarioLogin)
+        .then((response) => {
+          if (response.data.success) {
+            let userBack = response.data.user;
+            let token = response.data.authorization;
+            if (userBack.isAdmin) {
+              login(token);
+              setInterval(
+                this.props.history.push({
+                  state: { data: userBack },
+                  pathname: "/administrador",
+                }),
+                1000000000
+              );
+            } else if (userBack.isNormalUser) {
+              login(token);
+              setInterval(
+                this.props.history.push({
+                  state: { data: userBack },
+                  pathname: `/participante`,
+                }),
+                1000000000
+              );
+            } else {
+              login(token);
+              setInterval(
+                this.props.history.push({
+                  state: { data: userBack },
+                  pathname: `/avaliador`,
+                }),
+                100000000
+              );
+            }
           }
         })
+        this.setState({ sucesso: true })
         .catch(this.setState({ erro: true }), function (error) {
           console.log("Error in login =>", error);
-        });
+        })
     } catch (erro) {
-      console.log(erro)
+      console.log(erro);
     }
   };
   //id="containerBack"
@@ -121,6 +130,7 @@ export default class Login extends Component {
     return (
       <MDBContainer fluid id="containerLogin">
         {this.erro()}
+        {this.sucesso()}
         <TemplateLogin
           logar={this.logar.bind(this)}
           trocaValoresState={this.trocaValoresState}

@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^7.2.1",
     "antd": "^4.2.3",
     "axios": "^0.19.2",
+    "cors": "^2.8.5",
     "material-table": "^1.57.2",
     "mdbootstrap": "^4.17.0",
     "mdbreact": "^4.26.0",

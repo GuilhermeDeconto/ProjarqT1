@@ -7,8 +7,9 @@
 const hapi = require('hapi');
 const joi = require('joi');
 const mongoose = require('mongoose');
+const cors = require('cors')
 
-const server = new hapi.Server({ "host": "localhost", "port": 9876 });
+const server = new hapi.Server({ "host": "localhost", "port": 9876, routes:{ cors: { origin: ['*'] }} });
 
 /* MongoDb connection */
 mongoose.connect("mongodb://localhost/dbprojarq", { useNewUrlParser: true, useUnifiedTopology: true });
@@ -21,7 +22,8 @@ const UserModel = mongoose.model("user", {
     team: Number,
     isAdmin: Boolean,
     semester: String,
-    curso: String
+    curse: String, 
+    isNormalUser: Boolean
 });
 
 const TeamModel = mongoose.model("team", {
@@ -56,6 +58,7 @@ server.route({
         try {
             let users = await UserModel.find().exec();
             var id = 0;
+            let token = generate_token(30)
             for (user of users) {
                 if (user.email == request.payload.email) {
                     id = user.id;
@@ -67,7 +70,8 @@ server.route({
                     data = {
                         success: true,
                         message: 'Login success!',
-                        user: result
+                        user: result,
+                        authorization: token
                     }
                     return resp.response(data);
                 } else {
@@ -96,9 +100,11 @@ server.route({
     handler: async (request, resp) => {
         try {
             let users = await UserModel.find().exec();
+            let count = await UserModel.countDocuments().exec();
             var data = {
                 status: "success",
                 message: "Users retrieved successfully",
+                count: count,
                 users: users,
             }
             return resp.response(data);
@@ -156,7 +162,8 @@ server.route({
                 team: joi.string().required(),
                 isAdmin: joi.string().required(),
                 semester: joi.string().required(),
-                curso: joi.string().required()
+                curse: joi.string().required(),
+                isNormalUser: joi.string().required()
             },
             failAction: (request, resp, error) => {
                 return error.isJoi ? resp.response(error.details[0]).takeover() : resp.response(error).takeover();
@@ -313,3 +320,16 @@ server.start(err => {
 
     console.log('Server started')
 });
+
+
+
+function generate_token(length){
+    //edit the token allowed characters
+    var a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".split("");
+    var b = [];  
+    for (var i=0; i<length; i++) {
+        var j = (Math.random() * (a.length-1)).toFixed(0);
+        b[i] = a[j];
+    }
+    return b.join("");
+}
