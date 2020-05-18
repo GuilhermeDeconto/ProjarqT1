@@ -51,26 +51,16 @@ server.route({
             }
         }
     },
-    // 
-    //          
-    //         for (user in users) {
-    //             if (user.email == request.payload.email){
-    //                 id = user.id;
-    //             }
-    //         }
-    //         let result = await UserModel.findById(id).exec();
 
     handler: async (request, resp) => {
         try {
-            let users = await UserModel.find().exec()
-            let id = 0; 
-            for (user in users) {
-                if (user.email == request.payload.email){
-                    console.log("Achou email igual", user.email);
+            let users = await UserModel.find().exec();
+            var id = 0;
+            for (user of users) {
+                if (user.email == request.payload.email) {
                     id = user.id;
                 }
             }
-            console.log(id)
             let result = await UserModel.findById(id).exec();
             if (result != null) {
                 if (result.password == request.payload.password) {
