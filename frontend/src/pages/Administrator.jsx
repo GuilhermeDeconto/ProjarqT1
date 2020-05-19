@@ -7,18 +7,15 @@ import ModalAvaliation from "../components/ModalAvaliation";
 class Evaluator extends React.Component {
   constructor(props) {
     super(props);
-    this.baseUrl = `http://localhost:8081`;
+    this.baseUrl = `http://localhost:9876`;
     this.state = {
-      participants: [],
-      teams: [],
+      participantsColumns: this.halfDataParticipants.columns,
+      participantsData: [],
+      teamsColumns: this.halfDataTeams.columns,
+      teamsData: [],
       erro: false,
       importado: false,
     };
-  }
-
-  componentDidMount() {
-    this.insereRowsParticipants(this.data);
-    this.insereRowsTeams(this.data);
   }
 
   halfDataParticipants = {
@@ -43,131 +40,54 @@ class Evaluator extends React.Component {
         title: "Curso",
         field: "curse",
       },
-    ],
-    data: [],
+    ]
   };
 
   halfDataTeams = {
     columns: [
       {
+        title: "Número",
+        field: "number",
+      },
+      {
         title: "Nome",
         field: "name",
       },
       {
-        title: "Email",
-        field: "email",
+        title: "Plataforma",
+        field: "platform",
       },
       {
-        title: "Time",
-        field: "team",
+        title: "Descrição",
+        field: "description",
       },
       {
-        title: "Semestre",
-        field: "semester",
-        type: "numeric",
+        title: "Software funcionando",
+        field: "software",
       },
       {
-        title: "Curso",
-        field: "curse",
+        title: "Processo",
+        field: "process",
       },
       {
-        title: "Nota",
-        field: "note",
+        title: "Pitch",
+        field: "pitch",
       },
       {
-        title: "Avaliador",
+        title: "Inovação",
+        field: "inovation",
+      },
+      {
+        title: "Formação do time",
+        field: "formation",
+      },
+      {
+        title: "Avaliação",
         field: "avaliation",
-      }
-    ],
-    data: [],
+        render: (rowData) => <ModalAvaliation data={rowData} />,
+      },
+    ]
   };
-
-  data = [
-    {
-      name: "Gigislaine Gonçalves",
-      email: "tigernixon@blabla.com.br",
-      team: "Paladinos",
-      semester: "2",
-      curse: "Ciência da Computação",
-    },
-    /* {
-      name: "Guilherme de Corno",
-      email: "tigernixon@blabla.com.br",
-      team: "Os bichas",
-      semester: "4",
-      curse: "Engenharia de Software",
-    },
-    {
-      name: "Silvia Moraes",
-      email: "tigernixon@blabla.com.br",
-      team: "IA",
-      semester: "12",
-      curse: "Engenharia de Software",
-    },
-    {
-      name: "Chiara Paskulin",
-      email: "tigernixon@blabla.com.br",
-      team: "Doidas",
-      semester: "8",
-      curse: "Sistemas de Informação",
-    },
-    {
-      name: "Bernardo de Cesaro",
-      email: "tigernixon@blabla.com.br",
-      team: "Feios e cia",
-      semester: "3",
-      curse: "Engenharia de Software",
-    },
-    {
-      name: "Joao Kleber",
-      email: "tigernixon@blabla.com.br",
-      team: "Pegadinha dos brothers",
-      semester: "1",
-      curse: "Direito",
-    }, */
-  ];
-
-  insereRowsParticipants(aux) {
-    let state = this.state;
-    let auxiliar = [];
-    // eslint-disable-next-line
-    aux.map((item) => {
-      auxiliar.push({
-        name: item.name,
-        email: item.email,
-        team: item.team,
-        semester: item.semester,
-        curse: item.curse,
-      });
-    });
-    this.halfDataParticipants.data = auxiliar;
-    let newData = this.halfDataParticipants;
-    state.participants = newData;
-    this.setState({
-      state,
-    });
-  }
-
-  insereRowsTeams(aux) {
-    let state = this.state;
-    let auxiliar = [];
-    // eslint-disable-next-line
-    aux.map((item) => {
-      auxiliar.push({
-        name: item.name,
-        email: item.email,
-        team: item.team,
-        semester: item.semester,
-        curse: item.curse,
-      });
-    });
-    this.halfDataTeams.data = auxiliar;
-    let newData = this.halfDataTeams;
-    state.teams = newData;
-    this.setState({
-      state,
-    });
-  }
 
   optionsParticipants = {
     grouping: true,
@@ -205,18 +125,44 @@ class Evaluator extends React.Component {
     }
   };
 
+  countParticipants = 0
+  countTeams = 0
+  indexParticipantes = 0
+  indexTeams = 0
 
   render() {
-    let { participants, teams } = this.state;
+    let { participantsColumns, participantsData, teamsColumns, teamsData } = this.state;
 
     return (
       <React.Fragment>
-        <PainelNavBar avatarLabel={this.props.location.state.data.name} name={this.props.location.state.data.name} title={"Administrador"} />
+        <PainelNavBar
+          avatarLabel={this.props.location.state.data.name}
+          name={this.props.location.state.data.name}
+          title={"Administrador"}
+        />
         <TableRender
           labelButton={"participantes"}
           labelTitle={"Participantes"}
-          columns={participants.columns}
-          data={participants.data}
+          columns={participantsColumns}
+          data={query =>
+            new Promise((resolve, reject) => {
+              let url = `${this.baseUrl}/users`
+              this.countParticipants = (query.page + 1)
+              fetch(url)
+                .then(response => response.json())
+                .then(result => {
+                  query.page += 1
+                  var count = 5 * query.page
+                  var aux = result.users
+                  var newData = aux.slice(count - 5, count)
+                  resolve({
+                    data: newData,
+                    page: this.countParticipants - 1,
+                    totalCount: 50,
+                  })
+                })
+            })
+          }
           isParticipant={true}
           options={this.optionsParticipants}
           isEditable={true}
@@ -226,8 +172,26 @@ class Evaluator extends React.Component {
         <TableRender
           labelButton={"times"}
           labelTitle={"Times"}
-          columns={teams.columns}
-          data={teams.data}
+          columns={teamsColumns}
+          data={query =>
+            new Promise((resolve, reject) => {
+              let url = `${this.baseUrl}/teams`
+              this.countTeams = (query.page + 1)
+              fetch(url)
+                .then(response => response.json())
+                .then(result => {
+                  query.page += 1
+                  var count = 5 * query.page
+                  var aux = result.teams
+                  var newData = aux.slice(count - 5, count)
+                  resolve({
+                    data: newData,
+                    page: this.countTeams - 1,
+                    totalCount: 10,
+                  })
+                })
+            })
+          }
           isParticipant={false}
           options={this.optionsTeams}
           isEditable={true}

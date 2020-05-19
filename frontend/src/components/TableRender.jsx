@@ -6,11 +6,20 @@ import AddBox from "@material-ui/icons/AddBox";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 export default function TableRender(props) {
-  const [, setState] = React.useState({
-    columns: [],
-    data: [],
+  const [state, setState] = React.useState({
+    columns: props.columns,
+    data: props.data,
   });
-  let { columns, data, labelButton, labelTitle, options, isEditable, isIcons } = props;
+
+  let {
+    columns,
+    data,
+    labelButton,
+    labelTitle,
+    options,
+    isEditable,
+    isIcons,
+  } = props;
 
   const localization = {
     pagination: {
@@ -54,64 +63,63 @@ export default function TableRender(props) {
     },
   };
 
-const edit = {
+  const edit = {
+    
     onRowAdd: (newData) =>
-      new Promise((resolve) => {
+      new Promise((resolve, reject) => {
         setTimeout(() => {
-          resolve();
-          setState((prevState) => {
-            const data = [...prevState.data];
+          {
+            var data = state.data;
             data.push(newData);
-            return { ...prevState, data };
-          });
-        }, 600);
+            this.setState({ data }, () => resolve());
+          }
+          resolve();
+        }, 1000);
       }),
     onRowUpdate: (newData, oldData) =>
-      new Promise((resolve) => {
+      new Promise((resolve, reject) => {
         setTimeout(() => {
-          resolve();
-          if (oldData) {
-            setState((prevState) => {
-              const data = [...prevState.data];
-              data[data.indexOf(oldData)] = newData;
-              return { ...prevState, data };
-            });
+          {
+            var data = state.data;
+            var index = data.indexOf(oldData);
+            data[index] = newData;
+            this.setState({ data }, () => resolve());
           }
-        }, 600);
+          resolve();
+        }, 1000);
       }),
     onRowDelete: (oldData) =>
-      new Promise((resolve) => {
+      new Promise((resolve, reject) => {
         setTimeout(() => {
+          {
+            var data = state.data;
+            var index = data.indexOf(oldData);
+            data.splice(index, 1);
+            this.setState({ data }, () => resolve());
+          }
           resolve();
-          setState((prevState) => {
-            const data = [...prevState.data];
-            data.splice(data.indexOf(oldData), 1);
-            return { ...prevState, data };
-          });
-        }, 600);
+        }, 1000);
       }),
   };
-/*
-  const editable = (isEdit) => {
-    isEdit ? edit : "";
-  }; */
 
   const icons = {
     Add: (props) => {
-      return (<div>
-        <AddBox className="fa fa-plus-circle" style={{ color: green[500] }} {...props} />
-      </div>);
+      return (
+        <div>
+          <AddBox
+            className="fa fa-plus-circle"
+            style={{ color: green[500] }}
+            {...props}
+          />
+        </div>
+      );
     },
     Delete: (props) => (
       <div>
         <DeleteIcon style={{ color: red[500] }} {...props} />
       </div>
-    )
-  }
-/*
-  const iconsAddAndRemove = (isIcons) => {
-    isIcons ? icons : ''
-  } */
+    ),
+  };
 
   return (
     <React.Fragment>
@@ -123,9 +131,9 @@ const edit = {
           options={options}
           data={data}
           localization={localization}
-          icons={isIcons ? icons : <div/>}
+          icons={isIcons ? icons : <div />}
           isLoading={columns && data ? false : true}
-          editable={isEditable ? edit : <div/>}
+          editable={isEditable ? edit : <div />}
         />
       </MDBContainer>
     </React.Fragment>
