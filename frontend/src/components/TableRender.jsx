@@ -4,8 +4,11 @@ import { MDBContainer, MDBBtn } from "mdbreact";
 import { green, red } from "@material-ui/core/colors";
 import AddBox from "@material-ui/icons/AddBox";
 import DeleteIcon from "@material-ui/icons/Delete";
+import * as axios from "axios";
 
 export default function TableRender(props) {
+  const baseUrl = `http://localhost:9876`;
+
   const [state, setState] = React.useState({
     columns: props.columns,
     data: props.data,
@@ -45,7 +48,7 @@ export default function TableRender(props) {
       exportTitle: "Exportar para CSV",
     },
     header: {
-      actions: "Acões",
+      actions: "Ações",
     },
     body: {
       emptyDataSourceMessage: "Sem dados",
@@ -64,26 +67,60 @@ export default function TableRender(props) {
   };
 
   const edit = {
-    
     onRowAdd: (newData) =>
       new Promise((resolve, reject) => {
         setTimeout(() => {
           {
-            var data = state.data;
-            data.push(newData);
-            this.setState({ data }, () => resolve());
+            if(newData.email){ //então é participante
+              axios
+              .post(`${baseUrl}/registeruser`, newData)
+              .then((response) => {
+                if(response.message){
+                  this.setState({
+                    data: response.users
+                  })
+                }
+              })
+            } else if(newData.number){
+              axios
+              .post(`${baseUrl}/registerteam`, newData)
+              .then((response) => {
+                if(response.message){
+                  this.setState({
+                    data: response.teams
+                  })
+                }
+              })
+            }
           }
           resolve();
         }, 1000);
       }),
-    onRowUpdate: (newData, oldData) =>
+    onRowUpdate: (oldData) =>
       new Promise((resolve, reject) => {
         setTimeout(() => {
           {
-            var data = state.data;
-            var index = data.indexOf(oldData);
-            data[index] = newData;
-            this.setState({ data }, () => resolve());
+            if(oldData.email){ //então é participante
+              axios
+              .put(`${baseUrl}/user/${oldData._id}`, oldData)
+              .then((response) => {
+                if(response.message){
+                  this.setState({
+                    data: response.users
+                  })
+                }
+              })
+            } else if(oldData.number){
+              axios
+              .put(`${baseUrl}/team/${oldData._id}`, oldData)
+              .then((response) => {
+                if(response.message){
+                  this.setState({
+                    data: response.teams
+                  })
+                }
+              })
+            }
           }
           resolve();
         }, 1000);
@@ -92,10 +129,27 @@ export default function TableRender(props) {
       new Promise((resolve, reject) => {
         setTimeout(() => {
           {
-            var data = state.data;
-            var index = data.indexOf(oldData);
-            data.splice(index, 1);
-            this.setState({ data }, () => resolve());
+            if(oldData.email){ //então é participante
+              axios
+              .delete(`${baseUrl}/user/${oldData._id}`)
+              .then((response) => {
+                if(response.message){
+                  this.setState({
+                    data: response.users
+                  })
+                }
+              })
+            } else if(oldData.number){
+              axios
+              .delete(`${baseUrl}/team/${oldData._id}`)
+              .then((response) => {
+                if(response.message){
+                  this.setState({
+                    data: response.teams
+                  })
+                }
+              })
+            }
           }
           resolve();
         }, 1000);

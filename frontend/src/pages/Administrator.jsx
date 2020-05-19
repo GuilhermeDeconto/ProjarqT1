@@ -80,12 +80,7 @@ class Evaluator extends React.Component {
       {
         title: "Formação do time",
         field: "formation",
-      },
-      {
-        title: "Avaliação",
-        field: "avaliation",
-        render: (rowData) => <ModalAvaliation data={rowData} />,
-      },
+      }
     ]
   };
 
@@ -158,7 +153,7 @@ class Evaluator extends React.Component {
                   resolve({
                     data: newData,
                     page: this.countParticipants - 1,
-                    totalCount: 50,
+                    totalCount: result.count,
                   })
                 })
             })
@@ -187,7 +182,7 @@ class Evaluator extends React.Component {
                   resolve({
                     data: newData,
                     page: this.countTeams - 1,
-                    totalCount: 10,
+                    totalCount: result.count,
                   })
                 })
             })

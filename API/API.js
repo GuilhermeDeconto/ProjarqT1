@@ -134,7 +134,7 @@ server.route({
         status: "success",
         message: "Teams retrieved successfully",
         count: count,
-        teams: teams
+        teams: teams,
       };
       return resp.response(data);
     } catch (error) {
@@ -148,12 +148,15 @@ server.route({
   path: "/user/{id}",
   handler: async (request, resp) => {
     try {
-      let result = await UserModel.findById(request.params.id).exec();
-      var data = {
-        status: "success",
-        message: "User retrieved successfully",
-        user: result,
-      };
+      var result = await UserModel.findById(request.params.id).exec();
+      if(result){
+        var data = {
+          status: "success",
+          message: "User retrieved successfully",
+          user: result,
+        };
+      }
+      
       return resp.response(data);
     } catch (error) {
       return resp.response(error).code(500);
@@ -166,7 +169,7 @@ server.route({
   path: "/team/{id}",
   handler: async (request, resp) => {
     try {
-      let result = await TeamModel.findById(request.params.id).exec();
+      var result = await TeamModel.findById(request.params.id).exec();
       var data = {
         status: "success",
         message: "Team retrieved successfully",
@@ -187,12 +190,12 @@ server.route({
       payload: {
         email: joi.string().required(),
         name: joi.string().required(),
-        password: joi.string().required(),
+        password: joi.string().optional().default(123456),
         team: joi.number().required(),
-        isAdmin: joi.string().required(),
-        semester: joi.number().required(),
+        isAdmin: joi.boolean().optional().default(false),
+        semester: joi.string().required(),
         curse: joi.string().required(),
-        isNormalUser: joi.string().required(),
+        isNormalUser: joi.boolean().optional().default(true),
       },
       failAction: (request, resp, error) => {
         return error.isJoi
@@ -203,12 +206,13 @@ server.route({
   },
   handler: async (request, resp) => {
     try {
-      let user = new UserModel(request.payload);
-      let data = {
-        message: "User created!",
-        result: user,
-      };
+      var user = new UserModel(request.payload);
       let result = await user.save();
+      let users = await UserModel.find().exec();
+      var data = {
+        message: "User created!",
+        user: users,
+      };
 
       return resp.response(data);
     } catch (error) {
@@ -242,10 +246,10 @@ server.route({
   },
   handler: async (request, resp) => {
     try {
-      let team = new TeamModel(request.payload);
-      let data = {
+      var team = new TeamModel(request.payload);
+      var data = {
         message: "Team created!",
-        result: team,
+        team: team,
       };
       let result = await team.save();
 
@@ -261,13 +265,13 @@ server.route({
   path: "/users",
   handler: async (request, resp) => {
     try {
-      let users = [];
+      var users = [];
       for (let model of request.payload.teams) {
         const user = new UserModel(model);
         await user.save();
         users.push(user);
       }
-      let data = {
+      var data = {
         message: "New users created!",
         users: users,
       };
@@ -284,13 +288,13 @@ server.route({
   path: "/teams",
   handler: async (request, resp) => {
     try {
-      let teams = [];
+      var teams = [];
       for (let model of request.payload.teams) {
         const team = new TeamModel(model);
         await team.save();
         teams.push(team);
       }
-      let data = {
+      var data = {
         message: "New teams created!",
         teams: teams,
       };
@@ -310,6 +314,13 @@ server.route({
         email: joi.string().optional(),
         name: joi.string().optional(),
         password: joi.string().optional(),
+        team: joi.number().optional(),
+        isAdmin: joi.boolean().optional(),
+        semester: joi.string().optional(),
+        curse: joi.string().optional(),
+        isNormalUser: joi.boolean().optional(),
+        _id: joi.string().optional(),
+        __v: joi.number().optional()
       },
       failAction: (request, resp, error) => {
         return error.isJoi
@@ -321,16 +332,73 @@ server.route({
   path: "/user/{id}",
   handler: async (request, resp) => {
     try {
-      let result = await UserModel.findByIdAndUpdate(
+      var user = await UserModel.findByIdAndUpdate(
         request.params.id,
         request.payload,
         { new: true }
       );
-      let data = {
-        status: "success",
-        message: "User modified successfully",
-        user: result,
-      };
+      var users = await UserModel.find().exec();
+      let count = await UserModel.countDocuments().exec();
+      if(user){
+        var data= {
+          status: "success",
+          message: "User modified successfully",
+          count: count,
+          users: users,
+        };
+      }
+      
+      return resp.response(data);
+    } catch (error) {
+      return resp.response(error).code(500);
+    }
+  },
+});
+
+
+server.route({
+  method: "PUT",
+  options: {
+    validate: {
+      payload: {
+        number: joi.number().optional(),
+        name: joi.string().optional(),
+        platform: joi.string().optional(),
+        description: joi.string().optional(),
+        software: joi.string().optional(),
+        process: joi.string().optional(),
+        pitch: joi.string().optional(),
+        inovation: joi.string().optional(),
+        formation: joi.string().optional(),
+        _id: joi.string().optional(),
+        __v: joi.number().optional()
+      },
+      failAction: (request, resp, error) => {
+        return error.isJoi
+          ? resp.response(error.details[0]).takeover()
+          : resp.response(error).takeover();
+      },
+    },
+  },
+  path: "/team/{id}",
+  handler: async (request, resp) => {
+    try {
+      var team = await TeamModel.findByIdAndUpdate(
+        request.params.id,
+        request.payload,
+        { new: true }
+      );
+      var teams = await TeamModel.find().exec();
+      let count = await TeamModel.countDocuments().exec();
+      if(team){
+        var data= {
+          status: "success",
+          message: "Team modified successfully",
+          count: count,
+          teams: teams,
+        };
+      }
+      
       return resp.response(data);
     } catch (error) {
       return resp.response(error).code(500);
@@ -343,12 +411,16 @@ server.route({
   path: "/user/{id}",
   handler: async (request, res) => {
     try {
-      let result = await UserModel.findByIdAndDelete(request.params.id);
-      let data = {
-        status: "success",
-        message: "User deleted successfully",
-        user: result,
-      };
+      var result = await UserModel.findByIdAndDelete(request.params.id);
+      var users = await UserModel.find().exec();
+      var data;
+      if (result) {
+        data = {
+          status: "success",
+          message: "User deleted successfully",
+          users: users,
+        };
+      }
       return res.response(data);
     } catch (error) {
       return resp.response(error).code(500);
@@ -361,12 +433,16 @@ server.route({
   path: "/team/{id}",
   handler: async (request, res) => {
     try {
-      let result = await TeamModel.findByIdAndDelete(request.params.id);
-      let data = {
-        status: "success",
-        message: "Team deleted successfully",
-        team: result,
-      };
+      var result = await TeamModel.findByIdAndDelete(request.params.id);
+      var teams = await TeamModel.find().exec();
+      var data;
+      if (result) {
+        data = {
+          status: "success",
+          message: "Team deleted successfully",
+          teams: teams,
+        };
+      }
       return res.response(data);
     } catch (error) {
       return resp.response(error).code(500);
@@ -379,8 +455,8 @@ server.route({
   path: "/teams",
   handler: async (request, res) => {
     try {
-      let result = await TeamModel.deleteMany();
-      let data = {
+      var result = await TeamModel.deleteMany();
+      var data = {
         status: "success",
         message: "Teams deleted successfully",
         team: result,
@@ -397,8 +473,8 @@ server.route({
   path: "/users",
   handler: async (request, res) => {
     try {
-      let result = await UserModel.deleteMany();
-      let data = {
+      var result = await UserModel.deleteMany();
+      var data = {
         status: "success",
         message: "Users deleted successfully",
         users: result,
