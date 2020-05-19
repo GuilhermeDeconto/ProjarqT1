@@ -86,12 +86,12 @@ class Evaluator extends React.Component {
 
   optionsParticipants = {
     grouping: true,
-    selection: true,
+    selection: false,
     headerStyle: {
       backgroundColor: "#6a1b9a",
       color: "#FFF",
     },
-    pageSizeOptions: [5],
+    pageSizeOptions: [],
     paginationType: "stepped",
     toolbarButtonAlignment: "right",
     exportButton: true,
@@ -104,12 +104,12 @@ class Evaluator extends React.Component {
 
   optionsTeams = {
     grouping: true,
-    selection: true,
+    selection: false,
     headerStyle: {
       backgroundColor: "#008000",
       color: "#FFF",
     },
-    pageSizeOptions: [5],
+    pageSizeOptions: [],
     paginationType: "stepped",
     toolbarButtonAlignment: "right",
     exportButton: true,
@@ -122,8 +122,6 @@ class Evaluator extends React.Component {
 
   countParticipants = 0
   countTeams = 0
-  indexParticipantes = 0
-  indexTeams = 0
 
   render() {
     let { participantsColumns, participantsData, teamsColumns, teamsData } = this.state;

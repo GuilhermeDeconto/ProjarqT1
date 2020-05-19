@@ -65,9 +65,9 @@ server.route({
 
   handler: async (request, resp) => {
     try {
-      let users = await UserModel.find().exec();
+      var users = await UserModel.find().exec();
       var id = 0;
-      let token = generate_token(30);
+      var token = generate_token(30);
       for (user of users) {
         if (user.email == request.payload.email) {
           id = user.id;
@@ -108,8 +108,8 @@ server.route({
   path: "/users",
   handler: async (request, resp) => {
     try {
-      let users = await UserModel.find().exec();
-      let count = await UserModel.countDocuments().exec();
+      var users = await UserModel.find().exec();
+      var count = await UserModel.countDocuments().exec();
       var data = {
         status: "success",
         message: "Users retrieved successfully",
@@ -266,7 +266,7 @@ server.route({
   handler: async (request, resp) => {
     try {
       var users = [];
-      for (let model of request.payload.teams) {
+      for (let model of request.payload.users) {
         const user = new UserModel(model);
         await user.save();
         users.push(user);

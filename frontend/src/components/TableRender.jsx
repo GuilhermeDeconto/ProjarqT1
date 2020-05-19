@@ -7,6 +7,9 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import * as axios from "axios";
 
 export default function TableRender(props) {
+
+  const tableRef = React.createRef();
+
   const baseUrl = `http://localhost:9876`;
 
   const [state, setState] = React.useState({
@@ -71,26 +74,27 @@ export default function TableRender(props) {
       new Promise((resolve, reject) => {
         setTimeout(() => {
           {
-            if(newData.email){ //então é participante
+            if (newData.email) {
+              //então é participante
               axios
-              .post(`${baseUrl}/registeruser`, newData)
-              .then((response) => {
-                if(response.message){
-                  this.setState({
-                    data: response.users
-                  })
-                }
-              })
-            } else if(newData.number){
+                .post(`${baseUrl}/registeruser`, newData)
+                .then((response) => {
+                  if (response.message) {
+                    this.setState({
+                      data: response.users,
+                    });
+                  }
+                });
+            } else if (newData.number) {
               axios
-              .post(`${baseUrl}/registerteam`, newData)
-              .then((response) => {
-                if(response.message){
-                  this.setState({
-                    data: response.teams
-                  })
-                }
-              })
+                .post(`${baseUrl}/registerteam`, newData)
+                .then((response) => {
+                  if (response.message) {
+                    this.setState({
+                      data: response.teams,
+                    });
+                  }
+                });
             }
           }
           resolve();
@@ -100,26 +104,27 @@ export default function TableRender(props) {
       new Promise((resolve, reject) => {
         setTimeout(() => {
           {
-            if(oldData.email){ //então é participante
+            if (oldData.email) {
+              //então é participante
               axios
-              .put(`${baseUrl}/user/${oldData._id}`, oldData)
-              .then((response) => {
-                if(response.message){
-                  this.setState({
-                    data: response.users
-                  })
-                }
-              })
-            } else if(oldData.number){
+                .put(`${baseUrl}/user/${oldData._id}`, oldData)
+                .then((response) => {
+                  if (response.message) {
+                    this.setState({
+                      data: response.users,
+                    });
+                  }
+                });
+            } else if (oldData.number) {
               axios
-              .put(`${baseUrl}/team/${oldData._id}`, oldData)
-              .then((response) => {
-                if(response.message){
-                  this.setState({
-                    data: response.teams
-                  })
-                }
-              })
+                .put(`${baseUrl}/team/${oldData._id}`, oldData)
+                .then((response) => {
+                  if (response.message) {
+                    this.setState({
+                      data: response.teams,
+                    });
+                  }
+                });
             }
           }
           resolve();
@@ -129,26 +134,27 @@ export default function TableRender(props) {
       new Promise((resolve, reject) => {
         setTimeout(() => {
           {
-            if(oldData.email){ //então é participante
+            if (oldData.email) {
+              //então é participante
               axios
-              .delete(`${baseUrl}/user/${oldData._id}`)
-              .then((response) => {
-                if(response.message){
-                  this.setState({
-                    data: response.users
-                  })
-                }
-              })
-            } else if(oldData.number){
+                .delete(`${baseUrl}/user/${oldData._id}`)
+                .then((response) => {
+                  if (response.message) {
+                    this.setState({
+                      data: response.users,
+                    });
+                  }
+                });
+            } else if (oldData.number) {
               axios
-              .delete(`${baseUrl}/team/${oldData._id}`)
-              .then((response) => {
-                if(response.message){
-                  this.setState({
-                    data: response.teams
-                  })
-                }
-              })
+                .delete(`${baseUrl}/team/${oldData._id}`)
+                .then((response) => {
+                  if (response.message) {
+                    this.setState({
+                      data: response.teams,
+                    });
+                  }
+                });
             }
           }
           resolve();
@@ -175,10 +181,21 @@ export default function TableRender(props) {
     ),
   };
 
+  const actions = [
+    {
+      icon: "refresh",
+      tooltip: "Atualizar dados",
+      isFreeAction: true,
+      onClick: () => tableRef.current && tableRef.current.onQueryChange(),
+    },
+  ];
+
   return (
     <React.Fragment>
       <MDBContainer className="mt-1" fluid>
-        <MDBBtn color="deep-purple">Importar {labelButton}</MDBBtn>
+        <a>
+          <MDBBtn color="deep-purple">Importar {labelButton}</MDBBtn>
+        </a>
         <MaterialTable
           title={labelTitle}
           columns={columns}
@@ -188,6 +205,7 @@ export default function TableRender(props) {
           icons={isIcons ? icons : <div />}
           isLoading={columns && data ? false : true}
           editable={isEditable ? edit : <div />}
+          actions={actions}
         />
       </MDBContainer>
     </React.Fragment>
