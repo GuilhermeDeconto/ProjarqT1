@@ -7,8 +7,6 @@
 const hapi = require("hapi");
 const joi = require("joi");
 const mongoose = require("mongoose");
-const cors = require("cors");
-
 const server = new hapi.Server({
   host: "localhost",
   port: 9876,
@@ -173,6 +171,56 @@ server.route({
       var data = {
         status: "success",
         message: "Team retrieved successfully",
+        team: result,
+      };
+      return resp.response(data);
+    } catch (error) {
+      return resp.response(error).code(500);
+    }
+  },
+});
+
+//Pegar os integrantes daquele time para os cards
+server.route({
+  method: "GET",
+  path: "/members/{team}",
+  handler: async (request, resp) => {
+    try {
+      
+      var result = await UserModel.find( {team: request.params.team } );
+      var data = {
+        status: "success",
+        message: "Members retrieved successfully",
+        members: result,
+      };
+      return resp.response(data);
+    } catch (error) {
+      return resp.response(error).code(500);
+    }
+  },
+});
+
+server.route({
+  method: "POST",
+  path: "/team",
+  options: {
+    validate: {
+      payload: {
+        number: joi.number().required()
+      },
+      failAction: (request, resp, error) => {
+        return error.isJoi
+          ? resp.response(error.details[0]).takeover()
+          : resp.response(error).takeover();
+      },
+    },
+  },
+  handler: async (request, resp) => {
+    try {
+      var result = await TeamModel.findOne(request.params.number).exec();
+      var data = {
+        status: "success",
+        message: "Team successfully rescued",
         team: result,
       };
       return resp.response(data);

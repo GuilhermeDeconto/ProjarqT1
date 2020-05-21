@@ -24,22 +24,28 @@ class Evaluator extends React.Component {
       {
         title: "Nome",
         field: "name",
+        grouping: true
       },
       {
         title: "Email",
         field: "email",
+        grouping: true
       },
       {
         title: "Time",
         field: "team",
+        customSort: (a, b) => a.team.length - b.team.length,
+        grouping: true
       },
       {
         title: "Semestre",
         field: "semester",
+        grouping: true
       },
       {
         title: "Curso",
         field: "curse",
+        grouping: true
       },
     ]
   };
@@ -49,43 +55,54 @@ class Evaluator extends React.Component {
       {
         title: "Número",
         field: "number",
+        grouping: true,
+        customSort: (a, b) => a.number.length - b.number.length
       },
       {
         title: "Nome",
         field: "name",
+        grouping: true
       },
       {
         title: "Plataforma",
         field: "platform",
+        grouping: true
       },
       {
         title: "Descrição",
         field: "description",
+        grouping: true
       },
       {
         title: "Software funcionando",
         field: "software",
+        grouping: true
       },
       {
         title: "Processo",
         field: "process",
+        grouping: true
       },
       {
         title: "Pitch",
         field: "pitch",
+        grouping: true
       },
       {
         title: "Inovação",
         field: "inovation",
+        grouping: true
       },
       {
         title: "Formação do time",
         field: "formation",
+        grouping: true
       },
       {
         title: "Avaliação",
         field: "avaliation",
         render: (rowData) => <ModalAvaliation data={rowData} />,
+        grouping: true
       },
     ]
   };
@@ -95,6 +112,7 @@ class Evaluator extends React.Component {
       backgroundColor: "#6a1b9a",
       color: "#FFF",
     },
+    grouping: true,
     pageSizeOptions: [],
     paginationType: "stepped",
     toolbarButtonAlignment: "right",
@@ -111,6 +129,7 @@ class Evaluator extends React.Component {
       backgroundColor: "#008000",
       color: "#FFF",
     },
+    grouping: true,
     pageSizeOptions: [],
     paginationType: "stepped",
     toolbarButtonAlignment: "right",

@@ -1,17 +1,17 @@
 [
   {
-    "number": 4,
+    "number": 1,
     "name": "Paladinos",
     "platform": "Android",
     "description": "Um time interessante",
-    "software": "Insatisfatório",
-    "process": "Ruim",
-    "pitch": "Insatisfatório",
-    "inovation": "Insatisfatório",
-    "formation": "Insatisfatório"
+    "software": "Excelente",
+    "process": "Excelente",
+    "pitch": "Excelente",
+    "inovation": "Excelente",
+    "formation": "Excelente"
   },
   {
-    "number": 1,
+    "number": 2,
     "name": "Paçocas",
     "platform": "Android",
     "description": "Prontos para o que vier",
@@ -22,7 +22,7 @@
     "formation": "Ruim"
   },
   {
-    "number": 5,
+    "number": 3,
     "name": "BRhu3",
     "platform": "IOS",
     "description": "Zoeira never ends",
@@ -33,7 +33,7 @@
     "formation": "Ruim"
   },
   {
-    "number": 3,
+    "number": 4,
     "name": "DolarAlto",
     "platform": "Android",
     "description": "Padrão entregue será tão alto quanto o dolar",
@@ -44,7 +44,7 @@
     "formation": "Excelente"
   },
   {
-    "number": 9,
+    "number": 5,
     "name": "Trovão sem Freio",
     "platform": "Desktop",
     "description": "So vai, esquece!",
@@ -55,7 +55,7 @@
     "formation": "Aceitavel"
   },
   {
-    "number": 10,
+    "number": 6,
     "name": "Quem Sobrou",
     "platform": "Android",
     "description": "Os últimos serão os primeiros",
@@ -66,7 +66,7 @@
     "formation": "Bom"
   },
   {
-    "number": 8,
+    "number": 7,
     "name": "Os Fora de Casa",
     "platform": "IOS",
     "description": "Estamos por aí",
@@ -77,7 +77,7 @@
     "formation": "Excelente"
   },
   {
-    "number": 5,
+    "number": 8,
     "name": "Domínio da Honra",
     "platform": "Desktop",
     "description": "Entregar independente de algo e com honra",
@@ -88,7 +88,7 @@
     "formation": "Excelente"
   },
   {
-    "number": 2,
+    "number": 9,
     "name": "Pateta & cia",
     "platform": "Desktop",
     "description": "Mais perdido que ce­go em tiroteio",
@@ -99,7 +99,7 @@
     "formation": "Excelente"
   },
   {
-    "number": 8,
+    "number": 10,
     "name": "Perdidos da Hacka",
     "platform": "Desktop",
     "description": "Nem sabemos porque estamos por, segue o baile",

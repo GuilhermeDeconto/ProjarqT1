@@ -85,6 +85,7 @@ export default class Login extends Component {
         .post(`${this.baseUrl}/login`, usuarioLogin)
         .then((response) => {
           if (response.data.success) {
+            this.setState({ sucesso: true })
             let userBack = response.data.user;
             let token = response.data.authorization;
             if (userBack.isAdmin) {
@@ -117,7 +118,6 @@ export default class Login extends Component {
             }
           }
         })
-        this.setState({ sucesso: true })
         
     } catch (erro) {
       this.setState({ erro: true })

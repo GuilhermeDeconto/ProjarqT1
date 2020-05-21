@@ -1,53 +1,44 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import React from "react";
+import { CardDeck, Card, Image } from "react-bootstrap";
+import AvatarUser from '../images/iconUserCard.png';
+import Avatar from '@material-ui/core/Avatar';
 
-const useStyles = makeStyles({
-  root: {
-    width: 275,
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-});
+import { MDBCol } from "mdbreact";
 
-export default function CardParticipant() {
-  const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
-
+const images = ["", "", "", "", ""];
+var index = 0;
+const CardParticipant = (props) => {
+  var { data } = props;
   return (
-    <Card className="my-2" variant="outlined">
-      <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Word of the Day
-        </Typography>
-        <Typography variant="h5" component="h2">
-          be{bull}nev{bull}o{bull}lent
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          adjective
-        </Typography>
-        <Typography variant="body2" component="p">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions>
-    </Card>
+    <CardDeck className="my-2">
+      {data
+        ? data.map((item, index) => {
+            index++;
+            return (
+              <MDBCol className="mx-auto px-auto my-auto py-auto" >
+                <Card
+                  border="primary"
+                  key={index}
+                  style={{ width: "15rem" }}
+                  className="my-2"
+                >
+                  <Card.Img variant="top" src="https://lh3.googleusercontent.com/proxy/r6BjPSoe_zwtOSaS2T6k3wY36Q808csK32N2wXBJ8vQcNFeP775ZuLZjkfqyqkAsRLxYT04kx031IXNdoHF3bpK5FLORiN4wao3dZdcAdTX7jp49IVP06DIX5WRjlW9OWq_AeR7saAeLns-S3QtNGQ" />
+                  <Card.Body>
+                    <Card.Title>{item.name}</Card.Title>
+                    <Card.Text className="text-muted">
+                      Curso: {item.curse}
+                      <br />
+                      Semestre: {item.semester}
+                      <br />
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </MDBCol>
+            );
+          })
+        : ""}
+    </CardDeck>
   );
-}
+};
+
+export default CardParticipant;

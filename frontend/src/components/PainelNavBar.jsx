@@ -43,7 +43,7 @@ export default class PainelNavBar extends Component {
   };
 
   getFirstChar(str){
-    return str.substr(0,1)
+    return str.substr(0,2)
   }
 
   render() {

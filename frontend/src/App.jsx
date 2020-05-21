@@ -20,9 +20,9 @@ export default class App extends Component {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/acessar" exact component={Login}></Route>
-          <Route path="/participante" exact component={Participant}></Route>
-          <Route path="/avaliador" exact component={Evaluator}></Route>
-          <Route path="/administrador" exact component={Administrador}></Route>
+          <PrivateRoute path="/participante" exact component={Participant}></PrivateRoute>
+          <PrivateRoute path="/avaliador" exact component={Evaluator}></PrivateRoute>
+          <PrivateRoute path="/administrador" exact component={Administrador}></PrivateRoute>
           <Route path="*" component={() => (<h1 className="text-center my-5">Página não encontrada</h1>)}/>
         </Switch>
       </BrowserRouter>
