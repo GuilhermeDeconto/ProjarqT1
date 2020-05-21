@@ -3,6 +3,7 @@ import PainelNavBar from "../components/PainelNavBar";
 import { MDBContainer, MDBBtn, MDBCol, MDBRow, MDBCardGroup } from "mdbreact";
 import InputParticipant from "../components/InputParticipant";
 import CardParticipant from "../components/CardParticipant";
+import "../css/participant.css";
 import * as axios from "axios";
 class Participant extends React.Component {
   constructor(props) {
@@ -32,23 +33,25 @@ class Participant extends React.Component {
     let { team, participantActual } = this.state;
     return (
       <React.Fragment>
-        <PainelNavBar
-          avatarLabel={this.props.location.state.data.name}
-          name={this.props.location.state.data.name}
-          title={"Participante"}
-        />
-        <MDBContainer fluid className="mt-4">
-          <MDBRow>
-            <MDBCol lg="6" sm="12">
-              <InputParticipant participant={participantActual} />
-            </MDBCol>
-            <MDBCol lg="6" sm="12">
-              <MDBCardGroup className="d-flex justify-content-between">
-                <CardParticipant data={team} />
-              </MDBCardGroup>
-            </MDBCol>
-          </MDBRow>
-        </MDBContainer>
+        <div id="background">
+          <PainelNavBar
+            avatarLabel={this.props.location.state.data.name}
+            name={this.props.location.state.data.name}
+            title={"Participante"}
+          />
+          <MDBContainer fluid className="mt-4">
+            <MDBRow>
+              <MDBCol lg="6" sm="12">
+                <InputParticipant participant={participantActual} />
+              </MDBCol>
+              <MDBCol lg="6" sm="12">
+                <MDBCardGroup className="d-flex justify-content-between">
+                  <CardParticipant data={team} />
+                </MDBCardGroup>
+              </MDBCol>
+            </MDBRow>
+          </MDBContainer>
+        </div>
       </React.Fragment>
     );
   }

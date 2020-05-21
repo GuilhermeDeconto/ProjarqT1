@@ -2,6 +2,7 @@ import React from "react";
 import PainelNavBar from "../components/PainelNavBar";
 import TableRender from "../components/TableRender";
 import "../css/participantstable.css";
+import "../css/backgroundall.css";
 import ModalAvaliation from "../components/ModalAvaliation";
 
 class Evaluator extends React.Component {
@@ -40,7 +41,7 @@ class Evaluator extends React.Component {
         title: "Curso",
         field: "curse",
       },
-    ]
+    ],
   };
 
   halfDataTeams = {
@@ -80,15 +81,15 @@ class Evaluator extends React.Component {
       {
         title: "Formação do time",
         field: "formation",
-      }
-    ]
+      },
+    ],
   };
 
   optionsParticipants = {
     grouping: true,
     selection: false,
     headerStyle: {
-      backgroundColor: "#6a1b9a",
+      backgroundColor: "#2F4F4F",
       color: "#FFF",
     },
     pageSizeOptions: [],
@@ -98,15 +99,15 @@ class Evaluator extends React.Component {
     exportFileName: "DadosHackatona",
     exportAllData: true,
     rowStyle: {
-      backgroundColor: '#c3c3c3',
-    }
+      backgroundColor: "#B0C4DE",
+    },
   };
 
   optionsTeams = {
     grouping: true,
     selection: false,
     headerStyle: {
-      backgroundColor: "#008000",
+      backgroundColor: "#2F4F4F",
       color: "#FFF",
     },
     pageSizeOptions: [],
@@ -116,80 +117,87 @@ class Evaluator extends React.Component {
     exportFileName: "DadosHackatona",
     exportAllData: true,
     rowStyle: {
-      backgroundColor: '#c3c3c3',
-    }
+      backgroundColor: "#B0C4DE",
+    },
   };
 
-  countParticipants = 0
-  countTeams = 0
+  countParticipants = 0;
+  countTeams = 0;
 
   render() {
-    let { participantsColumns, participantsData, teamsColumns, teamsData } = this.state;
+    let {
+      participantsColumns,
+      participantsData,
+      teamsColumns,
+      teamsData,
+    } = this.state;
 
     return (
       <React.Fragment>
-        <PainelNavBar
-          avatarLabel={this.props.location.state.data.name}
-          name={this.props.location.state.data.name}
-          title={"Administrador"}
-        />
-        <TableRender
-          labelButton={"participantes"}
-          labelTitle={"Participantes"}
-          columns={participantsColumns}
-          data={query =>
-            new Promise((resolve, reject) => {
-              let url = `${this.baseUrl}/users`
-              this.countParticipants = (query.page + 1)
-              fetch(url)
-                .then(response => response.json())
-                .then(result => {
-                  query.page += 1
-                  var count = 5 * query.page
-                  var aux = result.users
-                  var newData = aux.slice(count - 5, count)
-                  resolve({
-                    data: newData,
-                    page: this.countParticipants - 1,
-                    totalCount: result.count,
-                  })
-                })
-            })
-          }
-          isParticipant={true}
-          options={this.optionsParticipants}
-          isEditable={true}
-          isIcons={true}
-        />
-        <hr id="quebraLinha" />
-        <TableRender
-          labelButton={"times"}
-          labelTitle={"Times"}
-          columns={teamsColumns}
-          data={query =>
-            new Promise((resolve, reject) => {
-              let url = `${this.baseUrl}/teams`
-              this.countTeams = (query.page + 1)
-              fetch(url)
-                .then(response => response.json())
-                .then(result => {
-                  query.page += 1
-                  var count = 5 * query.page
-                  var aux = result.teams
-                  var newData = aux.slice(count - 5, count)
-                  resolve({
-                    data: newData,
-                    page: this.countTeams - 1,
-                    totalCount: result.count,
-                  })
-                })
-            })
-          }
-          isParticipant={false}
-          options={this.optionsTeams}
-          isEditable={true}
-          isIcons={true}
-        />
+        <div id="backgroundall">
+          <PainelNavBar
+            avatarLabel={this.props.location.state.data.name}
+            name={this.props.location.state.data.name}
+            title={"Administrador"}
+          />
+          <TableRender
+            labelButton={"participantes"}
+            labelTitle={"Participantes"}
+            columns={participantsColumns}
+            data={(query) =>
+              new Promise((resolve, reject) => {
+                let url = `${this.baseUrl}/users`;
+                this.countParticipants = query.page + 1;
+                fetch(url)
+                  .then((response) => response.json())
+                  .then((result) => {
+                    query.page += 1;
+                    var count = 5 * query.page;
+                    var aux = result.users;
+                    var newData = aux.slice(count - 5, count);
+                    resolve({
+                      data: newData,
+                      page: this.countParticipants - 1,
+                      totalCount: result.count,
+                    });
+                  });
+              })
+            }
+            isParticipant={true}
+            options={this.optionsParticipants}
+            isEditable={true}
+            isIcons={true}
+          />
+          <hr id="quebraLinha" />
+          <TableRender
+            labelButton={"times"}
+            labelTitle={"Times"}
+            columns={teamsColumns}
+            data={(query) =>
+              new Promise((resolve, reject) => {
+                let url = `${this.baseUrl}/teams`;
+                this.countTeams = query.page + 1;
+                fetch(url)
+                  .then((response) => response.json())
+                  .then((result) => {
+                    query.page += 1;
+                    var count = 5 * query.page;
+                    var aux = result.teams;
+                    var newData = aux.slice(count - 5, count);
+                    resolve({
+                      data: newData,
+                      page: this.countTeams - 1,
+                      totalCount: result.count,
+                    });
+                  });
+              })
+            }
+            isParticipant={false}
+            options={this.optionsTeams}
+            isEditable={true}
+            isIcons={true}
+          />
+        </div>
       </React.Fragment>
     );
   }

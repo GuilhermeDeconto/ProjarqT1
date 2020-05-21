@@ -43,16 +43,16 @@ class InputParticipant extends React.Component {
     axios.get(`${this.baseUrl}/users`).then((response) => {
       if (response) {
         var participants = response.data.users
-        var filtered = participants.filter(item => item.name !== this.state.name)
         this.setState({
-          participants: filtered,
+          participants: participants,
         });
       }
     });
   }
 
-  /* validTeam(){
-    var { teamSuggested } = this.state
+  validTeam(){
+    console.log(this.state)
+    /* var { teamSuggested } = this.state
     var cursos = []
     if(teamSuggested){
       teamSuggested.map((item) => {
@@ -62,8 +62,8 @@ class InputParticipant extends React.Component {
           cursos.push(curso)
         }
       })
-    }
-  } */
+    } */
+  }
 
   render() {
     let { participants, teamSuggested } = this.state;
@@ -78,14 +78,14 @@ class InputParticipant extends React.Component {
           noOptionsText={"Sem opções"}
           closeText={"Fechar"}
           openText={"Abrir mais opções"}
-          //getOptionSelected={(option, value) => {console.log(value)}}
+          getOptionSelected={(option, value) => {console.log(value)}}
           getOptionLabel={(option) => option.name}
           renderOption={(option, { selected }) => (
             <React.Fragment>
               <Checkbox
                 icon={icon}
                 checkedIcon={checkedIcon}
-                style={{ marginRight: 8 }}
+                style={{ marginRight: 8 , backgroundColor: "#FFF", color: "black"}}
                 checked={selected}
               />
               {option.name}
@@ -94,7 +94,7 @@ class InputParticipant extends React.Component {
           fullWidth={true}
           autoComplete={true}
           autoHighlight={true}
-          style={{ width: 650 }}
+          style={{ width: 650 , color: "black"}}
           renderInput={(params) => (
             <TextField
               {...params}
@@ -109,7 +109,7 @@ class InputParticipant extends React.Component {
           <MDBBtn color="deep-purple">Sugerir time</MDBBtn>
         </a>
         <Typography
-          className="d-flex justify-content-center mt-2 text-muted"
+          className="d-flex justify-content-center mt-2"
           variant="body2"
           gutterBottom
         >

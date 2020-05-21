@@ -24,9 +24,9 @@ export default class TemplateLogin extends Component {
         <MDBRow className="justify-content-center">
           <MDBCol md="6">
             <MDBCard>
-              <div className="header pt-3 peach-gradient">
+              <div className="header pt-3 young-passion-gradient color-block-5">
                 <MDBRow className="d-flex justify-content-center">
-                  <h3 className="white-text mb-3 pt-3 font-weight-bold">
+                  <h3 className="white-text mb-3 pt-3 font-weight-bold " >
                     Acessar via
                   </h3>
                 </MDBRow>

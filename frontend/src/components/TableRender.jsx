@@ -5,6 +5,7 @@ import { green, red } from "@material-ui/core/colors";
 import AddBox from "@material-ui/icons/AddBox";
 import DeleteIcon from "@material-ui/icons/Delete";
 import * as axios from "axios";
+import '../css/backgroundall.css'
 
 export default function TableRender(props) {
 
@@ -190,17 +191,19 @@ export default function TableRender(props) {
     },
   ];
 
+  const style = {
+    
+  }
+
   return (
     <React.Fragment>
       <MDBContainer className="mt-1" fluid>
-        <a>
-          <MDBBtn color="deep-purple">Importar {labelButton}</MDBBtn>
-        </a>
         <MaterialTable
           title={labelTitle}
           columns={columns}
           options={options}
           data={data}
+          style={{ backgroundColor: "#D8BFD8"}}
           localization={localization}
           icons={isIcons ? icons : <div />}
           isLoading={columns && data ? false : true}

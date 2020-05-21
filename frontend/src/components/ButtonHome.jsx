@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core';
 
 const ButtonHome = withStyles({
   root: {
-    background: "linear-gradient(308deg, rgba(209,65,174,1) 8%, rgba(162,0,255,1) 86%)",
+    background: "linear-gradient(308deg, #232526 8%, #414345 86%)",
     borderRadius: 3,
     border: 0,
     color: "white",
