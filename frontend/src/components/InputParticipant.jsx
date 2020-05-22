@@ -8,6 +8,7 @@ import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import Typography from "@material-ui/core/Typography";
 import * as axios from "axios";
+import Chip from "@material-ui/core/Chip";
 import { MDBContainer, MDBBtn } from "mdbreact";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
@@ -21,17 +22,45 @@ class InputParticipant extends React.Component {
       participants: [],
       teamSuggested: [],
       name: this.props.participant,
-      valid: false,
+      erro: false,
+      sucesso: false,
     };
+    this.validTeam = this.validTeam.bind(this);
+    this.erroQuantidade = this.erroQuantidade.bind(this);
+    this.sucesso = this.sucesso.bind(this);
+    this.addParticipant = this.addParticipant.bind(this);
+    this.retiraErro = this.retiraErro.bind(this);
   }
 
-  erro() {
+  erroQuantidade() {
     return (
       <div>
-        {this.state.valid && (
+        {this.state.erro && (
           <div>
             <div className="erro text-center pt-2">
-              <h4 className="white-text red">Sugestão inválida</h4>
+              <h5 className="white-text red">
+                Quantidade de participantes inválida!
+              </h5>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  retiraErro() {
+    this.setState({
+      erro: false,
+    });
+  }
+
+  sucesso() {
+    return (
+      <div>
+        {this.state.sucesso && (
+          <div>
+            <div className="erro text-center pt-2">
+              <h5 className="white-text green">Sugestão enviada!</h5>
             </div>
           </div>
         )}
@@ -42,7 +71,7 @@ class InputParticipant extends React.Component {
   componentDidMount() {
     axios.get(`${this.baseUrl}/users`).then((response) => {
       if (response) {
-        var participants = response.data.users
+        var participants = response.data.users;
         this.setState({
           participants: participants,
         });
@@ -50,24 +79,41 @@ class InputParticipant extends React.Component {
     });
   }
 
-  validTeam(){
-    console.log(this.state)
-    /* var { teamSuggested } = this.state
-    var cursos = []
-    if(teamSuggested){
+  addParticipant(array) {
+    this.setState({
+      teamSuggested: array,
+    });
+  }
+
+  validTeam() {
+    var { teamSuggested } = this.state;
+    var cursos = [];
+    console.log(teamSuggested);
+    if (teamSuggested.length != 5) {
+      this.setState({
+        erro: true,
+      });
+    }
+    if (teamSuggested.length == 5) {
       teamSuggested.map((item) => {
-        var curso = item.curse
-        console.log(curso)
-        if(!cursos.contains(curso)){ 
-          cursos.push(curso)
+        var curso = item.curse;
+        console.log(curso);
+        if (!cursos.includes(curso)) {
+          cursos.push(curso);
         }
-      })
-    } */
+      });
+      if(cursos.length > 2){
+        this.setState({
+          erro:false, 
+          sucesso: true
+        })
+      }
+    }
   }
 
   render() {
     let { participants, teamSuggested } = this.state;
-    
+
     return (
       <div>
         <Autocomplete
@@ -78,14 +124,21 @@ class InputParticipant extends React.Component {
           noOptionsText={"Sem opções"}
           closeText={"Fechar"}
           openText={"Abrir mais opções"}
-          getOptionSelected={(option, value) => {console.log(value)}}
+          onChange={(option, value) => {
+            this.addParticipant(value);
+          }}
+          clearText={"Limpar"}
           getOptionLabel={(option) => option.name}
           renderOption={(option, { selected }) => (
             <React.Fragment>
               <Checkbox
                 icon={icon}
                 checkedIcon={checkedIcon}
-                style={{ marginRight: 8 , backgroundColor: "#FFF", color: "black"}}
+                style={{
+                  marginRight: 8,
+                  backgroundColor: "#FFF",
+                  color: "black",
+                }}
                 checked={selected}
               />
               {option.name}
@@ -94,22 +147,39 @@ class InputParticipant extends React.Component {
           fullWidth={true}
           autoComplete={true}
           autoHighlight={true}
-          style={{ width: 650 , color: "black"}}
+          style={{ width: 682, color: "black" }}
+          renderTags={(value, getTagProps) =>
+            value.map((option, index) => (
+              <Chip
+                variant="outlined"
+                label={option.name}
+                {...getTagProps({ index })}
+                style={{ backgroundColor: "#FFF", fontSize: "15px" }}
+              />
+            ))
+          }
           renderInput={(params) => (
             <TextField
               {...params}
               variant="outlined"
               label="Insira o nome dos participantes que deseja sugerir"
               placeholder="Participantes"
+              style={{ fontSize: "15px" }}
             />
           )}
         />
-
-        <a className="d-flex justify-content-center mt-2" onClick={this.validTeam}>
-          <MDBBtn color="deep-purple">Sugerir time</MDBBtn>
-        </a>
-        <Typography
+        {this.erroQuantidade()}
+        {this.sucesso()}
+        <MDBBtn
+          color="deep-purple"
+          onClick={this.validTeam}
           className="d-flex justify-content-center mt-2"
+        >
+          Sugerir time
+        </MDBBtn>
+
+        <Typography
+          className="d-flex justify-content-start mt-2"
           variant="body2"
           gutterBottom
         >

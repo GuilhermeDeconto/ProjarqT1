@@ -20,17 +20,17 @@ const CardParticipant = (props) => {
                   border="info"
                   key={index}
                   style={{ width: "15rem", backgroundColor: "#DDA0DD", color: "black" }}
-                  className="my-2"
+                  className="my-3"
                 >
                   <Card.Img variant="top" src="https://ps.w.org/wp-user-avatar/assets/icon-256x256.png?rev=1755722" alt="Faltou imagem"/>
                   <Card.Body>
                     <Card.Title>{item.name}</Card.Title>
                     <Card.Text style={{color: "black"}}>
-                      <strong>Curso:</strong> {item.curse}
+                      <strong>Curso:</strong> <br />{item.curse}
                       <br />
-                      <strong>Semestre:</strong> {item.semester}
+                      <strong>Semestre:</strong> <br />{item.semester}
                       <br />
-                      <strong>Email:</strong> {item.email}
+                      <strong>Email:</strong> <br />{item.email}
                       <br />
                     </Card.Text>
                   </Card.Body>
