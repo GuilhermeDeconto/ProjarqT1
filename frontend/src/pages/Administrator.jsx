@@ -3,7 +3,6 @@ import PainelNavBar from "../components/PainelNavBar";
 import TableRender from "../components/TableRender";
 import "../css/participantstable.css";
 import "../css/backgroundall.css";
-import ModalAvaliation from "../components/ModalAvaliation";
 
 class Evaluator extends React.Component {
   constructor(props) {
@@ -11,9 +10,9 @@ class Evaluator extends React.Component {
     this.baseUrl = `http://localhost:9876`;
     this.state = {
       participantsColumns: this.halfDataParticipants.columns,
-      participantsData: [],
+      //participantsData: [],
       teamsColumns: this.halfDataTeams.columns,
-      teamsData: [],
+      //teamsData: [],
       erro: false,
       importado: false,
     };
@@ -127,9 +126,7 @@ class Evaluator extends React.Component {
   render() {
     let {
       participantsColumns,
-      participantsData,
-      teamsColumns,
-      teamsData,
+      teamsColumns
     } = this.state;
 
     return (

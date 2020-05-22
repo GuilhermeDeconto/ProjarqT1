@@ -1,6 +1,6 @@
 /* eslint-disable no-use-before-define */
 
-import React, { Component } from "react";
+import React from "react";
 import Checkbox from "@material-ui/core/Checkbox";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
@@ -9,7 +9,7 @@ import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import Typography from "@material-ui/core/Typography";
 import * as axios from "axios";
 import Chip from "@material-ui/core/Chip";
-import { MDBContainer, MDBBtn } from "mdbreact";
+import { MDBBtn } from "mdbreact";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -89,12 +89,13 @@ class InputParticipant extends React.Component {
     var { teamSuggested } = this.state;
     var cursos = [];
     console.log(teamSuggested);
-    if (teamSuggested.length != 5) {
+    if (teamSuggested.length !== 5) {
       this.setState({
         erro: true,
       });
     }
-    if (teamSuggested.length == 5) {
+    if (teamSuggested.length === 5) {
+      // eslint-disable-next-line
       teamSuggested.map((item) => {
         var curso = item.curse;
         console.log(curso);
@@ -112,7 +113,7 @@ class InputParticipant extends React.Component {
   }
 
   render() {
-    let { participants, teamSuggested } = this.state;
+    let { participants } = this.state;
 
     return (
       <div>

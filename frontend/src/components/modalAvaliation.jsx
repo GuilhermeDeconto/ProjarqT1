@@ -26,6 +26,7 @@ export default function ModalAvaliation(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
+  // eslint-disable-next-line
   let { data } = props;
 
   const handleOpen = () => {

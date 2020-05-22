@@ -1,6 +1,6 @@
 import React from "react";
 import MaterialTable from "material-table";
-import { MDBContainer, MDBBtn } from "mdbreact";
+import { MDBContainer } from "mdbreact";
 import { green, red } from "@material-ui/core/colors";
 import AddBox from "@material-ui/icons/AddBox";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -13,6 +13,7 @@ export default function TableRender(props) {
 
   const baseUrl = `http://localhost:9876`;
 
+  // eslint-disable-next-line
   const [state, setState] = React.useState({
     columns: props.columns,
     data: props.data,
@@ -21,7 +22,6 @@ export default function TableRender(props) {
   let {
     columns,
     data,
-    labelButton,
     labelTitle,
     options,
     isEditable,
@@ -70,10 +70,12 @@ export default function TableRender(props) {
     },
   };
 
+  
   const edit = {
     onRowAdd: (newData) =>
       new Promise((resolve, reject) => {
         setTimeout(() => {
+          // eslint-disable-next-line
           {
             if (newData.email) {
               //então é participante
@@ -104,6 +106,7 @@ export default function TableRender(props) {
     onRowUpdate: (oldData) =>
       new Promise((resolve, reject) => {
         setTimeout(() => {
+          // eslint-disable-next-line
           {
             if (oldData.email) {
               //então é participante
@@ -134,6 +137,7 @@ export default function TableRender(props) {
     onRowDelete: (oldData) =>
       new Promise((resolve, reject) => {
         setTimeout(() => {
+          // eslint-disable-next-line
           {
             if (oldData.email) {
               //então é participante
@@ -190,10 +194,6 @@ export default function TableRender(props) {
       onClick: () => tableRef.current && tableRef.current.onQueryChange(),
     },
   ];
-
-  const style = {
-    
-  }
 
   return (
     <React.Fragment>

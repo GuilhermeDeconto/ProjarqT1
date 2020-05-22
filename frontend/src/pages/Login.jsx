@@ -79,7 +79,7 @@ export default class Login extends Component {
       email: email,
       password: password,
     };
-    const config = { headers: { Authorization: localStorage.getItem("Authorization") } }
+    //const config = { headers: { Authorization: localStorage.getItem("Authorization") } }
     try {
       axios
         .post(`${this.baseUrl}/login`, usuarioLogin)

@@ -1,6 +1,6 @@
 import React from "react";
 import PainelNavBar from "../components/PainelNavBar";
-import { MDBContainer, MDBBtn, MDBCol, MDBRow, MDBCardGroup } from "mdbreact";
+import { MDBContainer, MDBCol, MDBRow, MDBCardGroup } from "mdbreact";
 import InputParticipant from "../components/InputParticipant";
 import CardParticipant from "../components/CardParticipant";
 import "../css/participant.css";

@@ -8,7 +8,6 @@ import Login from './pages/Login';
 import Evaluator from "./pages/Evaluator";
 import Administrador from "./pages/Administrator";
 import PrivateRoute from './components/PrivateRoute'
-import * as axios from "axios";
 
 /* CSS */
 import "./App.css";

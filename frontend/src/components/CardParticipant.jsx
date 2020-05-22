@@ -1,11 +1,11 @@
 import React from "react";
-import { CardDeck, Card, Image } from "react-bootstrap";
-import AvatarUser from '../images/iconUserCard.png';
-import Avatar from '@material-ui/core/Avatar';
+import { CardDeck, Card } from "react-bootstrap";
 
 import { MDBCol } from "mdbreact";
 
+// eslint-disable-next-line
 const images = ["", "", "", "", ""];
+// eslint-disable-next-line
 var index = 0;
 const CardParticipant = (props) => {
   var { data } = props;
@@ -17,15 +17,15 @@ const CardParticipant = (props) => {
             return (
               <MDBCol className="mx-auto px-auto my-auto py-auto" >
                 <Card
-                  border="info"
+                  border="warning"
                   key={index}
-                  style={{ width: "15rem", backgroundColor: "#DDA0DD", color: "black" }}
+                  style={{ width: "32vh", backgroundColor: "#003300", color: "white" }}
                   className="my-3"
                 >
-                  <Card.Img variant="top" src="https://ps.w.org/wp-user-avatar/assets/icon-256x256.png?rev=1755722" alt="Faltou imagem"/>
+                  <Card.Img variant="top" style={{ width: 100}} className="align-self-center" src="https://ps.w.org/wp-user-avatar/assets/icon-128x128.png" alt="Sem imagem"/>
                   <Card.Body>
                     <Card.Title>{item.name}</Card.Title>
-                    <Card.Text style={{color: "black"}}>
+                    <Card.Text style={{color: "white"}}>
                       <strong>Curso:</strong> <br />{item.curse}
                       <br />
                       <strong>Semestre:</strong> <br />{item.semester}
