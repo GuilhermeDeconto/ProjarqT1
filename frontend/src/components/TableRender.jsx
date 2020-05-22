@@ -5,11 +5,9 @@ import { green, red } from "@material-ui/core/colors";
 import AddBox from "@material-ui/icons/AddBox";
 import DeleteIcon from "@material-ui/icons/Delete";
 import * as axios from "axios";
-import '../css/backgroundall.css'
+import "../css/backgroundall.css";
 
 export default function TableRender(props) {
-
-  const tableRef = React.createRef();
 
   const baseUrl = `http://localhost:9876`;
 
@@ -19,14 +17,7 @@ export default function TableRender(props) {
     data: props.data,
   });
 
-  let {
-    columns,
-    data,
-    labelTitle,
-    options,
-    isEditable,
-    isIcons,
-  } = props;
+  var { columns, data, labelTitle, options, isEditable, isIcons } = props;
 
   const localization = {
     pagination: {
@@ -70,7 +61,6 @@ export default function TableRender(props) {
     },
   };
 
-  
   const edit = {
     onRowAdd: (newData) =>
       new Promise((resolve, reject) => {
@@ -191,7 +181,30 @@ export default function TableRender(props) {
       icon: "refresh",
       tooltip: "Atualizar dados",
       isFreeAction: true,
-      onClick: () => tableRef.current && tableRef.current.onQueryChange(),
+      onClick: () => {
+        console.log(labelTitle);
+        /* var newData;
+        if (labelTitle === "Participantes") {
+          axios.get(`${baseUrl}/users`).then((response) => {
+            if (response) {
+              newData = response.data.users;
+            }
+            setState({
+              data: newData ? newData : [],
+            });
+          });
+        } else if (labelTitle === "Times") {
+          axios.get(`${baseUrl}/teams`).then((response) => {
+            console.log(response);
+            if (response) {
+              newData = response.data.teams;
+            }
+            setState({
+              data: newData ? newData : [],
+            });
+          });
+        } */
+      },
     },
   ];
 
@@ -203,7 +216,7 @@ export default function TableRender(props) {
           columns={columns}
           options={options}
           data={data}
-          style={{ backgroundColor: "#D8BFD8"}}
+          style={{ backgroundColor: "#ffffff" }}
           localization={localization}
           icons={isIcons ? icons : <div />}
           isLoading={columns && data ? false : true}

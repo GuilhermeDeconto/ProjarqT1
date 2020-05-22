@@ -147,14 +147,14 @@ server.route({
   handler: async (request, resp) => {
     try {
       var result = await UserModel.findById(request.params.id).exec();
-      if(result){
+      if (result) {
         var data = {
           status: "success",
           message: "User retrieved successfully",
           user: result,
         };
       }
-      
+
       return resp.response(data);
     } catch (error) {
       return resp.response(error).code(500);
@@ -186,8 +186,7 @@ server.route({
   path: "/members/{team}",
   handler: async (request, resp) => {
     try {
-      
-      var result = await UserModel.find( {team: request.params.team } );
+      var result = await UserModel.find({ team: request.params.team });
       var data = {
         status: "success",
         message: "Members retrieved successfully",
@@ -206,7 +205,7 @@ server.route({
   options: {
     validate: {
       payload: {
-        number: joi.number().required()
+        number: joi.number().required(),
       },
       failAction: (request, resp, error) => {
         return error.isJoi
@@ -310,6 +309,51 @@ server.route({
 
 server.route({
   method: "POST",
+  path: "/savereport",
+  options: {
+    validate: {
+      payload: {
+        number: joi.number().required(),
+        software: joi.string().required(),
+        process: joi.string().required(),
+        pitch: joi.string().required(),
+        inovation: joi.string().required(),
+        formation: joi.string().required(),
+      },
+      failAction: (request, resp, error) => {
+        return error.isJoi
+          ? resp.response(error.details[0]).takeover()
+          : resp.response(error).takeover();
+      },
+    },
+  },
+  handler: async (request, resp) => {
+    try {
+      var filter = { number: request.payload.number };
+      var update = {
+        software: request.payload.software,
+        process: request.payload.process,
+        pitch: request.payload.pitch,
+        inovation: request.payload.inovation,
+        formation: request.payload.formation,
+      };
+      var team = await TeamModel.findOneAndUpdate(filter, update, {
+        new: true,
+      })
+      var data = {
+        message: "Team evaluate!",
+        team: team,
+      };
+
+      return resp.response(data);
+    } catch (error) {
+      return resp.response(error).code(500);
+    }
+  },
+});
+
+server.route({
+  method: "POST",
   path: "/users",
   handler: async (request, resp) => {
     try {
@@ -368,7 +412,7 @@ server.route({
         curse: joi.string().optional(),
         isNormalUser: joi.boolean().optional(),
         _id: joi.string().optional(),
-        __v: joi.number().optional()
+        __v: joi.number().optional(),
       },
       failAction: (request, resp, error) => {
         return error.isJoi
@@ -387,22 +431,21 @@ server.route({
       );
       var users = await UserModel.find().exec();
       let count = await UserModel.countDocuments().exec();
-      if(user){
-        var data= {
+      if (user) {
+        var data = {
           status: "success",
           message: "User modified successfully",
           count: count,
           users: users,
         };
       }
-      
+
       return resp.response(data);
     } catch (error) {
       return resp.response(error).code(500);
     }
   },
 });
-
 
 server.route({
   method: "PUT",
@@ -419,7 +462,7 @@ server.route({
         inovation: joi.string().optional(),
         formation: joi.string().optional(),
         _id: joi.string().optional(),
-        __v: joi.number().optional()
+        __v: joi.number().optional(),
       },
       failAction: (request, resp, error) => {
         return error.isJoi
@@ -438,15 +481,15 @@ server.route({
       );
       var teams = await TeamModel.find().exec();
       let count = await TeamModel.countDocuments().exec();
-      if(team){
-        var data= {
+      if (team) {
+        var data = {
           status: "success",
           message: "Team modified successfully",
           count: count,
           teams: teams,
         };
       }
-      
+
       return resp.response(data);
     } catch (error) {
       return resp.response(error).code(500);

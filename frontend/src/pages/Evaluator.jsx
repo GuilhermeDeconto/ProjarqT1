@@ -102,14 +102,13 @@ class Evaluator extends React.Component {
         title: "Avaliação",
         field: "avaliation",
         render: (rowData) => <ModalAvaliation data={rowData} />,
-        grouping: true,
       },
     ],
   };
 
   optionsParticipants = {
     headerStyle: {
-      backgroundColor: "#6a1b9a",
+      backgroundColor: "#2F4F4F",
       color: "#FFF",
     },
     grouping: true,
@@ -120,13 +119,13 @@ class Evaluator extends React.Component {
     exportFileName: "DadosHackatona",
     exportAllData: true,
     rowStyle: {
-      backgroundColor: "#c3c3c3",
+      backgroundColor: "#B0C4DE",
     },
   };
 
   optionsTeams = {
     headerStyle: {
-      backgroundColor: "#008000",
+      backgroundColor: "#2F4F4F",
       color: "#FFF",
     },
     grouping: true,
@@ -137,7 +136,7 @@ class Evaluator extends React.Component {
     exportFileName: "DadosHackatona",
     exportAllData: true,
     rowStyle: {
-      backgroundColor: "#c3c3c3",
+      backgroundColor: "#B0C4DE",
     },
   };
 
