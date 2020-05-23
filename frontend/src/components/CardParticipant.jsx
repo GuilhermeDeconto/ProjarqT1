@@ -17,15 +17,15 @@ const CardParticipant = (props) => {
             return (
               <MDBCol className="mx-auto px-auto my-auto py-auto" key={index}>
                 <Card
-                  border="warning"
+                  border="success"
                   key={index}
-                  style={{ width: "32vh", backgroundColor: "#003300", color: "white" }}
+                  style={{ width: "32vh", backgroundColor: "#e8e8e8", color: "white" }}
                   className="my-3"
                 >
                   <Card.Img variant="top" style={{ width: 100}} className="align-self-center" src="https://ps.w.org/wp-user-avatar/assets/icon-128x128.png" alt="Sem imagem"/>
                   <Card.Body>
-                    <Card.Title>{item.name}</Card.Title>
-                    <Card.Text style={{color: "white"}}>
+                    <Card.Title style={{color: "black"}} >{item.name}</Card.Title>
+                    <Card.Text style={{color: "black"}}>
                       <strong>Curso:</strong> <br />{item.curse}
                       <br />
                       <strong>Semestre:</strong> <br />{item.semester}

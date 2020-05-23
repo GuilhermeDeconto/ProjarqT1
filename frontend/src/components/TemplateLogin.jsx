@@ -84,11 +84,12 @@ export default class TemplateLogin extends Component {
                   <MDBCol md="12" className="d-flex justify-content-center">
                     <div className="text-center">
                       <MDBBtn
-                        color="dark"
+                        color="amber"
                         onClick={this.props.logar}
                         rounded
+                        id="buttonjoin"
                         type="button"
-                        className="z-depth-1a"
+                        className="z-depth-1a px-5"
                       >
                         Entrar
                       </MDBBtn>

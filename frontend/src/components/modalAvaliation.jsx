@@ -3,7 +3,14 @@ import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
-import { MDBModalHeader, MDBModalBody, MDBCol, MDBRow, MDBIcon } from "mdbreact";
+import {
+  MDBModalHeader,
+  MDBModalBody,
+  MDBCol,
+  MDBRow,
+  MDBIcon,
+  MDBBtn,
+} from "mdbreact";
 import Rater from "../components/Rater";
 import * as axios from "axios";
 import StyledButton from "../components/StyledButton";
@@ -68,10 +75,10 @@ export default function ModalAvaliation(props) {
 
   return (
     <div>
-      <StyledButton onClick={handleOpen}>
-        <MDBIcon icon="clipboard-list" className="green-text mr-2" size="lg"/>
+      <MDBBtn color="blue" onClick={handleOpen} className="px-auto py-auto" id="btnAvaliar">
+        <MDBIcon icon="clipboard-check" size="lg" className="px-auto py-auto my-2"/>
         Avaliar
-      </StyledButton>
+      </MDBBtn>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"

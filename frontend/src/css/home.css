@@ -1,4 +1,4 @@
-
-#buttonhome :hover{ 
-    font-size: 125%;
+#buttonhome{
+    background-color: "#F38200";
+    padding: 15px 150px;
 }

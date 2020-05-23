@@ -10,6 +10,8 @@ import Typography from "@material-ui/core/Typography";
 import * as axios from "axios";
 import Chip from "@material-ui/core/Chip";
 import { MDBBtn, MDBIcon } from "mdbreact";
+import '../css/buttonsuggest.css'
+
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -186,7 +188,7 @@ class InputParticipant extends React.Component {
               variant="outlined"
               label="Insira o nome dos participantes que deseja sugerir"
               placeholder="Participantes"
-              style={{ fontSize: "15px" }}
+              style={{ fontSize: "15px", color: "black" }}
             />
           )}
         />
@@ -194,8 +196,8 @@ class InputParticipant extends React.Component {
         {this.sucesso()}
         {this.erroCursos()}
         <MDBBtn
-          color="deep-purple"
           onClick={this.validTeam}
+          id="btnsugerir"
           className="d-flex justify-content-center my-3"
         >
           Sugerir time
@@ -205,6 +207,7 @@ class InputParticipant extends React.Component {
           className="d-flex justify-content-start mt-2"
           variant="body2"
           gutterBottom
+          //style={{color: "black", fontSize: 13}}
         >
           Lembre-se que para sugerir um time
           <br /> é preciso que os integrantes estejam escritos

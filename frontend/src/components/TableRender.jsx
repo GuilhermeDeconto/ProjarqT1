@@ -72,6 +72,7 @@ export default function TableRender(props) {
               axios
                 .post(`${baseUrl}/registeruser`, newData)
                 .then((response) => {
+                  console.log(response)
                   if (response.message) {
                     setState({
                       data: response.users,
@@ -91,7 +92,7 @@ export default function TableRender(props) {
             }
           }
           resolve();
-        }, 2000);
+        }, 1000);
       }),
     onRowUpdate: (oldData) =>
       new Promise((resolve, reject) => {
@@ -122,7 +123,7 @@ export default function TableRender(props) {
             }
           }
           resolve();
-        }, 2000);
+        }, 1000);
       }),
     onRowDelete: (oldData) =>
       new Promise((resolve, reject) => {
@@ -153,7 +154,7 @@ export default function TableRender(props) {
             }
           }
           resolve();
-        }, 2000);
+        }, 1000);
       }),
   };
 
@@ -193,7 +194,7 @@ export default function TableRender(props) {
           columns={columns}
           options={options}
           data={data}
-          style={{ backgroundColor: "#ffffff" }}
+          style={{ backgroundColor: "#f6f6f6" }}
           localization={localization}
           icons={isIcons ? icons : <div />}
           isLoading={columns && data ? false : true}

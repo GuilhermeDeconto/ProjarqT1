@@ -6,6 +6,7 @@ import {
   MDBView,
   MDBContainer,
   MDBBox,
+  MDBBtn,
 } from "mdbreact";
 import "../css/classicformpage.css";
 import ButtonHome from "../components/ButtonHome";
@@ -35,8 +36,8 @@ class Home extends React.Component {
                     justifyContent="center"
                     className="d-inline-block"
                   >
-                    <a className="black-text links" href="/acessar">
-                      <ButtonHome id="buttonhome">Acessar</ButtonHome>
+                    <a  href="/acessar">
+                      <MDBBtn id="buttonhome">Acessar</MDBBtn>
                     </a>
                   </MDBBox>
                 </MDBCol>
