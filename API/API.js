@@ -106,12 +106,12 @@ server.route({
   path: "/users",
   handler: async (request, resp) => {
     try {
-      var users = await UserModel.find().exec();
+      var users = await UserModel.find( { "isNormalUser": true } ).exec();
       var count = await UserModel.countDocuments().exec();
       var data = {
         status: "success",
         message: "Users retrieved successfully",
-        count: count,
+        count: count - 2,
         users: users,
       };
       return resp.response(data);

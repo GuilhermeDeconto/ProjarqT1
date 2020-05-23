@@ -4,6 +4,7 @@ import TableRender from "../components/TableRender";
 import "../css/participantstable.css";
 import "../css/backgroundall.css";
 import ModalAvaliation from "../components/ModalAvaliation";
+import { MDBBtn } from "mdbreact";
 
 class Evaluator extends React.Component {
   constructor(props) {
@@ -15,7 +16,8 @@ class Evaluator extends React.Component {
       teamsColumns: this.halfDataTeams.columns,
       //teamsData: [],
       erro: false,
-      importado: false,
+      importadoParticipante: false,
+      importadoTeam: false,
     };
   }
 
@@ -145,10 +147,24 @@ class Evaluator extends React.Component {
   indexParticipantes = 0;
   indexTeams = 0;
 
+  changeImportParticipant = () => {
+    this.setState({
+      importadoParticipante: true,
+    });
+  };
+
+  changeImportTeam = () => {
+    this.setState({
+      importadoTeam: true,
+    });
+  };
+
   render() {
     let {
       participantsColumns,
       teamsColumns,
+      importadoParticipante,
+      importadoTeam,
     } = this.state;
 
     return (
@@ -159,63 +175,85 @@ class Evaluator extends React.Component {
             name={this.props.location.state.data.name}
             title={"Avaliador"}
           />
-          <TableRender
-            labelButton={"participantes"}
-            labelTitle={"Participantes"}
-            columns={participantsColumns}
-            data={(query) =>
-              new Promise((resolve, reject) => {
-                let url = `${this.baseUrl}/users`;
-                this.countParticipants = query.page + 1;
-                fetch(url)
-                  .then((response) => response.json())
-                  .then((result) => {
-                    query.page += 1;
-                    var count = 5 * query.page;
-                    var aux = result.users;
-                    var newData = aux.slice(count - 5, count);
-                    resolve({
-                      data: newData,
-                      page: this.countParticipants - 1,
-                      totalCount: 50,
+          {importadoParticipante === false ? (
+            <MDBBtn color="pink" onClick={this.changeImportParticipant}>
+              Importar Participantes
+            </MDBBtn>
+          ) : (
+            <span />
+          )}
+          {importadoParticipante === true ? (
+            <TableRender
+              labelButton={"participantes"}
+              labelTitle={"Participantes"}
+              columns={participantsColumns}
+              data={(query) =>
+                new Promise((resolve, reject) => {
+                  let url = `${this.baseUrl}/users`;
+                  this.countParticipants = query.page + 1;
+                  fetch(url)
+                    .then((response) => response.json())
+                    .then((result) => {
+                      query.page += 1;
+                      var count = 5 * query.page;
+                      var aux = result.users;
+                      var newData = aux.slice(count - 5, count);
+                      resolve({
+                        data: newData,
+                        page: this.countParticipants - 1,
+                        totalCount: 50,
+                      });
                     });
-                  });
-              })
-            }
-            isParticipant={true}
-            options={this.optionsParticipants}
-            isEditable={false}
-            isIcons={false}
-          />
+                })
+              }
+              isParticipant={true}
+              options={this.optionsParticipants}
+              isEditable={false}
+              isIcons={false}
+            />
+          ) : (
+            ""
+          )}
           <hr id="quebraLinha" />
-          <TableRender
-            labelButton={"times"}
-            labelTitle={"Times"}
-            columns={teamsColumns}
-            data={(query) =>
-              new Promise((resolve, reject) => {
-                let url = `${this.baseUrl}/teams`;
-                this.countTeams = query.page + 1;
-                fetch(url)
-                  .then((response) => response.json())
-                  .then((result) => {
-                    query.page += 1;
-                    var count = 5 * query.page;
-                    var aux = result.teams;
-                    var newData = aux.slice(count - 5, count);
-                    resolve({
-                      data: newData,
-                      page: this.countTeams - 1,
-                      totalCount: 10,
+          {importadoTeam === false ? (
+            <MDBBtn color="pink" onClick={this.changeImportTeam}>
+              Importar Times
+            </MDBBtn>
+          ) : (
+            <span />
+          )}
+          {importadoTeam === true ? (
+            <TableRender
+              labelButton={"times"}
+              labelTitle={"Times"}
+              columns={teamsColumns}
+              data={(query) =>
+                new Promise((resolve, reject) => {
+                  let url = `${this.baseUrl}/teams`;
+                  this.countTeams = query.page + 1;
+                  fetch(url)
+                    .then((response) => response.json())
+                    .then((result) => {
+                      query.page += 1;
+                      var count = 5 * query.page;
+                      var aux = result.teams;
+                      var newData = aux.slice(count - 5, count);
+                      resolve({
+                        data: newData,
+                        page: this.countTeams - 1,
+                        totalCount: 10,
+                      });
                     });
-                  });
-              })
-            }
-            isParticipant={false}
-            options={this.optionsTeams}
-            isEditable={false}
-            isIcons={false}
-          />
+                })
+              }
+              isParticipant={false}
+              options={this.optionsTeams}
+              isEditable={false}
+              isIcons={false}
+            />
+          ) : (
+            ""
+          )}
         </div>
       </React.Fragment>
     );

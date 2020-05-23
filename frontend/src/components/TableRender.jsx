@@ -8,14 +8,14 @@ import * as axios from "axios";
 import "../css/backgroundall.css";
 
 export default function TableRender(props) {
-
   const baseUrl = `http://localhost:9876`;
 
   // eslint-disable-next-line
   const [state, setState] = React.useState({
     columns: props.columns,
-    data: props.data,
+    data: [],
   });
+
 
   var { columns, data, labelTitle, options, isEditable, isIcons } = props;
 
@@ -73,7 +73,7 @@ export default function TableRender(props) {
                 .post(`${baseUrl}/registeruser`, newData)
                 .then((response) => {
                   if (response.message) {
-                    this.setState({
+                    setState({
                       data: response.users,
                     });
                   }
@@ -83,7 +83,7 @@ export default function TableRender(props) {
                 .post(`${baseUrl}/registerteam`, newData)
                 .then((response) => {
                   if (response.message) {
-                    this.setState({
+                    setState({
                       data: response.teams,
                     });
                   }
@@ -91,7 +91,7 @@ export default function TableRender(props) {
             }
           }
           resolve();
-        }, 1000);
+        }, 2000);
       }),
     onRowUpdate: (oldData) =>
       new Promise((resolve, reject) => {
@@ -103,8 +103,8 @@ export default function TableRender(props) {
               axios
                 .put(`${baseUrl}/user/${oldData._id}`, oldData)
                 .then((response) => {
-                  if (response.message) {
-                    this.setState({
+                  if (response) {
+                    setState({
                       data: response.users,
                     });
                   }
@@ -113,8 +113,8 @@ export default function TableRender(props) {
               axios
                 .put(`${baseUrl}/team/${oldData._id}`, oldData)
                 .then((response) => {
-                  if (response.message) {
-                    this.setState({
+                  if (response) {
+                    setState({
                       data: response.teams,
                     });
                   }
@@ -122,7 +122,7 @@ export default function TableRender(props) {
             }
           }
           resolve();
-        }, 1000);
+        }, 2000);
       }),
     onRowDelete: (oldData) =>
       new Promise((resolve, reject) => {
@@ -134,8 +134,8 @@ export default function TableRender(props) {
               axios
                 .delete(`${baseUrl}/user/${oldData._id}`)
                 .then((response) => {
-                  if (response.message) {
-                    this.setState({
+                  if (response) {
+                    setState({
                       data: response.users,
                     });
                   }
@@ -144,8 +144,8 @@ export default function TableRender(props) {
               axios
                 .delete(`${baseUrl}/team/${oldData._id}`)
                 .then((response) => {
-                  if (response.message) {
-                    this.setState({
+                  if (response) {
+                    setState({
                       data: response.teams,
                     });
                   }
@@ -153,7 +153,7 @@ export default function TableRender(props) {
             }
           }
           resolve();
-        }, 1000);
+        }, 2000);
       }),
   };
 
@@ -181,30 +181,7 @@ export default function TableRender(props) {
       icon: "refresh",
       tooltip: "Atualizar dados",
       isFreeAction: true,
-      onClick: () => {
-        console.log(labelTitle);
-        /* var newData;
-        if (labelTitle === "Participantes") {
-          axios.get(`${baseUrl}/users`).then((response) => {
-            if (response) {
-              newData = response.data.users;
-            }
-            setState({
-              data: newData ? newData : [],
-            });
-          });
-        } else if (labelTitle === "Times") {
-          axios.get(`${baseUrl}/teams`).then((response) => {
-            console.log(response);
-            if (response) {
-              newData = response.data.teams;
-            }
-            setState({
-              data: newData ? newData : [],
-            });
-          });
-        } */
-      },
+      onClick: () => {},
     },
   ];
 

@@ -9,7 +9,7 @@ import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import Typography from "@material-ui/core/Typography";
 import * as axios from "axios";
 import Chip from "@material-ui/core/Chip";
-import { MDBBtn } from "mdbreact";
+import { MDBBtn, MDBIcon } from "mdbreact";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -24,43 +24,55 @@ class InputParticipant extends React.Component {
       name: this.props.participant,
       erro: false,
       sucesso: false,
+      erroCursos: false
     };
     this.validTeam = this.validTeam.bind(this);
     this.erroQuantidade = this.erroQuantidade.bind(this);
     this.sucesso = this.sucesso.bind(this);
     this.addParticipant = this.addParticipant.bind(this);
-    this.retiraErro = this.retiraErro.bind(this);
+    this.erroCursos = this.erroCursos.bind(this)
   }
 
   erroQuantidade() {
     return (
       <div>
-        {this.state.erro && (
-          <div>
-            <div className="erro text-center pt-2">
-              <h5 className="white-text red">
-                Quantidade de participantes inválida!
-              </h5>
-            </div>
+        {this.state.erro === true && this.state.sucesso === false && this.state.erroCursos === false &&(
+          <div className="erro text-center py-3 my-1">
+            <h5 className="white-text red py-1 my-1">
+              <MDBIcon className="mx-2" icon="times-circle" size="lg" />
+              Quantidade de participantes inválida!
+            </h5>
           </div>
         )}
       </div>
     );
   }
 
-  retiraErro() {
-    this.setState({
-      erro: false,
-    });
+  erroCursos() {
+    return (
+      <div>
+        {this.state.erroCursos === true && this.state.sucesso === false && this.state.erro === false && (
+          <div className="erro text-center py-3 my-1">
+            <h5 className="white-text red py-1 my-1">
+              <MDBIcon className="mx-2" icon="times-circle" size="lg" />
+              Sugestão invalida, verifique os cursos!
+            </h5>
+          </div>
+        )}
+      </div>
+    );
   }
 
   sucesso() {
     return (
       <div>
-        {this.state.sucesso && (
+        {this.state.sucesso === true && this.state.erro === false && this.state.erroCursos === false && (
           <div>
-            <div className="erro text-center pt-2">
-              <h5 className="white-text green">Sugestão enviada!</h5>
+            <div className="erro text-center py-3 my-1">
+              <h5 className="white-text green py-1 my-1">
+                <MDBIcon className="mx-2" icon="check-circle" size="lg" />
+                Sugestão enviada!
+              </h5>
             </div>
           </div>
         )}
@@ -83,6 +95,7 @@ class InputParticipant extends React.Component {
     this.setState({
       teamSuggested: array,
     });
+    console.log(array);
   }
 
   validTeam() {
@@ -92,22 +105,30 @@ class InputParticipant extends React.Component {
     if (teamSuggested.length !== 5) {
       this.setState({
         erro: true,
+        sucesso: false,
+        erroCursos: false
       });
     }
     if (teamSuggested.length === 5) {
       // eslint-disable-next-line
       teamSuggested.map((item) => {
         var curso = item.curse;
-        console.log(curso);
         if (!cursos.includes(curso)) {
           cursos.push(curso);
         }
       });
-      if(cursos.length > 2){
+      if (cursos.length >= 2) {
         this.setState({
-          erro:false, 
-          sucesso: true
-        })
+          erro: false,
+          sucesso: true,
+          erroCursos: false
+        });
+      } else {
+        this.setState({
+          erro: false,
+          sucesso: false,
+          erroCursos: true
+        });
       }
     }
   }
@@ -171,10 +192,11 @@ class InputParticipant extends React.Component {
         />
         {this.erroQuantidade()}
         {this.sucesso()}
+        {this.erroCursos()}
         <MDBBtn
           color="deep-purple"
           onClick={this.validTeam}
-          className="d-flex justify-content-center mt-2"
+          className="d-flex justify-content-center my-3"
         >
           Sugerir time
         </MDBBtn>

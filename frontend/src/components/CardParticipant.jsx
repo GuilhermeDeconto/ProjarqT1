@@ -6,16 +6,16 @@ import { MDBCol } from "mdbreact";
 // eslint-disable-next-line
 const images = ["", "", "", "", ""];
 // eslint-disable-next-line
-var index = 0;
+var i = 0;
 const CardParticipant = (props) => {
   var { data } = props;
   return (
     <CardDeck className="my-2">
       {data
         ? data.map((item, index) => {
-            index++;
+            i++;
             return (
-              <MDBCol className="mx-auto px-auto my-auto py-auto" >
+              <MDBCol className="mx-auto px-auto my-auto py-auto" key={index}>
                 <Card
                   border="warning"
                   key={index}
