@@ -13,7 +13,6 @@ import {
 } from "mdbreact";
 import Rater from "../components/Rater";
 import * as axios from "axios";
-import StyledButton from "../components/StyledButton";
 import "../css/modal.css";
 
 const useStyles = makeStyles((theme) => ({

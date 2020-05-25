@@ -9,7 +9,6 @@ import {
   MDBBtn,
 } from "mdbreact";
 import "../css/classicformpage.css";
-import ButtonHome from "../components/ButtonHome";
 import '../css/home.css'
 
 class Home extends React.Component {
