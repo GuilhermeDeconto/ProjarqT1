@@ -1,12 +1,11 @@
-//
+
 //  Created by Guilherme Dall'Agnol Deconto on 09/05/20.
 //  @Author guilherme.deconto@acad.pucrs.br
 //  Copyright © 2020 Deconto. All rights reserved.
-//
 
-const hapi = require("hapi");
-const joi = require("joi");
-const mongoose = require("mongoose");
+const hapi = require("hapi"); //Biblioteca para auxiliar no gerenciamento do mongoose
+const joi = require("joi"); // Bilibioteca para validar e retornar erros de validação de forma automatizada
+const mongoose = require("mongoose"); //Biblioteca do Nodejs que proporciona uma solução baseada em esquemas para modelar os dados da sua aplicação.
 const server = new hapi.Server({
   host: "localhost",
   port: 9876,
@@ -31,6 +30,7 @@ const UserModel = mongoose.model("user", {
   isNormalUser: Boolean,
 });
 
+/* Model */
 const TeamModel = mongoose.model("team", {
   number: Number,
   name: String,
@@ -44,6 +44,7 @@ const TeamModel = mongoose.model("team", {
 });
 
 /* Routes */
+//Realizar login
 server.route({
   method: "POST",
   path: "/login",
@@ -101,6 +102,7 @@ server.route({
   },
 });
 
+//Buscar todos os usuários que são participantes
 server.route({
   method: "GET",
   path: "/users",
@@ -121,6 +123,7 @@ server.route({
   },
 });
 
+//Buscar todos os times
 server.route({
   method: "GET",
   path: "/teams",
@@ -141,6 +144,7 @@ server.route({
   },
 });
 
+//Buscar o usuário pelo ID único (gerado pelo banco) dele
 server.route({
   method: "GET",
   path: "/user/{id}",
@@ -162,6 +166,7 @@ server.route({
   },
 });
 
+//Buscar o time pelo ID único (gerado pelo banco) dele
 server.route({
   method: "GET",
   path: "/team/{id}",
@@ -180,7 +185,7 @@ server.route({
   },
 });
 
-//Pegar os integrantes daquele time para os cards
+//Pegar os integrantes de um time para os cards de vizualizações
 server.route({
   method: "GET",
   path: "/members/{team}",
@@ -199,6 +204,7 @@ server.route({
   },
 });
 
+//Buscar um timepelo número dele
 server.route({
   method: "POST",
   path: "/team",
@@ -231,6 +237,7 @@ server.route({
   },
 });
 
+//Registar um novo usuário
 server.route({
   method: "POST",
   path: "/registeruser",
@@ -272,6 +279,8 @@ server.route({
   },
 });
 
+
+//Registar um novo time
 server.route({
   method: "POST",
   path: "/registerteam",
@@ -314,6 +323,7 @@ server.route({
   },
 });
 
+//Salvar avaliação dada por um avaliador
 server.route({
   method: "POST",
   path: "/savereport",
@@ -360,6 +370,7 @@ server.route({
   },
 });
 
+//Inserir muitos usuários de uma vez
 server.route({
   method: "POST",
   path: "/users",
@@ -383,6 +394,7 @@ server.route({
   },
 });
 
+//Salvar muitos times de uma vez só
 server.route({
   method: "POST",
   path: "/teams",
@@ -406,6 +418,7 @@ server.route({
   },
 });
 
+//Alterar um usuário já contido no banco de dados
 server.route({
   method: "PUT",
   options: {
@@ -455,6 +468,7 @@ server.route({
   },
 });
 
+//Alterar um time já contido no banco de dados
 server.route({
   method: "PUT",
   options: {
@@ -505,6 +519,7 @@ server.route({
   },
 });
 
+//Deletar um usuário pelo ID dele
 server.route({
   method: "DELETE",
   path: "/user/{id}",
@@ -527,6 +542,7 @@ server.route({
   },
 });
 
+//Deletar um time pelo ID
 server.route({
   method: "DELETE",
   path: "/team/{id}",
@@ -549,6 +565,7 @@ server.route({
   },
 });
 
+//Deletar todos os times
 server.route({
   method: "DELETE",
   path: "/teams",
@@ -567,6 +584,7 @@ server.route({
   },
 });
 
+//Deletar todos os usuários
 server.route({
   method: "DELETE",
   path: "/users",
@@ -586,7 +604,6 @@ server.route({
 });
 
 /* Server start */
-
 server.start((err) => {
   if (err) {
     throw err;
@@ -595,6 +612,7 @@ server.start((err) => {
   console.log("Server started");
 });
 
+//Gerar hash token aleatório
 function generate_token(length) {
   //edit the token allowed characters
   var a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".split(
