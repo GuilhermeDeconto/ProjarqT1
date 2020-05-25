@@ -217,9 +217,11 @@ server.route({
   handler: async (request, resp) => {
     try {
       var result = await TeamModel.findOne(request.params.number).exec();
+      let count = await TeamModel.countDocuments().exec();
       var data = {
         status: "success",
         message: "Team successfully rescued",
+        count: count,
         team: result,
       };
       return resp.response(data);
@@ -256,9 +258,11 @@ server.route({
       var user = new UserModel(request.payload);
       let result = await user.save();
       let users = await UserModel.find().exec();
+      let count = await UserModel.countDocuments().exec();
       var data = {
         message: "User created!",
-        user: users,
+        users: users,
+        count: count
       };
 
       return resp.response(data);
@@ -278,11 +282,11 @@ server.route({
         name: joi.string().required(),
         platform: joi.string().required(),
         description: joi.string().required(),
-        software: joi.string().required(),
-        process: joi.string().required(),
-        pitch: joi.string().required(),
-        inovation: joi.string().required(),
-        formation: joi.string().required(),
+        software: joi.string().optional(),
+        process: joi.string().optional(),
+        pitch: joi.string().optional(),
+        inovation: joi.string().optional(),
+        formation: joi.string().optional(),
       },
       failAction: (request, resp, error) => {
         return error.isJoi
@@ -294,11 +298,14 @@ server.route({
   handler: async (request, resp) => {
     try {
       var team = new TeamModel(request.payload);
+      var result = await team.save();
+      var teams = await TeamModel.find().exec();
+      var count = await TeamModel.countDocuments().exec();
       var data = {
         message: "Team created!",
-        team: team,
+        teams: teams,
+        count: count
       };
-      let result = await team.save();
 
       return resp.response(data);
     } catch (error) {
@@ -340,9 +347,10 @@ server.route({
       var team = await TeamModel.findOneAndUpdate(filter, update, {
         new: true,
       })
+      var teams = await TeamModel.find().exec();
       var data = {
         message: "Team evaluate!",
-        team: team,
+        teams: teams,
       };
 
       return resp.response(data);

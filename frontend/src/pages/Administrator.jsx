@@ -158,7 +158,7 @@ class Evaluator extends React.Component {
             title={"Administrador"}
           />
           {importadoParticipante === false ? (
-            <MDBBtn color="pink" onClick={this.changeImportParticipant}>
+            <MDBBtn color="deep-orange" className="ml-2" onClick={this.changeImportParticipant}>
               Importar Participantes
             </MDBBtn>
           ) : (
@@ -198,7 +198,7 @@ class Evaluator extends React.Component {
           )}
           <hr id="quebraLinha" />
           {importadoTeam === false ? (
-            <MDBBtn color="pink" onClick={this.changeImportTeam}>
+            <MDBBtn color="deep-orange" className="ml-2" onClick={this.changeImportTeam}>
               Importar Times
             </MDBBtn>
           ) : (

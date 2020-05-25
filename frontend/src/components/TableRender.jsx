@@ -13,7 +13,7 @@ export default function TableRender(props) {
   // eslint-disable-next-line
   const [state, setState] = React.useState({
     columns: props.columns,
-    data: [],
+    data: props.data,
   });
 
 
@@ -73,9 +73,9 @@ export default function TableRender(props) {
                 .post(`${baseUrl}/registeruser`, newData)
                 .then((response) => {
                   console.log(response)
-                  if (response.message) {
+                  if (response) {
                     setState({
-                      data: response.users,
+                      data: response.data.users,
                     });
                   }
                 });
@@ -83,9 +83,9 @@ export default function TableRender(props) {
               axios
                 .post(`${baseUrl}/registerteam`, newData)
                 .then((response) => {
-                  if (response.message) {
+                  if (response) {
                     setState({
-                      data: response.teams,
+                      data: response.data.teams,
                     });
                   }
                 });
@@ -104,9 +104,10 @@ export default function TableRender(props) {
               axios
                 .put(`${baseUrl}/user/${oldData._id}`, oldData)
                 .then((response) => {
+                  console.log(response)
                   if (response) {
                     setState({
-                      data: response.users,
+                      data: response.data.users,
                     });
                   }
                 });
@@ -116,7 +117,7 @@ export default function TableRender(props) {
                 .then((response) => {
                   if (response) {
                     setState({
-                      data: response.teams,
+                      data: response.data.teams,
                     });
                   }
                 });
@@ -135,9 +136,10 @@ export default function TableRender(props) {
               axios
                 .delete(`${baseUrl}/user/${oldData._id}`)
                 .then((response) => {
+                  console.log(response)
                   if (response) {
                     setState({
-                      data: response.users,
+                      data: response.data.users,
                     });
                   }
                 });
@@ -147,7 +149,7 @@ export default function TableRender(props) {
                 .then((response) => {
                   if (response) {
                     setState({
-                      data: response.teams,
+                      data: response.data.teams,
                     });
                   }
                 });
