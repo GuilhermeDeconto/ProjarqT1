@@ -47,6 +47,7 @@ export default class PainelNavBar extends Component {
   }
 
   render() {
+    //var { isAdmin } = this.props.isAdmin
     return (
       <Router>
         <MDBNavbar id="painelNavBar" dark expand="md">

@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Evaluator from "./pages/Evaluator";
 import Administrador from "./pages/Administrator";
 import PrivateRoute from './components/PrivateRoute'
+import Results from "./pages/Results";
 
 /* CSS */
 import "./App.css";
@@ -19,6 +20,7 @@ export default class App extends Component {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/acessar" exact component={Login}></Route>
+          <Route path="/resultados" exact component={Results}></Route>
           <PrivateRoute path="/participante" exact component={Participant}></PrivateRoute>
           <PrivateRoute path="/avaliador" exact component={Evaluator}></PrivateRoute>
           <PrivateRoute path="/administrador" exact component={Administrador}></PrivateRoute>

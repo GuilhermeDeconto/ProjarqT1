@@ -5,7 +5,7 @@ import TableRender from "../components/TableRender";
 import "../css/participantstable.css";
 import "../css/backgroundall.css";
 
-class Evaluator extends React.Component {
+class Administrador extends React.Component {
   constructor(props) {
     super(props);
     this.baseUrl = `http://localhost:9876`;
@@ -145,7 +145,6 @@ class Evaluator extends React.Component {
   };
 
 
-  // usar essa estrategia de renderizacão condicional ou colocar num objeto como feito erro()
   render() {
     let { participantsColumns, teamsColumns, importadoParticipante, importadoTeam } = this.state;
 
@@ -156,6 +155,7 @@ class Evaluator extends React.Component {
             avatarLabel={this.props.location.state.data.name}
             name={this.props.location.state.data.name}
             title={"Administrador"}
+            isAdmin={true}
           />
           {importadoParticipante === false ? (
             <MDBBtn color="deep-orange" className="ml-2" onClick={this.changeImportParticipant}>
@@ -242,4 +242,4 @@ class Evaluator extends React.Component {
   }
 }
 
-export default Evaluator;
+export default Administrador;

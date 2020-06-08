@@ -74,8 +74,17 @@ export default function ModalAvaliation(props) {
 
   return (
     <div>
-      <MDBBtn color="blue" onClick={handleOpen} className="px-auto py-auto" id="btnAvaliar">
-        <MDBIcon icon="clipboard-check" size="lg" className="px-auto py-auto my-2"/>
+      <MDBBtn
+        color="blue"
+        onClick={handleOpen}
+        className="px-auto py-auto"
+        id="btnAvaliar"
+      >
+        <MDBIcon
+          icon="clipboard-check"
+          size="lg"
+          className="px-auto py-auto my-2"
+        />
         Avaliar
       </MDBBtn>
       <Modal
@@ -175,14 +184,28 @@ export default function ModalAvaliation(props) {
                 </MDBCol>
               </MDBRow>
 
-              <button
-                type="button"
-                className="mt-3"
-                style={{ color: "black", fontSize: "15px" }}
-                onClick={handleClose}
-              >
-                Enviar avaliação
-              </button>
+              <MDBRow>
+                <MDBCol>
+                  <button
+                    type="button"
+                    className="mt-3 px-3 py-2"
+                    style={{ color: "black", fontSize: "15px", backgroundColor: '#FF0000'}}
+                    onClick={handleClose}
+                  >
+                    Excluir avaliação
+                  </button>
+                </MDBCol>
+                <MDBCol>
+                  <button
+                    type="button"
+                    className="mt-3 px-3 py-2"
+                    style={{ color: "black", fontSize: "15px", backgroundColor: '#00FF00'}}
+                    onClick={handleClose}
+                  >
+                    Adicionar avaliação
+                  </button>
+                </MDBCol>
+              </MDBRow>
             </MDBModalBody>
           </div>
         </Fade>
