@@ -41,6 +41,7 @@ const TeamModel = mongoose.model("team", {
   pitch: String,
   inovation: String,
   formation: String,
+  evaluation: Number
 });
 
 /* Routes */
@@ -68,13 +69,13 @@ server.route({
       var id = 0;
       var token = generate_token(30);
       for (user of users) {
-        if (user.email == request.payload.email) {
+        if (user.email === request.payload.email) {
           id = user.id;
         }
       }
       let result = await UserModel.findById(id).exec();
       if (result != null) {
-        if (result.password == request.payload.password) {
+        if (result.password === request.payload.password) {
           data = {
             success: true,
             message: "Login success!",
@@ -113,7 +114,7 @@ server.route({
       var data = {
         status: "success",
         message: "Users retrieved successfully",
-        count: count - 2,
+        count: count - 4,
         users: users,
       };
       return resp.response(data);
@@ -296,6 +297,7 @@ server.route({
         pitch: joi.string().optional(),
         inovation: joi.string().optional(),
         formation: joi.string().optional(),
+        evaluation: joi.number().optional(),
       },
       failAction: (request, resp, error) => {
         return error.isJoi
@@ -336,6 +338,7 @@ server.route({
         pitch: joi.string().required(),
         inovation: joi.string().required(),
         formation: joi.string().required(),
+        evaluation: joi.number().optional(),
       },
       failAction: (request, resp, error) => {
         return error.isJoi

@@ -510,6 +510,26 @@
     "curse": ""
   },
   {
+    "name": "Marcelo Yamaguti",
+    "email": "marceloyamati@pucrs.br",
+    "password": 123456,
+    "team": 0,
+    "isAdmin": false,
+    "isNormalUser": false,
+    "semester": 0,
+    "curse": ""
+  },
+  {
+    "name": "Milene Silveira",
+    "email": "milenesilveira@pucrs.br",
+    "password": 123456,
+    "team": 0,
+    "isAdmin": false,
+    "isNormalUser": false,
+    "semester": 0,
+    "curse": ""
+  },
+  {
     "name": "Gustavo Possebon",
     "email": "gustavopossebon@pucrs.br",
     "password": 123456,
