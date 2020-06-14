@@ -175,6 +175,7 @@ class Evaluator extends React.Component {
             name={this.props.location.state.data.name}
             title={"Avaliador"}
           />
+          <h5 className="text-center text-muted mt-3">Apenas administradores podem gerenciar participantes e times! </h5>
           {importadoParticipante === false ? (
             <MDBBtn color="deep-orange" className="mx-2" onClick={this.changeImportParticipant}>
               Importar Participantes

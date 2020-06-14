@@ -212,11 +212,13 @@ server.route({
   path: "/result",
   handler: async (request, resp) => {
     try {
-      var result = await TeamModel.find().sort({evaluation: -1});
+      var result = await TeamModel.find().sort({evaluation: 1});
+      let count = await TeamModel.countDocuments().exec();
       var data = {
         status: "success",
         message: "Result retrieved successfully",
         teams: result,
+        count: count,
       };
       return resp.response(data);
     } catch (error) {
@@ -393,9 +395,7 @@ server.route({
       var teams = await TeamModel.find().exec();
       var data = {
         message: "Team evaluate!",
-        teams: teams,
-        doc: doc,
-        array: newArray
+        teams: teams
       };
       return resp.response(data);
     } catch (error) {
@@ -453,9 +453,7 @@ server.route({
       var teams = await TeamModel.find().exec();
       var data = {
         message: "Team evaluate!",
-        teams: teams,
-        doc: doc,
-        array: doc.evaluators
+        teams: teams
       };
       return resp.response(data);
     } catch (error) {

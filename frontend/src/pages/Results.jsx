@@ -9,7 +9,8 @@ class Results extends React.Component {
     super(props);
     this.baseUrl = `http://localhost:9876`;
     this.state = {
-      teams: []
+      teams: [],
+      count: 0
     };
   }
 
@@ -21,13 +22,14 @@ class Results extends React.Component {
           var teams = response.data.teams;
           this.setState({
             teams: teams,
+            count: response.data.count
           });
         }
       });
   }
 
   render() {
-    let { teams } = this.state;
+    let { teams, count} = this.state;
     return (
       <React.Fragment>
           <MDBContainer fluid id="results">
@@ -36,7 +38,7 @@ class Results extends React.Component {
             </MDBRow>
             <MDBRow id="tableResult">
               <MDBCol lg="12" sm="12" className="white-text">
-                <ResultTable teams={teams}/>
+                <ResultTable teams={teams} count={count}/>
               </MDBCol>
             </MDBRow>
           </MDBContainer>
