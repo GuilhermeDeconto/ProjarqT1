@@ -83,15 +83,30 @@ export default function ModalAvaliation(props) {
     data.evaluation = data.evaluation / 5
   }
 
+  const setAllBad = (data) => {
+    /* data.process = "Ruim"
+    data.software = "Ruim"
+    data.inovation = "Ruim"
+    data.pitch = "Ruim"
+    data.formation = "Ruim" */
+    data.evaluation =  2
+  }
+
   const handleOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
+    setAllBad(data)
+    data.nameEvaluator = name
+    axios.post(`${baseUrl}/updatereport`, data).then((response) => { console.log(response) });
+    setOpen(false);
+  };
+
+  const sendAvaliation = () => {
     calcEval(data)
     data.nameEvaluator = name
     axios.post(`${baseUrl}/savereport`, data).then((response) => { console.log(response) });
-    //axios.post(`${baseUrl}/updatereport`, name).then((response) => { });
     setOpen(false);
   };
 
@@ -223,7 +238,7 @@ export default function ModalAvaliation(props) {
                     type="button"
                     className="mt-3 px-3 py-2"
                     style={{ color: "black", fontSize: "15px", backgroundColor: '#00FF00' }}
-                    onClick={handleClose}
+                    onClick={sendAvaliation}
                   >
                     Adicionar avaliação
                   </button>

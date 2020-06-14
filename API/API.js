@@ -404,6 +404,66 @@ server.route({
   },
 });
 
+//Atualizar avaliação dada por um avaliador
+server.route({
+  method: "POST",
+  path: "/updatereport",
+  options: {
+    validate: {
+      payload: {
+        number: joi.number().required(),
+        software: joi.string().required(),
+        process: joi.string().required(),
+        pitch: joi.string().required(),
+        inovation: joi.string().required(),
+        formation: joi.string().required(),
+        evaluation: joi.number().optional(),
+        nameEvaluator: joi.string().optional()
+      },
+      failAction: (request, resp, error) => {
+        return error.isJoi
+          ? resp.response(error.details[0]).takeover()
+          : resp.response(error).takeover();
+      },
+    },
+  },
+  handler: async (request, resp) => {
+    try {
+      var filter = { number: request.payload.number };
+      var doc = await TeamModel.findOne(filter).exec()
+      var newArray = doc.evaluators
+      var index = doc.evaluators.indexOf(request.payload.nameEvaluator)
+      if(index > -1) {
+        doc.evaluators.splice(index, 1)
+        newArray = doc.evaluators
+      }
+
+      var update = {
+        software: request.payload.software,
+        process: request.payload.process,
+        pitch: request.payload.pitch,
+        inovation: request.payload.inovation,
+        formation: request.payload.formation,
+        evaluation: request.payload.evaluation,
+        evaluators: newArray
+      };
+      team = await TeamModel.findOneAndUpdate(filter, update, {
+        new: true,
+      })
+      var teams = await TeamModel.find().exec();
+      var data = {
+        message: "Team evaluate!",
+        teams: teams,
+        doc: doc,
+        array: doc.evaluators
+      };
+      return resp.response(data);
+    } catch (error) {
+      return resp.response(error).code(500);
+    }
+  },
+});
+
 //Inserir muitos usuários de uma vez
 server.route({
   method: "POST",
