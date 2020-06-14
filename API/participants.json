@@ -501,7 +501,7 @@
   },
   {
     "name": "Ana Paula",
-    "email": "anapaula@pucrs.br",
+    "email": "ana.paula@pucrs.br",
     "password": 123456,
     "team": 0,
     "isAdmin": false,
@@ -511,7 +511,7 @@
   },
   {
     "name": "Marcelo Yamaguti",
-    "email": "marceloyamati@pucrs.br",
+    "email": "marcelo.yamati@pucrs.br",
     "password": 123456,
     "team": 0,
     "isAdmin": false,
@@ -521,7 +521,17 @@
   },
   {
     "name": "Milene Silveira",
-    "email": "milenesilveira@pucrs.br",
+    "email": "milene.silveira@pucrs.br",
+    "password": 123456,
+    "team": 0,
+    "isAdmin": false,
+    "isNormalUser": false,
+    "semester": 0,
+    "curse": ""
+  },
+  {
+    "name": "Cristina Moreira",
+    "email": "cristina.moreira@pucrs.br",
     "password": 123456,
     "team": 0,
     "isAdmin": false,

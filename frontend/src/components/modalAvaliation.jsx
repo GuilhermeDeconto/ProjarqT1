@@ -38,6 +38,7 @@ export default function ModalAvaliation(props) {
   const baseUrl = `http://localhost:9876`;
 
   var { process, software, inovation, pitch, formation, number } = props.data;
+  var name = props.nameAvaliator;
 
   var data = {
     process: process,
@@ -46,7 +47,8 @@ export default function ModalAvaliation(props) {
     pitch: pitch,
     formation: formation,
     number: number,
-    evaluation: 0
+    evaluation: 0,
+    nameEvaluator: ""
   };
 
   var trocaValoresState = (nameRater, avaliation) => {
@@ -87,7 +89,9 @@ export default function ModalAvaliation(props) {
 
   const handleClose = () => {
     calcEval(data)
-    axios.post(`${baseUrl}/savereport`, data).then((response) => { });
+    data.nameEvaluator = name
+    axios.post(`${baseUrl}/savereport`, data).then((response) => { console.log(response) });
+    //axios.post(`${baseUrl}/updatereport`, name).then((response) => { });
     setOpen(false);
   };
 

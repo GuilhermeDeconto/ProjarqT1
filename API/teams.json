@@ -8,7 +8,9 @@
     "process": "Excelente",
     "pitch": "Excelente",
     "inovation": "Excelente",
-    "formation": "Excelente"
+    "formation": "Excelente",
+    "evaluation": 10,
+    "evaluators": ["Marcelo Yamaguti", "Ana Paula", "Milene Silveira"]
   },
   {
     "number": 2,
@@ -19,7 +21,9 @@
     "process": "Ruim",
     "pitch": "Aceitavel",
     "inovation": "Excelente",
-    "formation": "Ruim"
+    "formation": "Ruim",
+    "evaluation": 4.4,
+    "evaluators": ["Marcelo Yamaguti", "Ana Paula", "Milene Silveira"]
   },
   {
     "number": 3,
@@ -30,7 +34,9 @@
     "process": "Aceitavel",
     "pitch": "Ruim",
     "inovation": "Excelente",
-    "formation": "Ruim"
+    "formation": "Ruim",
+    "evaluation": 6,
+    "evaluators": ["Marcelo Yamaguti", "Ana Paula", "Milene Silveira"]
   },
   {
     "number": 4,
@@ -41,7 +47,9 @@
     "process": "Ruim",
     "pitch": "Insatisfatório",
     "inovation": "Aceitavel",
-    "formation": "Excelente"
+    "formation": "Excelente",
+    "evaluation": 6,
+    "evaluators": ["Marcelo Yamaguti", "Ana Paula", "Milene Silveira"]
   },
   {
     "number": 5,
@@ -52,7 +60,9 @@
     "process": "Ruim",
     "pitch": "Aceitavel",
     "inovation": "Insatisfatório",
-    "formation": "Aceitavel"
+    "formation": "Aceitavel",
+    "evaluation": 4,
+    "evaluators": ["Marcelo Yamaguti", "Ana Paula", "Milene Silveira"]
   },
   {
     "number": 6,
@@ -63,7 +73,9 @@
     "process": "Bom",
     "pitch": "Excelente",
     "inovation": "Aceitavel",
-    "formation": "Bom"
+    "formation": "Bom",
+    "evaluation": 8,
+    "evaluators": ["Marcelo Yamaguti", "Ana Paula", "Milene Silveira"]
   },
   {
     "number": 7,
@@ -74,7 +86,9 @@
     "process": "Aceitavel",
     "pitch": "Excelente",
     "inovation": "Aceitavel",
-    "formation": "Excelente"
+    "formation": "Excelente",
+    "evaluation": 8.4,
+    "evaluators": ["Marcelo Yamaguti", "Ana Paula", "Milene Silveira"]
   },
   {
     "number": 8,
@@ -85,7 +99,9 @@
     "process": "Bom",
     "pitch": "Aceitavel",
     "inovation": "Insatisfatório",
-    "formation": "Excelente"
+    "formation": "Excelente",
+    "evaluation": 7.6,
+    "evaluators": ["Marcelo Yamaguti", "Ana Paula", "Milene Silveira"]
   },
   {
     "number": 9,
@@ -96,7 +112,9 @@
     "process": "Excelente",
     "pitch": "Excelente",
     "inovation": "Aceitavel",
-    "formation": "Excelente"
+    "formation": "Excelente",
+    "evaluation": 8,
+    "evaluators": ["Marcelo Yamaguti", "Ana Paula", "Milene Silveira"]
   },
   {
     "number": 10,
@@ -107,6 +125,8 @@
     "process": "Bom",
     "pitch": "Aceitavel",
     "inovation": "Aceitavel",
-    "formation": "Excelente"
+    "formation": "Excelente",
+    "evaluation": 7.2,
+    "evaluators": ["Marcelo Yamaguti", "Ana Paula", "Milene Silveira"]
   }
 ]

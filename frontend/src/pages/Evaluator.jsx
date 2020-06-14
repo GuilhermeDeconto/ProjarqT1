@@ -103,7 +103,7 @@ class Evaluator extends React.Component {
       {
         title: "Avaliação",
         field: "avaliation",
-        render: (rowData) => <ModalAvaliation data={rowData} />,
+        render: (rowData) => <ModalAvaliation data={rowData}  nameAvaliator={this.props.location.state.data.name}/>,
       },
     ],
   };

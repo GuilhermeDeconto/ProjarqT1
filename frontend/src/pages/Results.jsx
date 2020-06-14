@@ -2,7 +2,7 @@ import React from "react";
 import PainelNavBar from "../components/PainelNavBar";
 import { MDBContainer, MDBCol, MDBRow, MDBCardGroup } from "mdbreact";
 import * as axios from "axios";
-import CardResult from '../components/CardResult'
+import ResultTable from '../components/ResultTable'
 class Results extends React.Component {
   constructor(props) {
     super(props);
@@ -12,18 +12,18 @@ class Results extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  //   axios
-  //     .get(`${this.baseUrl}/teams/`)
-  //     .then((response) => {
-  //       if (response) {
-  //         var members = response.data.members;
-  //       }
-  //       this.setState({
-  //         team: members,
-  //       });
-  //     });
-  // }
+  componentDidMount() {
+    axios
+      .get(`${this.baseUrl}/result`)
+      .then((response) => {
+        if (response) {
+          var teams = response.data.teams;
+          this.setState({
+            teams: teams,
+          });
+        }
+      });
+  }
 
   render() {
     let { teams } = this.state;
@@ -32,37 +32,11 @@ class Results extends React.Component {
         <div id="background">
           <MDBContainer fluid className="mt-3">
             <MDBRow>
-              <MDBCol lg="2" sm="12">
-                <CardResult />
-              </MDBCol>
-              <MDBCol lg="2" sm="12">
-                <CardResult />
-              </MDBCol>
-              <MDBCol lg="2" sm="12">
-                <CardResult />
-              </MDBCol>
-              <MDBCol lg="2" sm="12">
-                <CardResult />
-              </MDBCol>
-              <MDBCol lg="2" sm="12">
-                <CardResult />
-              </MDBCol>
+              <h4 className="text-center mx-auto my-3"> RESULTADO DA HACKTONA DUS GURIS</h4>
             </MDBRow>
             <MDBRow>
-              <MDBCol lg="2" sm="12">
-                <CardResult />
-              </MDBCol>
-              <MDBCol lg="2" sm="12">
-                <CardResult />
-              </MDBCol>
-              <MDBCol lg="2" sm="12">
-                <CardResult />
-              </MDBCol>
-              <MDBCol lg="2" sm="12">
-                <CardResult />
-              </MDBCol>
-              <MDBCol lg="2" sm="12">
-                <CardResult />
+              <MDBCol lg="12" sm="12">
+                <ResultTable teams={teams}/>
               </MDBCol>
             </MDBRow>
           </MDBContainer>
