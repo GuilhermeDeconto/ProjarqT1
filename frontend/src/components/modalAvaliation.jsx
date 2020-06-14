@@ -99,14 +99,14 @@ export default function ModalAvaliation(props) {
   const handleClose = () => {
     setAllBad(data)
     data.nameEvaluator = name
-    axios.post(`${baseUrl}/updatereport`, data).then((response) => { console.log(response) });
+    axios.post(`${baseUrl}/updatereport`, data).then((response) => { });
     setOpen(false);
   };
 
   const sendAvaliation = () => {
     calcEval(data)
     data.nameEvaluator = name
-    axios.post(`${baseUrl}/savereport`, data).then((response) => { console.log(response) });
+    axios.post(`${baseUrl}/savereport`, data).then((response) => { });
     setOpen(false);
   };
 
@@ -240,7 +240,7 @@ export default function ModalAvaliation(props) {
                     style={{ color: "black", fontSize: "15px", backgroundColor: '#00FF00' }}
                     onClick={sendAvaliation}
                   >
-                    Adicionar avaliação
+                    Enviar avaliação
                   </button>
                 </MDBCol>
               </MDBRow>

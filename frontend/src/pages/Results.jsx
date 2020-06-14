@@ -3,6 +3,7 @@ import PainelNavBar from "../components/PainelNavBar";
 import { MDBContainer, MDBCol, MDBRow, MDBCardGroup } from "mdbreact";
 import * as axios from "axios";
 import ResultTable from '../components/ResultTable'
+import "../css/results.css"
 class Results extends React.Component {
   constructor(props) {
     super(props);
@@ -29,18 +30,16 @@ class Results extends React.Component {
     let { teams } = this.state;
     return (
       <React.Fragment>
-        <div id="background">
-          <MDBContainer fluid className="mt-3">
+          <MDBContainer fluid id="results">
             <MDBRow>
               <h4 className="text-center mx-auto my-3"> RESULTADO DA HACKTONA DUS GURIS</h4>
             </MDBRow>
-            <MDBRow>
-              <MDBCol lg="12" sm="12">
+            <MDBRow id="tableResult">
+              <MDBCol lg="12" sm="12" className="white-text">
                 <ResultTable teams={teams}/>
               </MDBCol>
             </MDBRow>
           </MDBContainer>
-        </div>
       </React.Fragment>
     );
   }

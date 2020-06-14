@@ -21,7 +21,7 @@ const useRowStyles = makeStyles({
     '& > *': {
       borderBottom: 'unset',
     },
-    backgroundColor: "DarkGray"
+    color: "#fff"
   },
 });
 
@@ -42,8 +42,8 @@ function Row(props) {
 
   return (
     <React.Fragment>
-      <TableRow className={classes.root} >
-        <TableCell>
+      <TableRow style={{ backgroundColor: "#B0C4DE", color: "#FFF" }} >
+        <TableCell >
           <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
@@ -60,8 +60,8 @@ function Row(props) {
         <TableCell align="center">{row.formation}</TableCell>
         <TableCell align="center">{row.evaluation}</TableCell>
       </TableRow>
-      <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={12} style={{ backgroundColor: "Gainsboro" }}>
+      <TableRow style={{ backgroundColor: "#B0C4DE", color: "#F0F8FF" }}>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={12} >
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box margin={1}>
               <Typography variant="h6" gutterBottom component="div">
@@ -91,27 +91,42 @@ function Row(props) {
   );
 }
 
+Row.propTypes = {
+  row: PropTypes.shape({
+    platform: PropTypes.string.isRequired,
+    software: PropTypes.string.isRequired,
+    process: PropTypes.string.isRequired,
+    pitch: PropTypes.string.isRequired,
+    inovation: PropTypes.string.isRequired,
+    formation: PropTypes.string.isRequired,
+    evaluation: PropTypes.string.isRequired,
+    evaluators: PropTypes.arrayOf(
+      PropTypes.string.isRequired
+    ).isRequired,
+    name: PropTypes.string.isRequired
+  }).isRequired
+};
+
 export default function ResultTable(props) {
-  console.log(props.team != [] ? props.teams.length : "");
 
   return (
     <TableContainer component={Paper}>
-      <Table aria-label="collapsible table" >
-        <TableHead style={{ backgroundColor: "Green" }}>
+      <Table aria-label="collapsible table" style={{backgroundColor: "#527a7a", color: "#F0F8FF"}} >
+        <TableHead style={{ backgroundColor: "#527a7a", color: "#F0F8FF"}} >
           <TableRow>
             <TableCell />
-            <TableCell>Classificação</TableCell>
-            <TableCell>Nome</TableCell>
-            <TableCell align="center">Plataforma</TableCell>
-            <TableCell align="center">Software(média)</TableCell>
-            <TableCell align="center">Processo(média)</TableCell>
-            <TableCell align="center">Pitch(média)</TableCell>
-            <TableCell align="center">Inovação(média)</TableCell>
-            <TableCell align="center">Formação(média)</TableCell>
-            <TableCell align="center">Nota geral</TableCell>
+            <TableCell style={{color: "#FFF"}}>Classificação</TableCell>
+            <TableCell style={{color: "#FFF"}}>Nome</TableCell>
+            <TableCell align="center" style={{color: "#FFF"}} >Plataforma</TableCell>
+            <TableCell align="center" style={{color: "#FFF"}} >Software(média)</TableCell>
+            <TableCell align="center" style={{color: "#FFF"}} >Processo(média)</TableCell>
+            <TableCell align="center" style={{color: "#FFF"}} >Pitch(média)</TableCell>
+            <TableCell align="center" style={{color: "#FFF"}} >Inovação(média)</TableCell>
+            <TableCell align="center" style={{color: "#FFF"}} >Formação(média)</TableCell>
+            <TableCell align="center" style={{color: "#FFF"}} >Nota geral</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        <TableBody style={{ backgroundColor: "#B0C4DE", color: "#F0F8FF" }}>
           {props.teams.map((row) => (
             <Row key={row.name} row={row} currentPosition={countPosition++} />
           ))}
