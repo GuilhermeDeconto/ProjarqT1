@@ -110,7 +110,7 @@ server.route({
   path: "/users",
   handler: async (request, resp) => {
     try {
-      var users = await UserModel.find( { "isNormalUser": true } ).exec();
+      var users = await UserModel.find({ "isNormalUser": true }).exec();
       var count = await UserModel.countDocuments().exec();
       var data = {
         status: "success",
@@ -212,7 +212,7 @@ server.route({
   path: "/result",
   handler: async (request, resp) => {
     try {
-      var result = await TeamModel.find().sort({evaluation: 1});
+      var result = await TeamModel.find().sort({ evaluation: 1 });
       let count = await TeamModel.countDocuments().exec();
       var data = {
         status: "success",
@@ -375,7 +375,7 @@ server.route({
       var filter = { number: request.payload.number };
       var doc = await TeamModel.findOne(filter).exec()
       var newArray = doc.evaluators
-      if(doc.evaluators.indexOf(request.payload.nameEvaluator) === -1) {
+      if (doc.evaluators.indexOf(request.payload.nameEvaluator) === -1) {
         doc.evaluators.push(request.payload.nameEvaluator)
         newArray = doc.evaluators
       }
@@ -432,10 +432,12 @@ server.route({
       var filter = { number: request.payload.number };
       var doc = await TeamModel.findOne(filter).exec()
       var newArray = doc.evaluators
-      var index = doc.evaluators.indexOf(request.payload.nameEvaluator)
-      if(index > -1) {
-        doc.evaluators.splice(index, 1)
-        newArray = doc.evaluators
+      if (newArray.length > 3) {
+        var index = doc.evaluators.indexOf(request.payload.nameEvaluator)
+        if (index > -1) {
+          doc.evaluators.splice(index, 1)
+          newArray = doc.evaluators
+        }
       }
 
       var update = {

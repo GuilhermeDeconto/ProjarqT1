@@ -101,10 +101,15 @@ class Evaluator extends React.Component {
         grouping: true,
       },
       {
+        title: "Avaliadores",
+        field: "evaluators",
+        render: rowData => <div>{ rowData.evaluators.toString() } </div>
+      },
+      {
         title: "Avaliação",
         field: "avaliation",
         render: (rowData) => <ModalAvaliation data={rowData}  nameAvaliator={this.props.location.state.data.name}/>,
-      },
+      }
     ],
   };
 
