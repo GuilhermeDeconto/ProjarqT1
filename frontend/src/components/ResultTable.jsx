@@ -33,7 +33,7 @@ const checkPodium = (number) => {
   }
   return false
 }
-var countPosition = 1
+var countPosition
 
 function Row(props) {
   const { row } = props;
@@ -108,7 +108,7 @@ Row.propTypes = {
 };
 
 export default function ResultTable(props) {
-
+  countPosition = props.count
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table" style={{backgroundColor: "#527a7a", color: "#F0F8FF"}} >
@@ -128,7 +128,7 @@ export default function ResultTable(props) {
         </TableHead>
         <TableBody style={{ backgroundColor: "#B0C4DE", color: "#F0F8FF" }}>
           {props.teams.map((row) => (
-            <Row key={row.name} row={row} currentPosition={countPosition++} />
+            <Row key={row.name} row={row} currentPosition={countPosition--} />
           ))}
         </TableBody>
       </Table>
