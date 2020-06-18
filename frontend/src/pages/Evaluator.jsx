@@ -3,7 +3,7 @@ import PainelNavBar from "../components/PainelNavBar";
 import TableRender from "../components/TableRender";
 import "../css/participantstable.css";
 import "../css/backgroundall.css";
-import ModalAvaliation from "../components/ModalAvaliation";
+import ModalAvaliation from "../components/ModalAvaliation"
 import { MDBBtn } from "mdbreact";
 
 class Evaluator extends React.Component {
