@@ -1,0 +1,444 @@
+{
+	"info": {
+		"_postman_id": "83fbec2b-d96c-4bca-9533-b83a3f8d6a55",
+		"name": "Hackatona dus Guri",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Participantes",
+			"item": [
+				{
+					"name": "Registrar usuário",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Avaliador teste\",\r\n    \"email\": \"avaliadorteste@edu.pucrs.br\",\r\n    \"password\": \"123456\",\r\n    \"team\": 0,\r\n    \"isAdmin\": true,\r\n    \"semester\": \"0\",\r\n    \"curse\": \"Ciência da Computação\",\r\n    \"isNormalUser\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/registeruser",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"registeruser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar todos os usuários",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/users",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar usuário pelo ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"teste@teste.com.br\",\n    \"name\": \"Teste\",\n    \"password\": \"testesenha\",\n    \"team\": \"1\",\n    \"isAdmin\": \"true\",\n    \"semester\": \"6\",\n    \"curso\": \"Teste de curso\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/user/5ec42ba9a63f97395469a2db",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"user",
+								"5ec42ba9a63f97395469a2db"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar todos usuarios",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/users",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Salvar muitos usuários",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"users\": [\n  {\n    \"name\": \"Hattie Coffey\",\n    \"email\": \"hattiecoffey@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 1,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 8,\n    \"curse\": \"Engenharia de Software\"\n  },\n  {\n    \"name\": \"Castaneda Clayton\",\n    \"email\": \"castanedaclayton@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 1,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 2,\n    \"curse\": \"Sistemas de Informação\"\n  },\n  {\n    \"name\": \"Ryan Davis\",\n    \"email\": \"ryandavis@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 1,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 9,\n    \"curse\": \"Engenharia de Computação\"\n  },\n  {\n    \"name\": \"Villarreal Sullivan\",\n    \"email\": \"villarrealsullivan@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 1,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 5,\n    \"curse\": \"Sistemas de Informação\"\n  },\n  {\n    \"name\": \"Gomez Mcintosh\",\n    \"email\": \"gomezmcintosh@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 1,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 8,\n    \"curse\": \"Sistemas de Informação\"\n  },\n  {\n    \"name\": \"Chris Grant\",\n    \"email\": \"chrisgrant@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 2,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 2,\n    \"curse\": \"Engenharia de Computação\"\n  },\n  {\n    \"name\": \"Bessie Clark\",\n    \"email\": \"bessieclark@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 2,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 8,\n    \"curse\": \"Sistemas de Informação\"\n  },\n  {\n    \"name\": \"Latonya Wilder\",\n    \"email\": \"latonyawilder@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 2,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 1,\n    \"curse\": \"Ciência da Computação\"\n  },\n  {\n    \"name\": \"Ayers Clements\",\n    \"email\": \"ayersclements@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 2,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 5,\n    \"curse\": \"Ciência da Computação\"\n  },\n  {\n    \"name\": \"Ashley Washington\",\n    \"email\": \"ashleywashington@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 2,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 6,\n    \"curse\": \"Engenharia de Computação\"\n  },\n  {\n    \"name\": \"Velma Anderson\",\n    \"email\": \"velmaanderson@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 3,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 3,\n    \"curse\": \"Ciência da Computação\"\n  },\n  {\n    \"name\": \"Underwood Aguilar\",\n    \"email\": \"underwoodaguilar@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 3,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 5,\n    \"curse\": \"Ciência da Computação\"\n  },\n  {\n    \"name\": \"Valdez Ross\",\n    \"email\": \"valdezross@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 3,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 8,\n    \"curse\": \"Engenharia de Software\"\n  },\n  {\n    \"name\": \"Barr Kane\",\n    \"email\": \"barrkane@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 3,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 3,\n    \"curse\": \"Engenharia de Software\"\n  },\n  {\n    \"name\": \"Felicia Stout\",\n    \"email\": \"feliciastout@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 3,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 6,\n    \"curse\": \"Ciência da Computação\"\n  },\n  {\n    \"name\": \"Katrina Holland\",\n    \"email\": \"katrinaholland@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 4,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 5,\n    \"curse\": \"Engenharia de Software\"\n  },\n  {\n    \"name\": \"Mccarty Saunders\",\n    \"email\": \"mccartysaunders@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 4,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 10,\n    \"curse\": \"Engenharia de Software\"\n  },\n  {\n    \"name\": \"Ann Schwartz\",\n    \"email\": \"annschwartz@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 4,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 2,\n    \"curse\": \"Sistemas de Informação\"\n  },\n  {\n    \"name\": \"Guzman Lowery\",\n    \"email\": \"guzmanlowery@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 4,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 8,\n    \"curse\": \"Engenharia de Computação\"\n  },\n  {\n    \"name\": \"Esther Ellison\",\n    \"email\": \"estherellison@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 4,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 4,\n    \"curse\": \"Engenharia de Software\"\n  },\n  {\n    \"name\": \"Shawna Baxter\",\n    \"email\": \"shawnabaxter@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 5,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 8,\n    \"curse\": \"Engenharia de Computação\"\n  },\n  {\n    \"name\": \"Richards David\",\n    \"email\": \"richardsdavid@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 5,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 7,\n    \"curse\": \"Engenharia de Software\"\n  },\n  {\n    \"name\": \"Cassie Adams\",\n    \"email\": \"cassieadams@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 5,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 2,\n    \"curse\": \"Ciência da Computação\"\n  },\n  {\n    \"name\": \"Alyson Langley\",\n    \"email\": \"alysonlangley@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 5,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 8,\n    \"curse\": \"Engenharia de Software\"\n  },\n  {\n    \"name\": \"Rivas Mccoy\",\n    \"email\": \"rivasmccoy@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 5,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 1,\n    \"curse\": \"Ciência da Computação\"\n  },\n  {\n    \"name\": \"Kenya Glass\",\n    \"email\": \"kenyaglass@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 6,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 5,\n    \"curse\": \"Sistemas de Informação\"\n  },\n  {\n    \"name\": \"Carmen Nolan\",\n    \"email\": \"carmennolan@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 6,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 1,\n    \"curse\": \"Ciência da Computação\"\n  },\n  {\n    \"name\": \"Theresa Ochoa\",\n    \"email\": \"theresaochoa@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 6,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 3,\n    \"curse\": \"Engenharia de Software\"\n  },\n  {\n    \"name\": \"Cassandra Woodard\",\n    \"email\": \"cassandrawoodard@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 6,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 8,\n    \"curse\": \"Engenharia de Software\"\n  },\n  {\n    \"name\": \"Wilder Vinson\",\n    \"email\": \"wildervinson@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 6,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 4,\n    \"curse\": \"Ciência da Computação\"\n  },\n  {\n    \"name\": \"Carissa Small\",\n    \"email\": \"carissasmall@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 7,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 3,\n    \"curse\": \"Engenharia de Software\"\n  },\n  {\n    \"name\": \"Carr Avery\",\n    \"email\": \"carravery@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 7,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 7,\n    \"curse\": \"Sistemas de Informação\"\n  },\n  {\n    \"name\": \"Mack Chase\",\n    \"email\": \"mackchase@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 7,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 7,\n    \"curse\": \"Engenharia de Computação\"\n  },\n  {\n    \"name\": \"Amanda Valentine\",\n    \"email\": \"amandavalentine@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 7,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 5,\n    \"curse\": \"Engenharia de Computação\"\n  },\n  {\n    \"name\": \"Doris Warren\",\n    \"email\": \"doriswarren@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 7,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 8,\n    \"curse\": \"Sistemas de Informação\"\n  },\n  {\n    \"name\": \"Juana Salazar\",\n    \"email\": \"juanasalazar@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 8,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 10,\n    \"curse\": \"Sistemas de Informação\"\n  },\n  {\n    \"name\": \"Cynthia Sweeney\",\n    \"email\": \"cynthiasweeney@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 8,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 2,\n    \"curse\": \"Engenharia de Software\"\n  },\n  {\n    \"name\": \"Reid Richard\",\n    \"email\": \"reidrichard@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 8,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 3,\n    \"curse\": \"Ciência da Computação\"\n  },\n  {\n    \"name\": \"Pruitt Clemons\",\n    \"email\": \"pruittclemons@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 8,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 10,\n    \"curse\": \"Sistemas de Informação\"\n  },\n  {\n    \"name\": \"Davis Gallegos\",\n    \"email\": \"davisgallegos@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 8,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 7,\n    \"curse\": \"Engenharia de Computação\"\n  },\n  {\n    \"name\": \"Aline Cherry\",\n    \"email\": \"alinecherry@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 9,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 9,\n    \"curse\": \"Engenharia de Computação\"\n  },\n  {\n    \"name\": \"Butler Kinney\",\n    \"email\": \"butlerkinney@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 9,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 4,\n    \"curse\": \"Ciência da Computação\"\n  },\n  {\n    \"name\": \"Rowena Pollard\",\n    \"email\": \"rowenapollard@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 9,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 1,\n    \"curse\": \"Sistemas de Informação\"\n  },\n  {\n    \"name\": \"Karin Phillips\",\n    \"email\": \"karinphillips@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 9,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 8,\n    \"curse\": \"Engenharia de Computação\"\n  },\n  {\n    \"name\": \"Douglas Lancaster\",\n    \"email\": \"douglaslancaster@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 9,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 5,\n    \"curse\": \"Ciência da Computação\"\n  },\n  {\n    \"name\": \"Blanchard Ratliff\",\n    \"email\": \"blanchardratliff@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 10,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 10,\n    \"curse\": \"Sistemas de Informação\"\n  },\n  {\n    \"name\": \"Shelton Browning\",\n    \"email\": \"sheltonbrowning@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 10,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 1,\n    \"curse\": \"Ciência da Computação\"\n  },\n  {\n    \"name\": \"Franks Oneal\",\n    \"email\": \"franksoneal@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 10,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 3,\n    \"curse\": \"Engenharia de Software\"\n  },\n  {\n    \"name\": \"Dorthy Jennings\",\n    \"email\": \"dorthyjennings@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 10,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 7,\n    \"curse\": \"Ciência da Computação\"\n  },\n  {\n    \"name\": \"Sanders Tillman\",\n    \"email\": \"sanderstillman@edu.pucrs.br\",\n    \"password\": 123456,\n    \"team\": 10,\n    \"isAdmin\": false,\n    \"isNormalUser\": true,\n    \"semester\": 9,\n    \"curse\": \"Engenharia de Computação\"\n  },\n  {\n    \"name\": \"Ana Paula\",\n    \"email\": \"anapaula@pucrs.br\",\n    \"password\": 123456,\n    \"team\": 0,\n    \"isAdmin\": false,\n    \"isNormalUser\": false,\n    \"semester\": 0,\n    \"curse\": \"\"\n  },\n  {\n    \"name\": \"Gustavo Possebon\",\n    \"email\": \"gustavopossebon@pucrs.br\",\n    \"password\": 123456,\n    \"team\": 0,\n    \"isAdmin\": true,\n    \"isNormalUser\": false,\n    \"semester\": 0,\n    \"curse\": \"\"\n  }\n]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/users",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alterar usuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"testASDADSe\",\r\n\t\"email\": \"teDste@ASDSAD\",\r\n\t\"team\": 2,\r\n\t\"semester\": \"2\",\r\n\t\"curse\": \"ES\",\r\n\t\"password\": \"123456\",\r\n\t\"isAdmin\": false,\r\n\t\"isNormalUser\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/user/5ec42ba9a63f97395469a2db",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"user",
+								"5ec42ba9a63f97395469a2db"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar usuario",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"email\": \"asdsadsa@email.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/user/5ec2d2e48efbde1e80e0aa32",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"user",
+								"5ec2d2e48efbde1e80e0aa32"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Times",
+			"item": [
+				{
+					"name": "Registrar time",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"number\": 5,\n    \"name\": \"Time teste\",\n    \"platform\": \"Desktop\",\n    \"description\": \"Description\",\n    \"software\": \"Excelente\",\n    \"process\": \"Bom\",\n    \"pitch\": \"Aceitavel\",\n    \"inovation\": \"Insatisfatório\",\n    \"formation\": \"Excelente\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/registerteam",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"registerteam"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar todos os times",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/teams",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"teams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar time pelo ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"teste@teste.com.br\",\n    \"name\": \"Teste\",\n    \"password\": \"testesenha\",\n    \"team\": \"1\",\n    \"isAdmin\": \"true\",\n    \"semester\": \"6\",\n    \"curso\": \"Teste de curso\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/team/5ec4197ace55ba21781f1201",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"team",
+								"5ec4197ace55ba21781f1201"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar todos times",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/teams",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"teams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Salvar muitos times",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"teams\": [\n  {\n    \"number\": 1,\n    \"name\": \"Paladinos\",\n    \"platform\": \"Android\",\n    \"description\": \"Um time interessante\",\n    \"software\": \"Excelente\",\n    \"process\": \"Excelente\",\n    \"pitch\": \"Excelente\",\n    \"inovation\": \"Excelente\",\n    \"formation\": \"Excelente\"\n  },\n  {\n    \"number\": 2,\n    \"name\": \"Paçocas\",\n    \"platform\": \"Android\",\n    \"description\": \"Prontos para o que vier\",\n    \"software\": \"Ruim\",\n    \"process\": \"Ruim\",\n    \"pitch\": \"Aceitavel\",\n    \"inovation\": \"Excelente\",\n    \"formation\": \"Ruim\"\n  },\n  {\n    \"number\": 3,\n    \"name\": \"BRhu3\",\n    \"platform\": \"IOS\",\n    \"description\": \"Zoeira never ends\",\n    \"software\": \"Excelente\",\n    \"process\": \"Aceitavel\",\n    \"pitch\": \"Ruim\",\n    \"inovation\": \"Excelente\",\n    \"formation\": \"Ruim\"\n  },\n  {\n    \"number\": 4,\n    \"name\": \"DolarAlto\",\n    \"platform\": \"Android\",\n    \"description\": \"Padrão entregue será tão alto quanto o dolar\",\n    \"software\": \"Bom\",\n    \"process\": \"Ruim\",\n    \"pitch\": \"Insatisfatório\",\n    \"inovation\": \"Aceitavel\",\n    \"formation\": \"Excelente\"\n  },\n  {\n    \"number\": 5,\n    \"name\": \"Trovão sem Freio\",\n    \"platform\": \"Desktop\",\n    \"description\": \"So vai, esquece!\",\n    \"software\": \"Ruim\",\n    \"process\": \"Ruim\",\n    \"pitch\": \"Aceitavel\",\n    \"inovation\": \"Insatisfatório\",\n    \"formation\": \"Aceitavel\"\n  },\n  {\n    \"number\": 6,\n    \"name\": \"Quem Sobrou\",\n    \"platform\": \"Android\",\n    \"description\": \"Os últimos serão os primeiros\",\n    \"software\": \"Bom\",\n    \"process\": \"Bom\",\n    \"pitch\": \"Excelente\",\n    \"inovation\": \"Aceitavel\",\n    \"formation\": \"Bom\"\n  },\n  {\n    \"number\": 7,\n    \"name\": \"Os Fora de Casa\",\n    \"platform\": \"IOS\",\n    \"description\": \"Estamos por aí\",\n    \"software\": \"Excelente\",\n    \"process\": \"Aceitavel\",\n    \"pitch\": \"Excelente\",\n    \"inovation\": \"Aceitavel\",\n    \"formation\": \"Excelente\"\n  },\n  {\n    \"number\": 8,\n    \"name\": \"Domínio da Honra\",\n    \"platform\": \"Desktop\",\n    \"description\": \"Entregar independente de algo e com honra\",\n    \"software\": \"Excelente\",\n    \"process\": \"Bom\",\n    \"pitch\": \"Aceitavel\",\n    \"inovation\": \"Insatisfatório\",\n    \"formation\": \"Excelente\"\n  },\n  {\n    \"number\": 9,\n    \"name\": \"Pateta & cia\",\n    \"platform\": \"Desktop\",\n    \"description\": \"Mais perdido que cego em tiroteio\",\n    \"software\": \"Insatisfatório\",\n    \"process\": \"Excelente\",\n    \"pitch\": \"Excelente\",\n    \"inovation\": \"Aceitavel\",\n    \"formation\": \"Excelente\"\n  },\n  {\n    \"number\": 10,\n    \"name\": \"Perdidos da Hacka\",\n    \"platform\": \"Desktop\",\n    \"description\": \"Nem sabemos porque estamos por, segue o baile\",\n    \"software\": \"Aceitavel\",\n    \"process\": \"Bom\",\n    \"pitch\": \"Aceitavel\",\n    \"inovation\": \"Aceitavel\",\n    \"formation\": \"Excelente\"\n  }\n]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/teams",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"teams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alterar time",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"number\": 5,\n    \"name\": \"OPA\",\n    \"platform\": \"OPA\",\n    \"description\": \"OPA\",\n    \"software\": \"OPA\",\n    \"process\": \"OPA\",\n    \"pitch\": \"OPA\",\n    \"inovation\": \"OPA\",\n    \"formation\": \"OPA\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/team/5ec4197ace55ba21781f1201",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"team",
+								"5ec4197ace55ba21781f1201"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar time",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"email\": \"asdsadsa@email.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/team/5ec415f11d35f331dcbc4214",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"team",
+								"5ec415f11d35f331dcbc4214"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Salvar avaliação",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"number\": 1,\n    \"software\": \"Insatisfatório\",\n    \"process\": \"Insatisfatório\",\n    \"pitch\": \"Insatisfatório\",\n    \"inovation\": \"Insatisfatório\",\n    \"formation\": \"Insatisfatório\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/savereport",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"savereport"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Faz login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"email\": \"sanderstillman@edu.pucrs.br\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/login",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

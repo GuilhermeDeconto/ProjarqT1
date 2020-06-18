@@ -11,7 +11,7 @@ import {
   MDBIcon,
   MDBBtn,
 } from "mdbreact";
-import Rater from "../components/Rater";
+import Rater from "./Rater";
 import * as axios from "axios";
 import "../css/modal.css";
 
@@ -38,6 +38,7 @@ export default function ModalAvaliation(props) {
   const baseUrl = `http://localhost:9876`;
 
   var { process, software, inovation, pitch, formation, number } = props.data;
+  var name = props.nameAvaliator;
 
   var data = {
     process: process,
@@ -46,6 +47,8 @@ export default function ModalAvaliation(props) {
     pitch: pitch,
     formation: formation,
     number: number,
+    evaluation: 0,
+    nameEvaluator: ""
   };
 
   var trocaValoresState = (nameRater, avaliation) => {
@@ -63,12 +66,47 @@ export default function ModalAvaliation(props) {
     }
   };
 
+  const calcEval = (data) => {
+    for (var key in data) {
+      if (data[key] === "Excelente") {
+        data.evaluation = data.evaluation + 10
+      } else if (data[key] === "Bom") {
+        data.evaluation = data.evaluation + 8
+      } else if (data[key] === "Aceitavel") {
+        data.evaluation = data.evaluation + 6
+      } else if (data[key] === "Insatisfatório") {
+        data.evaluation = data.evaluation + 4
+      } else if (data[key] === "Ruim") {
+        data.evaluation = data.evaluation + 2
+      }
+    }
+    data.evaluation = data.evaluation / 5
+  }
+
+  const setAllBad = (data) => {
+    /* data.process = "Ruim"
+    data.software = "Ruim"
+    data.inovation = "Ruim"
+    data.pitch = "Ruim"
+    data.formation = "Ruim" */
+    data.evaluation =  2
+  }
+
   const handleOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
-    axios.post(`${baseUrl}/savereport`, data).then((response) => {});
+    setAllBad(data)
+    data.nameEvaluator = name
+    axios.post(`${baseUrl}/updatereport`, data).then((response) => { });
+    setOpen(false);
+  };
+
+  const sendAvaliation = () => {
+    calcEval(data)
+    data.nameEvaluator = name
+    axios.post(`${baseUrl}/savereport`, data).then((response) => { });
     setOpen(false);
   };
 
@@ -189,7 +227,7 @@ export default function ModalAvaliation(props) {
                   <button
                     type="button"
                     className="mt-3 px-3 py-2"
-                    style={{ color: "black", fontSize: "15px", backgroundColor: '#FF0000'}}
+                    style={{ color: "black", fontSize: "15px", backgroundColor: '#FF0000' }}
                     onClick={handleClose}
                   >
                     Excluir avaliação
@@ -199,10 +237,10 @@ export default function ModalAvaliation(props) {
                   <button
                     type="button"
                     className="mt-3 px-3 py-2"
-                    style={{ color: "black", fontSize: "15px", backgroundColor: '#00FF00'}}
-                    onClick={handleClose}
+                    style={{ color: "black", fontSize: "15px", backgroundColor: '#00FF00' }}
+                    onClick={sendAvaliation}
                   >
-                    Adicionar avaliação
+                    Enviar avaliação
                   </button>
                 </MDBCol>
               </MDBRow>

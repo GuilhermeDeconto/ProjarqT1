@@ -41,6 +41,8 @@ const TeamModel = mongoose.model("team", {
   pitch: String,
   inovation: String,
   formation: String,
+  evaluation: Number,
+  evaluators: [String]
 });
 
 /* Routes */
@@ -68,13 +70,13 @@ server.route({
       var id = 0;
       var token = generate_token(30);
       for (user of users) {
-        if (user.email == request.payload.email) {
+        if (user.email === request.payload.email) {
           id = user.id;
         }
       }
       let result = await UserModel.findById(id).exec();
       if (result != null) {
-        if (result.password == request.payload.password) {
+        if (result.password === request.payload.password) {
           data = {
             success: true,
             message: "Login success!",
@@ -108,12 +110,12 @@ server.route({
   path: "/users",
   handler: async (request, resp) => {
     try {
-      var users = await UserModel.find( { "isNormalUser": true } ).exec();
+      var users = await UserModel.find({ "isNormalUser": true }).exec();
       var count = await UserModel.countDocuments().exec();
       var data = {
         status: "success",
         message: "Users retrieved successfully",
-        count: count - 2,
+        count: count - 5,
         users: users,
       };
       return resp.response(data);
@@ -196,6 +198,27 @@ server.route({
         status: "success",
         message: "Members retrieved successfully",
         members: result,
+      };
+      return resp.response(data);
+    } catch (error) {
+      return resp.response(error).code(500);
+    }
+  },
+});
+
+//Buscar resultado da hackatona
+server.route({
+  method: "GET",
+  path: "/result",
+  handler: async (request, resp) => {
+    try {
+      var result = await TeamModel.find().sort({ evaluation: 1 });
+      let count = await TeamModel.countDocuments().exec();
+      var data = {
+        status: "success",
+        message: "Result retrieved successfully",
+        teams: result,
+        count: count,
       };
       return resp.response(data);
     } catch (error) {
@@ -296,6 +319,7 @@ server.route({
         pitch: joi.string().optional(),
         inovation: joi.string().optional(),
         formation: joi.string().optional(),
+        evaluation: joi.number().optional(),
       },
       failAction: (request, resp, error) => {
         return error.isJoi
@@ -336,6 +360,8 @@ server.route({
         pitch: joi.string().required(),
         inovation: joi.string().required(),
         formation: joi.string().required(),
+        evaluation: joi.number().optional(),
+        nameEvaluator: joi.string().optional()
       },
       failAction: (request, resp, error) => {
         return error.isJoi
@@ -347,22 +373,90 @@ server.route({
   handler: async (request, resp) => {
     try {
       var filter = { number: request.payload.number };
+      var doc = await TeamModel.findOne(filter).exec()
+      var newArray = doc.evaluators
+      if (doc.evaluators.indexOf(request.payload.nameEvaluator) === -1) {
+        doc.evaluators.push(request.payload.nameEvaluator)
+        newArray = doc.evaluators
+      }
+
       var update = {
         software: request.payload.software,
         process: request.payload.process,
         pitch: request.payload.pitch,
         inovation: request.payload.inovation,
         formation: request.payload.formation,
+        evaluation: request.payload.evaluation,
+        evaluators: newArray
       };
-      var team = await TeamModel.findOneAndUpdate(filter, update, {
+      team = await TeamModel.findOneAndUpdate(filter, update, {
         new: true,
       })
       var teams = await TeamModel.find().exec();
       var data = {
         message: "Team evaluate!",
-        teams: teams,
+        teams: teams
       };
+      return resp.response(data);
+    } catch (error) {
+      return resp.response(error).code(500);
+    }
+  },
+});
 
+//Atualizar avaliação dada por um avaliador
+server.route({
+  method: "POST",
+  path: "/updatereport",
+  options: {
+    validate: {
+      payload: {
+        number: joi.number().required(),
+        software: joi.string().required(),
+        process: joi.string().required(),
+        pitch: joi.string().required(),
+        inovation: joi.string().required(),
+        formation: joi.string().required(),
+        evaluation: joi.number().optional(),
+        nameEvaluator: joi.string().optional()
+      },
+      failAction: (request, resp, error) => {
+        return error.isJoi
+          ? resp.response(error.details[0]).takeover()
+          : resp.response(error).takeover();
+      },
+    },
+  },
+  handler: async (request, resp) => {
+    try {
+      var filter = { number: request.payload.number };
+      var doc = await TeamModel.findOne(filter).exec()
+      var newArray = doc.evaluators
+      if (newArray.length > 3) {
+        var index = doc.evaluators.indexOf(request.payload.nameEvaluator)
+        if (index > -1) {
+          doc.evaluators.splice(index, 1)
+          newArray = doc.evaluators
+        }
+      }
+
+      var update = {
+        software: request.payload.software,
+        process: request.payload.process,
+        pitch: request.payload.pitch,
+        inovation: request.payload.inovation,
+        formation: request.payload.formation,
+        evaluation: request.payload.evaluation,
+        evaluators: newArray
+      };
+      team = await TeamModel.findOneAndUpdate(filter, update, {
+        new: true,
+      })
+      var teams = await TeamModel.find().exec();
+      var data = {
+        message: "Team evaluate!",
+        teams: teams
+      };
       return resp.response(data);
     } catch (error) {
       return resp.response(error).code(500);

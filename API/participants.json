@@ -501,7 +501,37 @@
   },
   {
     "name": "Ana Paula",
-    "email": "anapaula@pucrs.br",
+    "email": "ana.paula@pucrs.br",
+    "password": 123456,
+    "team": 0,
+    "isAdmin": false,
+    "isNormalUser": false,
+    "semester": 0,
+    "curse": ""
+  },
+  {
+    "name": "Marcelo Yamaguti",
+    "email": "marcelo.yamati@pucrs.br",
+    "password": 123456,
+    "team": 0,
+    "isAdmin": false,
+    "isNormalUser": false,
+    "semester": 0,
+    "curse": ""
+  },
+  {
+    "name": "Milene Silveira",
+    "email": "milene.silveira@pucrs.br",
+    "password": 123456,
+    "team": 0,
+    "isAdmin": false,
+    "isNormalUser": false,
+    "semester": 0,
+    "curse": ""
+  },
+  {
+    "name": "Cristina Moreira",
+    "email": "cristina.moreira@pucrs.br",
     "password": 123456,
     "team": 0,
     "isAdmin": false,

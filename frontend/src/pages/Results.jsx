@@ -1,60 +1,47 @@
 import React from "react";
-import Carousel from 'react-bootstrap/Carousel'
-import { MDBBtn } from "mdbreact";
 import PainelNavBar from "../components/PainelNavBar";
-import TableRender from "../components/TableRender";
-import "../css/participantstable.css";
-import "../css/backgroundall.css";
-
+import { MDBContainer, MDBCol, MDBRow, MDBCardGroup } from "mdbreact";
+import * as axios from "axios";
+import ResultTable from '../components/ResultTable'
+import "../css/results.css"
 class Results extends React.Component {
   constructor(props) {
     super(props);
     this.baseUrl = `http://localhost:9876`;
-    this.state = {};
+    this.state = {
+      teams: [],
+      count: 0
+    };
+  }
+
+  componentDidMount() {
+    axios
+      .get(`${this.baseUrl}/result`)
+      .then((response) => {
+        if (response) {
+          var teams = response.data.teams;
+          this.setState({
+            teams: teams,
+            count: response.data.count
+          });
+        }
+      });
   }
 
   render() {
+    let { teams, count} = this.state;
     return (
       <React.Fragment>
-        <Carousel>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="holder.js/800x400?text=First slide&bg=373940"
-              alt="First slide"
-            />
-            <Carousel.Caption>
-              <h3>First slide label</h3>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="holder.js/800x400?text=Second slide&bg=282c34"
-              alt="Third slide"
-            />
-
-            <Carousel.Caption>
-              <h3>Second slide label</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="holder.js/800x400?text=Third slide&bg=20232a"
-              alt="Third slide"
-            />
-
-            <Carousel.Caption>
-              <h3>Third slide label</h3>
-              <p>
-                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-              </p>
-            </Carousel.Caption>
-          </Carousel.Item>
-        </Carousel>
+          <MDBContainer fluid id="results">
+            <MDBRow>
+              <h4 className="text-center mx-auto my-3"> RESULTADO DA HACKTONA DUS GURIS</h4>
+            </MDBRow>
+            <MDBRow id="tableResult">
+              <MDBCol lg="12" sm="12" className="white-text">
+                <ResultTable teams={teams} count={count}/>
+              </MDBCol>
+            </MDBRow>
+          </MDBContainer>
       </React.Fragment>
     );
   }
