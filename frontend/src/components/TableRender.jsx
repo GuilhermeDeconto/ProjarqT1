@@ -90,6 +90,7 @@ export default function TableRender(props) {
                   }
                 });
             }
+            alert("Atualize a página para ver as novas alterações!")
           }
           resolve();
         }, 1000);
@@ -122,6 +123,7 @@ export default function TableRender(props) {
                   }
                 });
             }
+            alert("Atualize a página para ver as novas alterações!")
           }
           resolve();
         }, 1000);
@@ -154,6 +156,7 @@ export default function TableRender(props) {
                   }
                 });
             }
+            alert("Atualize a página para ver as novas alterações!")
           }
           resolve();
         }, 1000);
@@ -179,14 +182,14 @@ export default function TableRender(props) {
     ),
   };
 
-  const actions = [
+  /* const actions = [
     {
       icon: "refresh",
       tooltip: "Atualizar dados",
       isFreeAction: true,
       onClick: () => {},
     },
-  ];
+  ]; */
 
   return (
     <React.Fragment>
@@ -201,7 +204,7 @@ export default function TableRender(props) {
           icons={isIcons ? icons : <div />}
           isLoading={columns && data ? false : true}
           editable={isEditable ? edit : <div />}
-          actions={actions}
+          //actions={actions}
         />
       </MDBContainer>
     </React.Fragment>

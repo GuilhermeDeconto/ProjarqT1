@@ -39,7 +39,7 @@ class Participant extends React.Component {
             name={this.props.location.state.data.name}
             title={"Participante"}
           />
-          <h4 className="text-center text-muted">Apenas administradores podem gerenciar participantes e times! </h4>
+          <h4 className="text-center text-muted my-3">Apenas administradores podem gerenciar participantes e times! </h4>
           <MDBContainer fluid className="mt-4">
             <MDBRow>
               <MDBCol lg="6" sm="12">

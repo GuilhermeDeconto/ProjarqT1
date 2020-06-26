@@ -1,6 +1,5 @@
 import React from "react";
-import PainelNavBar from "../components/PainelNavBar";
-import { MDBContainer, MDBCol, MDBRow, MDBCardGroup } from "mdbreact";
+import { MDBContainer, MDBCol, MDBRow} from "mdbreact";
 import * as axios from "axios";
 import ResultTable from '../components/ResultTable'
 import "../css/results.css"
