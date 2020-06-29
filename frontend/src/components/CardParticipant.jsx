@@ -10,12 +10,12 @@ var i = 0;
 const CardParticipant = (props) => {
   var { data } = props;
   return (
-    <CardDeck className="my-2">
+    <CardDeck className="my-2 mt-3">
       {data
         ? data.map((item, index) => {
             i++;
             return (
-              <MDBCol className="mx-auto px-auto my-auto py-auto" key={index}>
+              <MDBCol key={index}>
                 <Card
                   border="success"
                   key={index}

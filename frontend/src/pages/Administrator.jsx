@@ -4,6 +4,7 @@ import PainelNavBar from "../components/PainelNavBar";
 import TableRender from "../components/TableRender";
 import "../css/participantstable.css";
 import "../css/backgroundall.css";
+import Lists from "../components/Lists";
 
 class Administrador extends React.Component {
   constructor(props) {
@@ -90,6 +91,12 @@ class Administrador extends React.Component {
         field: "formation",
         editable: "never"
       },
+      {
+        title: "Avaliadores",
+        field: "evaluators",
+        render: rowData => <Lists list={rowData.evaluators}/>,
+        editable: "never"
+      }
     ],
   };
 

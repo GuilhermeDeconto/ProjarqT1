@@ -5,6 +5,7 @@ import "../css/participantstable.css";
 import "../css/backgroundall.css";
 import ModalAvaliation from "../components/ModalAvaliation"
 import { MDBBtn } from "mdbreact";
+import Lists from "../components/Lists";
 
 class Evaluator extends React.Component {
   constructor(props) {
@@ -103,7 +104,7 @@ class Evaluator extends React.Component {
       {
         title: "Avaliadores",
         field: "evaluators",
-        render: rowData => <div>{ rowData.evaluators.toString() } </div>
+        render: rowData => <Lists list={rowData.evaluators}/>
       },
       {
         title: "Avaliação",

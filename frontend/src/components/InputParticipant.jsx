@@ -139,7 +139,7 @@ class InputParticipant extends React.Component {
     let { participants } = this.state;
 
     return (
-      <div>
+      <div className="mx-auto">
         <Autocomplete
           multiple
           id="checkboxes-tags-participants"
@@ -171,7 +171,7 @@ class InputParticipant extends React.Component {
           fullWidth={true}
           autoComplete={true}
           autoHighlight={true}
-          style={{ width: 682, color: "black" }}
+          style={{ width: 1400, color: "black" }}
           renderTags={(value, getTagProps) =>
             value.map((option, index) => (
               <Chip

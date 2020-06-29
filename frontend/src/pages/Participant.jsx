@@ -1,6 +1,6 @@
 import React from "react";
 import PainelNavBar from "../components/PainelNavBar";
-import { MDBContainer, MDBCol, MDBRow, MDBCardGroup } from "mdbreact";
+import { MDBContainer, MDBCol, MDBRow } from "mdbreact";
 import InputParticipant from "../components/InputParticipant";
 import CardParticipant from "../components/CardParticipant";
 import "../css/participant.css";
@@ -39,16 +39,18 @@ class Participant extends React.Component {
             name={this.props.location.state.data.name}
             title={"Participante"}
           />
-          <h4 className="text-center text-muted my-3">Apenas administradores podem gerenciar participantes e times! </h4>
+          <h4 className="text-center text-muted my-3">
+            Apenas administradores podem gerenciar participantes e times!{" "}
+          </h4>
           <MDBContainer fluid className="mt-4">
             <MDBRow>
-              <MDBCol lg="6" sm="12">
+              <MDBCol lg="12" sm="12">
                 <InputParticipant participant={participantActual} />
               </MDBCol>
-              <MDBCol lg="6" sm="12">
-                <MDBCardGroup className="d-flex justify-content-between">
-                  <CardParticipant data={team} />
-                </MDBCardGroup>
+            </MDBRow>
+            <MDBRow>
+              <MDBCol lg="12" sm="12" md="12">
+                <CardParticipant data={team} />
               </MDBCol>
             </MDBRow>
           </MDBContainer>
